@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-between">
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample">
+      Employer Dashboard
+    </button>
+  
+    <div class="dropdown">
+      <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Profile
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Company Pages</a>
+        <a class="dropdown-item" href="#">User Settings</a>
+        <a class="dropdown-item" href="#">Employer Settings</a>
+        <a class="dropdown-item" href="#">Billing</a>
+        <a class="dropdown-item" href="#">Subscription</a>
+        <a class="dropdown-item" href="#">Integration</a>
+        <a class="dropdown-item" href="#">Contact Us</a>
+        <a class="dropdown-item" href="#">Account Settings</a>
+        <a class="dropdown-item" href="#">Visit Indeed for Job Seekers</a>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item">Sign Out</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Dashboard</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Your dashboard content goes here -->
+      <button class="btn btn-outline-dark" type="button" (click)="goTopost()">
+        Post a Job
+      </button>
+      <div class="dropdown mt-3">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Job</a></li>
+          <li><a class="dropdown-item" href="#">Phone Calls</a></li>
+          <li><a class="dropdown-item" href="#">Campaigns</a></li>
+          <li><a class="dropdown-item" href="#">Candidates</a></li>
+          <li><a class="dropdown-item" href="#">Search resumes</a></li>
+          <li><a class="dropdown-item" href="#">Interviews</a></li>
+          <li><a class="dropdown-item" href="#">Analytics</a></li>
+          <li><a class="dropdown-item" href="#">Tools</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>

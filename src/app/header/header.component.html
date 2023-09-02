@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="showNavbar">
+    <a class="navbar-brand" href="#">Your Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="" routerLinkActive="active">Find Jobs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/companies" routerLinkActive="active">Company reviews</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/salary" routerLinkActive="active">Salary guide</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/employers/" routerLinkActive="active">Employes/Post Job</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary" (click)="signinpage()">Sign-in</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <router-outlet></router-outlet>
+  
+  
+    <!--<footer>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Your Logo</a> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" routerLinkActive="active">Career Advice</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Browse Jobs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Browse Companies
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Salaries
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Indeed Events
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Work at Intended
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Countries
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">About
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Help Cenre
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">ESG at intended
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Countries
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Guidelines for safe job search
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Post a job
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">© 2023 Indeed
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active">Accessibility at Indeed
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </footer>-->
+    

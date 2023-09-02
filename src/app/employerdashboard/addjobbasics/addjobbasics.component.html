@@ -1,0 +1,55 @@
+<div class="container shadow">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <div class="col">
+                    <h2 class="text-dark text-center"><b>Create an employer account</b></h2>
+                </div>
+                <div class="col text-center">
+                    <img src="/assets/pictureindeed-removebg-preview.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <h2>Jobs Details</h2>
+    <form [formGroup]="jobdetail" (ngSubmit)="jobdetailsform(jobdetail)">
+      <div class="mb-3">
+        <label for="jobtitle" class="form-label">Job Title*</label>
+        <input type="text" class="form-control" id="jobtitle" formControlName="jobtitle" required>
+      </div>
+      <div class="mb-3">
+        <label for="companyforthisjob" class="form-label">Company for this job *</label>
+        <input type="text" class="form-control" id="companyforthisjob" formControlName="companyforthisjob" required>
+      </div>
+      <div class="mb-3">
+        <label for="numberofopening" class="form-label">Number of Openings *</label>
+        <input type="number" class="form-control" id="numberofopening" formControlName="numberofopening" required>
+      </div>
+      <div class="mb-3">
+        <label for="locationjob" class="form-label">Location</label>
+        <input type="text" class="form-control" id="locationjob" formControlName="locationjob" required>
+      </div>
+      <div class="mb-3">
+        <label for="jobtype" class="form-label">Job type</label>
+        <input type="text" class="form-control" id="jobtype" formControlName="jobtype" required>
+      </div>
+      <div class="mb-3">
+        <label for="schedulejob" class="form-label">Schedule *</label>
+        <input type="text" class="form-control" id="schedulejob" formControlName="schedulejob" required>
+      </div>
+      <div class="mb-3">
+        <label for="payjob" class="form-label">Pay *</label>
+        <input type="text" class="form-control" id="payjob" formControlName="payjob" required>
+      </div>
+      <div class="mb-3">
+        <label for="payjobsup" class="form-label">Supplemental Pay *</label>
+        <input type="text" class="form-control" id="payjobsup" formControlName="payjobsup" required>
+      </div> 
+      <textarea name="" id="" cols="30" rows="10" formControlName="descriptiondata"></textarea>
+
+      <button type="submit" class="btn btn-primary">Continue</button>
+    </form>
+  </div>

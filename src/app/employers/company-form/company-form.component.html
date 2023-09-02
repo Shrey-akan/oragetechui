@@ -1,0 +1,17 @@
+<div class="popup-form">
+    <h1>Let's create your account</h1>
+    <p>Already have an account? <b> <a href="">Sign in</a> </b> </p>
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" formControlName="companyName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <p>By creating an account, you agree to Indeed’s <a href="">Terms of Service</a> , <a href="">Cookie Policy</a> and <a href="">Privacy Policy</a>. You consent to receiving marketing messages from Indeed and may opt out from receiving such messages by following the unsubscribe link in our messages, or as detailed in our terms.</p>
+  </div>
+  

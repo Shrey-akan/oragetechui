@@ -1,0 +1,37 @@
+<!-- user-profile.component.html -->
+
+<div *ngIf="data" class="container mt-5">
+    <h2 class="mb-4">User Profile</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="fname" class="form-label">First Name:</label>
+                <p class="form-control-plaintext">{{ data.fnameuser }}</p>
+            </div>
+            <div class="mb-3">
+                <label for="lname" class="form-label">Last Name:</label>
+                <p class="form-control-plaintext">{{ data.lnameuser }}</p>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <p class="form-control-plaintext">{{ data.emailuser }}</p>
+            </div>
+            <!-- Add more user details as needed -->
+        </div>
+        <!-- <div class="col-md-6">
+            <h3 class="mb-4">Update Profile</h3>
+            <form (submit)="updateUser()">
+                <div class="mb-3">
+                    <label for="fname" class="form-label">First Name:</label>
+                    <input type="text" id="fname" [(ngModel)]="updatedUser.fnameuser" name="fname" class="form-control"
+                        required>
+                </div>
+               
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </div>
+            </form>
+        </div> -->
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container shadow">
+  <div class="row">
+      <div class="card">
+          <div class="card-body">
+              <div class="col">
+                  <h2 class="text-dark text-center"><b>Create an employer account</b></h2>
+              </div>
+              <div class="col text-center">
+                  <img src="/assets/pictureindeed-removebg-preview.png" alt="">
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+  
+<div class="container mt-5">
+  <h2>Employer Account Registration</h2>
+  <form [formGroup]="registeremploy" (ngSubmit)="empRegisterSub(registeremploy)">
+    <div class="mb-3">
+      <label for="companyName" class="form-label">Company's Name *</label>
+      <input type="text" class="form-control" id="companyName" formControlName="companyName" required>
+    </div>
+    <div class="mb-3">
+      <label for="employeesRange" class="form-label">Company's Number of Employees *</label>
+      <input type="text" class="form-control" id="employeesRange" formControlName="employeesRange" required>
+    </div>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Your First and Last Name *</label>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" id="firstName" formControlName="firstName" required>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label">Your Phone Number *</label>
+      <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" required>
+    </div>
+    <div class="mb-3">
+      <label for="howHeard" class="form-label">How You Heard About Us</label>
+      <input type="text" class="form-control" id="howHeard" formControlName="howHeard">
+    </div>
+    <button type="submit" class="btn btn-primary">Continue</button>
+  </form>
+</div>
