@@ -15,7 +15,7 @@ import { HelpcenteruserComponent } from './helpcenteruser/helpcenteruser.compone
 import { SettingComponent } from './setting/setting.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KapplyComponent } from './kapply/kapply.component';
-
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 @NgModule({
   declarations: [
     FindjobseekerComponent,
@@ -35,7 +35,8 @@ import { KapplyComponent } from './kapply/kapply.component';
     CommonModule,
     SeekerRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class SeekerModule { }
