@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="card" style="padding: 20px;">
+        <form [formGroup]="loginform" (ngSubmit)="login()" action="">
+            <input type="text" class="form-control mb-3" formControlName="userName" id="userName" placeholder="Enter User Name">
+            <input type="text" class="form-control mb-3" formControlName="userPassword" id="userPassword" placeholder="Enter Password">
+            <input type="submit" value="Login" class="btn btn-outline-primary form-control rounded-0">
+        </form>
+    </div>
+</div>

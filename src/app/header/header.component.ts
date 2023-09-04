@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { UserauthService } from '../service/userauth.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,25 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
-  showNavbar = true;
 
-  constructor(private router: Router) {}
+  showNavbar = true;
+constructor(private userauth:UserauthService , private router:Router , public userService:UserService){
+
+}
+
+
+
+  public IsLoggedIn(){
+    return this.userauth.IsLoggedIn();
+  }
+  public logout(){
+    this.userauth.clear();
+    this.router.navigate(['/home']); 
+  }
+
+
+
+
 
   ngOnInit() {
 
@@ -25,4 +43,6 @@ export class HeaderComponent implements OnInit{
   signinpage(){
     this.router.navigate(['/sign-in']);
   }
+
+
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "orageap": {
+    "orageapp": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/orageap",
+            "outputPath": "dist/orageapp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "orageap:build:production"
+              "browserTarget": "orageapp:build:production"
             },
             "development": {
-              "browserTarget": "orageap:build:development"
+              "browserTarget": "orageapp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "orageap:build"
+            "browserTarget": "orageapp:build"
           }
         },
         "test": {
@@ -96,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "3fdf15ea-82ec-4f24-ad14-d50504a38584"
+    "analytics": "0ec7d931-9190-4d1b-8009-09435d1e34be"
   }
 }

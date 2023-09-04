@@ -18,7 +18,7 @@ import { EmpjobdescribeFormComponent } from './empjobdescribe-form/empjobdescrib
 import { SigninempComponent } from './signinemp/signinemp.component';
 import { SignInCheckempComponent } from './sign-in-checkemp/sign-in-checkemp.component';
 import { EmployerformComponent } from './employerform/employerform.component';
-import { EmployerdashboardModule } from '../employerdashboard/employerdashboard.module';
+
 
 @NgModule({
   declarations: [
@@ -44,8 +44,7 @@ import { EmployerdashboardModule } from '../employerdashboard/employerdashboard.
     CommonModule,
     EmployersRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    EmployerdashboardModule
+    ReactiveFormsModule
   ]
 })
 export class EmployersModule { }

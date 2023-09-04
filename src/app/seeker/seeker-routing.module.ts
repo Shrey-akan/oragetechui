@@ -13,7 +13,7 @@ import { MyjobsuserComponent } from './myjobsuser/myjobsuser.component';
 import { HelpcenteruserComponent } from './helpcenteruser/helpcenteruser.component';
 import { SettingComponent } from './setting/setting.component';
 import { KapplyComponent } from './kapply/kapply.component';
-import { FindjobsComponent } from '../findjobs/findjobs.component';
+import { FindjobsempComponent } from '../employers/findjobsemp/findjobsemp.component';
 
 
 const routes: Routes = [
@@ -62,7 +62,7 @@ const routes: Routes = [
     ]
   },
   {
-    path:'findjobs' , component:FindjobsComponent
+    path:'findjobs' , component:FindjobsempComponent
   }
 
 ];
