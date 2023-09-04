@@ -19,6 +19,7 @@ import { ForhiddenComponent } from './forhidden/forhidden.component';
 import { AboutComponent } from './about/about.component';
 import { ServicesComponent } from './services/services.component';
 import { FooterComponent } from './footer/footer.component';
+import { FindjobsComponent } from './findjob/findjob.component';
 
 
 
@@ -36,7 +37,8 @@ import { FooterComponent } from './footer/footer.component';
     ForhiddenComponent,
     AboutComponent,
     ServicesComponent,
-    FooterComponent
+    FooterComponent,
+    FindjobsComponent
   ],
   imports: [
     BrowserModule,

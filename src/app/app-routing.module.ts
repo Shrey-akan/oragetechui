@@ -12,10 +12,14 @@ import { AboutComponent } from './about/about.component';
 import { servicesVersion } from 'typescript';
 import { ServicesComponent } from './services/services.component';
 import { ContactComponent } from './contact/contact.component';
+import { FindjobsComponent } from './findjob/findjob.component';
 
 const routes: Routes = [  
   {
-    path:'' , component:HomeComponent
+    path:'' , component:FindjobsComponent
+  },
+  {
+    path:'home' , component:HomeComponent
   },
   {
     path:'about' , component:AboutComponent
