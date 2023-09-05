@@ -18,10 +18,10 @@ export class RegisterComponent {
 
   constructor(private formBuilder: FormBuilder , private b1:NavbarService , private router:Router) {
     this.userregister = this.formBuilder.group({
-      fnameuser: ['', Validators.required],
-      lnameuser: ['', Validators.required],
-      emailuser: ['', [Validators.required, Validators.email]],
-      passuser:['',Validators.required],
+      userFirstName: ['', Validators.required],
+      userLastName: ['', Validators.required],
+      userName: ['', [Validators.required, Validators.email]],
+      userPassword:['',Validators.required],
       companyuser: [''],
       websiteuser: [''],
       userphone: ['', Validators.required],
@@ -31,7 +31,7 @@ export class RegisterComponent {
     });
 
   this.usersignin = this.formBuilder.group({
-    emailuserc:['',Validators.required],
+    userNamec:['',Validators.required],
     passuserc:['',Validators.required]
   });
 
@@ -39,9 +39,9 @@ export class RegisterComponent {
 
   userRegisteration(userregister:{value:any;}){
     
-    this.router.navigate(['/seeker']);
+    this.router.navigate(['/seeker/firstpage']);
     
-    return this.b1.insertuserdetail(userregister.value).subscribe();
+    return this.b1.insertuserdetail(userregister);
   }
 
 
@@ -61,10 +61,10 @@ export class RegisterComponent {
     // }
     
     login(usersignin:{value:any;}) {
-      const empemail = usersignin.value.emailuserc;
+      const empemail = usersignin.value.userNamec;
       const emppassword = usersignin.value.passuserc;
     
-      const empmatch = this.data.find((data1: any) => data1.emailuser === empemail && data1.passuser === emppassword );
+      const empmatch = this.data.find((data1: any) => data1.userName === empemail && data1.passuser === emppassword );
   
       if (empmatch) {
         this.router.navigate(['/seeker/']);

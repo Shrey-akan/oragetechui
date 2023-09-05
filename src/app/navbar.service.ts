@@ -55,7 +55,7 @@ export class NavbarService {
   //API for job Post get data
   viewjobpostdeturl = "http://localhost:9001/viewjobpostdet";
 
-
+  Path_of_api = "http://localhost:9001";
 
   employercompanydetailurl = "http://localhost:9001/empaccregrepo";
   data: any;
@@ -76,9 +76,19 @@ export class NavbarService {
 
 
   //insert user register api
-  insertuserdetail(data: any) {
+  public insertuserdetail(userregister:any) {
     console.log("done");
-    return this.h1.post(this.inserturluser, data);
+    return this.h1.post(this.Path_of_api+"/registerNewUser",userregister).subscribe({
+      next: (resp: any) => {
+  
+        
+        
+     console.log("Data inserted");
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
 
 
