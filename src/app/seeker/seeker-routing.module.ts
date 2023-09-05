@@ -14,6 +14,7 @@ import { HelpcenteruserComponent } from './helpcenteruser/helpcenteruser.compone
 import { SettingComponent } from './setting/setting.component';
 import { KapplyComponent } from './kapply/kapply.component';
 import { FindjobsempComponent } from '../employers/findjobsemp/findjobsemp.component';
+import { FirstpageComponent } from './firstpage/firstpage.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
     path:'' , component: HaderseekerComponent,
     children:[
       {
-        path:'' , component: FindjobseekerComponent
+        path:'firstpage' , component: FirstpageComponent
       },
       {
         path:'companiesseker' , component: CompaniessekerComponent
@@ -60,10 +61,8 @@ const routes: Routes = [
       }
 
     ]
-  },
-  {
-    path:'findjobs' , component:FindjobsempComponent
   }
+
 
 ];
 

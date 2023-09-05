@@ -20,6 +20,15 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    const currentroute = this.router.url;
+    if(currentroute.includes("/register")){
+     console.log("router working register");
+     return next.handle(req);
+    }
+    else if(currentroute.includes("/employers")){
+      console.log("router working register");
+      return next.handle(req);
+     }
     if (req.headers.get('No-Auth') === 'True') {
       return next.handle(req.clone());
     }
@@ -33,7 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
             (err:HttpErrorResponse) => {
                 console.log(err.status);
                 if(err.status === 401) {
-                    this.router.navigate(['/login']);
+                    this.router.navigate(['/']);
                 } else if(err.status === 403) {
                     this.router.navigate(['/forbidden']);
                 }
@@ -46,6 +55,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private addToken(request:HttpRequest<any>, token:string) {
     console.log("request intercepted");
+
       return request.clone(
           {
               setHeaders: {

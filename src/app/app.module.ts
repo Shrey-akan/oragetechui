@@ -20,6 +20,7 @@ import { AboutComponent } from './about/about.component';
 import { ServicesComponent } from './services/services.component';
 import { FooterComponent } from './footer/footer.component';
 import { FindjobsComponent } from './findjob/findjob.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -38,7 +39,8 @@ import { FindjobsComponent } from './findjob/findjob.component';
     AboutComponent,
     ServicesComponent,
     FooterComponent,
-    FindjobsComponent
+    FindjobsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NavbarService } from '../navbar.service';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-
+import { NavbarService } from 'src/app/navbar.service';
 interface Job {
   jobtitle: string;
   companyforthisjob: string;
@@ -15,13 +13,11 @@ interface Job {
   payjobsup: string;
 }
 @Component({
-  selector: 'app-findjob',
-  templateUrl: './findjob.component.html',
-  styleUrls: ['./findjob.component.css']
+  selector: 'app-firstpage',
+  templateUrl: './firstpage.component.html',
+  styleUrls: ['./firstpage.component.css']
 })
-export class FindjobsComponent implements OnInit{
-
-
+export class FirstpageComponent {
 
   showJobFeed = false;
   showJobSearches = false;
@@ -46,16 +42,13 @@ export class FindjobsComponent implements OnInit{
 
 
   ngOnInit(): void {
-    // let responce = this.b1.viewjobpostdet();
-    // responce.subscribe((data1: any)=>this.data=data1);
+    let responce = this.b1.viewjobpostdet();
+    responce.subscribe((data1: any)=>this.data=data1);
   }
+
 
   navigateToSignIn() {
     // Replace 'sign-in' with the actual route name of your sign-in page
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(['seeker/applyjob']);
   }
-
-
-
-
 }

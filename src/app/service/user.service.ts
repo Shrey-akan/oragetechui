@@ -32,7 +32,7 @@ export class UserService {
           this.router.navigate(['/admin']);
         }
         else{
-          this.router.navigate(['./employers']);
+          this.router.navigate(['./seeker/firstpage']);
         }
       },
       error: (err: any) => {

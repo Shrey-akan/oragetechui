@@ -1,0 +1,190 @@
+<div class="container text-center" style="margin-top: 50px;">
+    <div class="row">
+        <h1><strong>indeed</strong></h1>
+    </div>
+</div>
+<div class="container" id="jbfeed">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <div class="custom-box clickable">
+                        <h1>Enter Your Password</h1>
+                        
+                        <div class="container">
+                            <form [formGroup]="usersignin" (ngSubmit)="login(usersignin)">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="emailuserc">Username:</label>
+                                    <input type="email" id="emailuserc" formControlName="emailuserc" class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="passuserc">Password:</label>
+                                    <input type="password" id="passuserc" formControlName="passuserc" class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="google-signin-button">Sign in with Google</button>
+
+                            </div>
+                            <script>
+                                gapi.load('auth2', function() {
+                                  gapi.auth2.init({
+                                    client_id: 'YOUR_CLIENT_ID'
+                                  });
+                                });
+                              </script>
+                              <script>
+                                document.getElementById('google-signin-button').addEventListener('click', function() {
+                                  gapi.auth2.getAuthInstance().signIn();
+                                });
+                              </script>
+                              
+                              
+                            <div class="row">
+                                <a routerLink="/resetpasword">Forgot password</a>
+                            </div>
+                            <div class="row">
+                                <button class="btn btn-primary">Sign-In</button>
+                            </div>
+                           </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <hr>
+        </div>
+        <div class="col-md-1">
+            <p>OR</p>
+        </div>
+        <div class="col-md-6">
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Ready to take the next step?</h1>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <div class="container custom-box">
+                <div class="row">
+                    <h1>Register Now</h1>
+                    <div class="col-md 6">
+                        <form [formGroup]="userregister" (ngSubmit)="userRegisteration(userregister)">
+
+
+                            <div class="form-group">
+                                <label for="fnameuser">First Name:</label>
+                                <input type="text" id="fnameuser" formControlName="fnameuser" class="form-control"
+                                    required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="lnameuser">Last Name:</label>
+                                <input type="text" id="lnameuser" formControlName="lnameuser" class="form-control"
+                                    required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="emailuser">Email:</label>
+                                <input type="email" id="emailuser" formControlName="emailuser" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="passuser">Password:</label>
+                                <input type="email" id="passuser" formControlName="passuser" class="form-control"
+                                    required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="companyuser">Company Name:</label>
+                                <input type="text" id="companyuser" formControlName="companyuser" class="form-control"
+                                    required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="websiteuser">Website URL:</label>
+                                <input type="text" id="websiteuser" formControlName="websiteuser" class="form-control"
+                                    required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="userphone">Phone:</label>
+                                <input type="tel" id="userphone" formControlName="userphone" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country:</label>
+                                <select id="country" formControlName="usercountry" class="form-control" required>
+                                    <option value="">Select a country</option>
+                                    <option value="usa">United States</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <!-- Add more options here -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State:</label>
+                                <select id="stae" formControlName="userstate" class="form-control" required>
+                                    <option value="">Select a country</option>
+                                    <option value="usa">United States</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <!-- Add more options here -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City:</label>
+                                <select id="city" formControlName="usercity" class="form-control" required>
+                                    <option value="">Select a country</option>
+                                    <option value="usa">United States</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <!-- Add more options here -->
+                                </select>
+                            </div>
+
+
+
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<tr *ngFor="let d of data">
+    <td>{{d.emailuser}}</td>
+    <td>{{d.passuser}}</td>
+
+</tr>

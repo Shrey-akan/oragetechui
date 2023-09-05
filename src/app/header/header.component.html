@@ -24,15 +24,19 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink="/employers/">Employer</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" *ngIf="userService.roleMatch('Admin')" routerLink="/admin">Admin Dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" *ngIf="userService.roleMatch('User')" routerLink="/user">User Dashboard</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/register">Register user</a>
           </li>
-       
 
         </ul>
+   
+      
 <button *ngIf="! IsLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Log-In</button>
 <button *ngIf="IsLoggedIn()" type="button" class="btn btn-danger" (click)="logout()" >Log-Out</button>
       </div>

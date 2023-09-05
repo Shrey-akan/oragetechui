@@ -13,10 +13,11 @@ import { servicesVersion } from 'typescript';
 import { ServicesComponent } from './services/services.component';
 import { ContactComponent } from './contact/contact.component';
 import { FindjobsComponent } from './findjob/findjob.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [  
   {
-    path:'' , component:FindjobsComponent
+    path:'', component:FindjobsComponent
   },
   {
     path:'home' , component:HomeComponent
@@ -30,18 +31,23 @@ const routes: Routes = [
   {
     path:'contact' , component:ContactComponent
   },
+  {
+    path: 'employers', loadChildren: () => import('./employers/employers.module').then(m => m.EmployersModule) 
+   },
+  {
+    path:'register' , component:RegisterComponent
+  },
   { path: 'admin', component: AdminComponent },
   { path: 'user', component: UserComponent },
   {
     path:'login' , component:LoginComponent
   },
+
   { path: 'forbidden', component: ForhiddenComponent },
   {
     path:'dashboard' , component:DashboardComponent
   },
-  {
-    path: 'employers', loadChildren: () => import('./employers/employers.module').then(m => m.EmployersModule) 
-   },
+
    {
     path: 'seeker', loadChildren: () => import('./seeker/seeker.module').then(m => m.SeekerModule) 
    }

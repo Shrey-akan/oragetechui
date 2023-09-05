@@ -37,7 +37,6 @@ export class AuthGuard implements CanActivate {
         // const match = true;
 console.log(match);
         if (match) {
-          
           return true;
         } else {
           alert ("failed");
@@ -47,7 +46,7 @@ console.log(match);
       }
     }
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
     return false;
   }
 }

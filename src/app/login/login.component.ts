@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import { UserauthService } from '../service/userauth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { UserauthService } from '../service/userauth.service';
 export class LoginComponent implements OnInit {
   loginform!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: UserService, private userauth:UserauthService) {
+  constructor(private fb: FormBuilder, private router:Router, private authService: UserService, private userauth:UserauthService) {
       }
 
   ngOnInit(): void {
@@ -30,4 +31,5 @@ export class LoginComponent implements OnInit {
       console.log("Some weird error occured boiii")
     }
   }
+
 }
