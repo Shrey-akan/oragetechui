@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { Router } from '@angular/router';
-import { NavbarService } from 'src/app/navbar.service';
+import { UserService } from '../auth/user.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,13 +10,23 @@ import { NavbarService } from 'src/app/navbar.service';
 })
 export class RegisterComponent {
   isHovered = false;
-  userregister: FormGroup;
+  userregister!: FormGroup;
   formSubmitted: any;
-  usersignin:FormGroup;
+ 
   data: any;
 
 
-  constructor(private formBuilder: FormBuilder , private b1:NavbarService , private router:Router) {
+  constructor(private formBuilder: FormBuilder , private router:Router , private userservice:UserService) {
+
+
+
+
+  }
+
+
+
+
+  ngOnInit(): void {
     this.userregister = this.formBuilder.group({
       userFirstName: ['', Validators.required],
       userLastName: ['', Validators.required],
@@ -29,25 +39,14 @@ export class RegisterComponent {
       userstate: ['', Validators.required],
       usercity: ['', Validators.required]
     });
-
-  this.usersignin = this.formBuilder.group({
-    userNamec:['',Validators.required],
-    passuserc:['',Validators.required]
-  });
-
+    // let responce = this.b1.viewuserdetailservice();
+    // responce.subscribe((data1: any)=>this.data=data1);
   }
-
   userRegisteration(userregister:{value:any;}){
     
-    this.router.navigate(['/seeker/firstpage']);
-    
-    return this.b1.insertuserdetail(userregister);
-  }
-
-
-  ngOnInit(): void {
-    let responce = this.b1.viewuserdetailservice();
-    responce.subscribe((data1: any)=>this.data=data1);
+    this.router.navigate(['/login']);
+    console.log(this.userregister);
+    return this.userservice.insertusermail(userregister.value);
   }
 
     // 
@@ -76,5 +75,4 @@ export class RegisterComponent {
         // Optionally, show an error message to the user
       }
     }
-
 }

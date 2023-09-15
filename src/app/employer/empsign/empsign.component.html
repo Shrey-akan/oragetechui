@@ -1,0 +1,81 @@
+<div class="container text-center" style="margin-top: 50px;">
+    <div class="row">
+        <h1><strong>indeed</strong></h1>
+    </div>
+</div>
+<div class="container" id="jbfeed">
+    <div class="row">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="custom-box clickable">
+                        <h1>Ready to take the next step?</h1>
+                        <p>Create an account or sign in.</p>
+                        <p>By creating an account or logging in, you understand and agree to Indeed's <a href="">Terms</a>. You also acknowledge our <a href="">Cookie</a> and <a href="">Privacy</a> policies. You will receive marketing messages from Indeed and may opt out at any time by following the unsubscribe link in our messages, or as detailed in our terms.
+                        </p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   
+
+                                    <!-- <div>
+                                        <button
+                                          class="text-white bg-[#053B50] py-2 px-3 rounded-lg"
+                                          (click)="signInWithGoogle()"
+                                        >
+                                          Login with Google
+                                        </button>
+                                      </div> -->
+                                      
+                                </div>
+                                <!-- <div class="col-md-6">
+                                    <button class="google-button" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+                                        <span class="google-icon">
+                                            <i class="fa-brands fa-apple" style="color: #b4465c;"></i>
+                                        </span>
+                                       <b> Continue with Apple</b>
+                                      </button>
+                                </div> -->
+                              
+                            </div>
+                   
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <hr>
+                                </div>
+                                <div class="col-md-1">
+                                    <p>Or</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>  
+                        <form [formGroup]="emailFormemp" (ngSubmit)="insertemp(emailFormemp)" class="animated-form">
+                            <div class="form-group">
+                              <label for="empmail"><b>Email:</b></label>
+                              <input type="email" id="empmail" formControlName="empmail" class="form-control">
+                              <div *ngIf="emailFormemp.get('empmail')?.hasError('required') && emailFormemp.get('empmail')?.touched" class="error-message" style="color: red;">
+                                Email is required.
+                              </div>
+                              <div *ngIf="emailFormemp.get('empmail')?.hasError('empmail') && emailFormemp.get('empmail')?.touched" class="error-message" style="color: red;">
+                                Invalid email format.
+                              </div>
+                            </div>
+                            
+                            <button type="submit"  class="submit-button">Continue</button>
+                          </form>
+                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

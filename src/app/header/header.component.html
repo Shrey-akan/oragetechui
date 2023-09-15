@@ -16,13 +16,13 @@
             <a class="nav-link active" aria-current="page"  routerLink="/about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="/services">Service</a>
+            <a class="nav-link active" aria-current="page"  routerLink="/service">Service</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page"  routerLink="/contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/employers/">Employer</a>
+            <a class="nav-link active" aria-current="page" routerLink="/employer">Employer</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" *ngIf="userService.roleMatch('Admin')" routerLink="/admin">Admin Dashboard</a>
@@ -35,8 +35,8 @@
         </ul>
    
       
-<button *ngIf="! IsLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Log-In</button>
-<button *ngIf="IsLoggedIn()" type="button" class="btn btn-danger" (click)="logout()" >Log-Out</button>
+<button  type="button" class="btn btn-success" routerLink="/login">Log-In</button>
+<!-- <button  type="button" class="btn btn-danger"  >Log-Out</button> -->
       </div>
     </div>
   </nav>

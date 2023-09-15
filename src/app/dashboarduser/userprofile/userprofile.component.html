@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-4">
+      <!-- Profile picture or additional information can be added here -->
+      <img src="profile-picture.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3">
+      <h4>{{ userData1.userFirstName }} {{ userData1.userLastName }}</h4>
+      <p>{{ userData1.companyuser }}</p>
+    </div>
+    <div class="col-lg-8">
+      <h2>Profile Details</h2>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>ID</th>
+            <td>{{ userData1.uid }}</td>
+          </tr>
+          <tr>
+            <th>First Name</th>
+            <td>{{ userData1.userFirstName }}</td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td>{{ userData1.userLastName }}</td>
+          </tr>
+          <tr>
+            <th>Company</th>
+            <td>{{ userData1.companyuser }}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{ userData1.userName }}</td>
+          </tr> 
+          <tr>
+            <th>Phone</th>
+            <td>{{ userData1.userphone }}</td>
+          </tr>
+          <tr>
+            <th>Country</th>
+            <td>{{ userData1.usercountry }}</td>
+          </tr>
+          <tr>
+            <th>State</th>
+            <td>{{ userData1.userstate }}</td>
+          </tr>
+          <tr>
+            <th>City</th>
+            <td>{{ userData1.usercity }}</td>
+          </tr>
+          <!-- Add more properties as needed -->
+        </tbody>
+      </table>
+      <!-- Add buttons for actions (e.g., Edit, Delete) here if needed -->
+    </div>
+  </div>
+</div>

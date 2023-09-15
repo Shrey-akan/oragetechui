@@ -1,0 +1,48 @@
+.container-fluid {
+  height: 100vh;
+}
+
+.col-md-4 {
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.col-md-8 {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.message-container {
+  height: 70vh;
+  overflow-y: auto;
+}
+
+.message-right {
+  text-align: right;
+}
+
+.message-left {
+  text-align: left;
+}
+
+.message-container div {
+  padding: 10px;
+}
+
+.message-container span {
+  font-weight: bold;
+}
+
+.chat-input input {
+  width: 80%;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.chat-input button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+}

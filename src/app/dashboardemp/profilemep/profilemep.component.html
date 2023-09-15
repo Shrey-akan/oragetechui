@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <!-- Place your profile picture or additional information here -->
+        <img src="profile-picture.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3">
+        <h4>{{ empDetail.empfname }} {{ empDetail.emplname }}</h4>
+        <p>{{ empDetail.empcompany }}</p>
+      </div>
+      <div class="col-lg-8">
+        <h2>Profile Details</h2>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>ID</th>
+              <td>{{ empDetail.empid }}</td>
+            </tr>
+            <tr>
+              <th>First Name</th>
+              <td>{{ empDetail.empfname }}</td>
+            </tr>
+            <tr>
+              <th>Last Name</th>
+              <td>{{ empDetail.emplname }}</td>
+            </tr>
+            <tr>
+              <th>Company</th>
+              <td>{{ empDetail.empcompany }}</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>{{ empDetail.empmailid }}</td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>{{ empDetail.empphone }}</td>
+            </tr>
+            <tr>
+              <th>Country</th>
+              <td>{{ empDetail.empcountry }}</td>
+            </tr>
+            <tr>
+              <th>State</th>
+              <td>{{ empDetail.empstate }}</td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td>{{ empDetail.empcity }}</td>
+            </tr>
+            <tr>
+              <th>Description</th>
+              <td>{{ empDetail.descriptionemp }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Add buttons for actions (e.g., Edit, Delete) here if needed -->
+      </div>
+    </div>
+  </div>
+  

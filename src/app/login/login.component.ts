@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../service/user.service';
-import { UserauthService } from '../service/userauth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../auth/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginform!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router:Router, private authService: UserService, private userauth:UserauthService) {
+  constructor(private fb: FormBuilder, private router:Router , private b1:UserService) {
       }
 
   ngOnInit(): void {
@@ -22,14 +21,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    if (this.loginform.valid) {
-      const formData = this.loginform.getRawValue();
-      this.authService.login(formData);
-    } else {
-      // Handle form validation errors here if needed
-      console.log("Some weird error occured boiii")
-    }
+  public login(loginform:{value:any;}) {
+   
+   return this.b1.logincheck(loginform.value);
+
+    // } else {
+    //   Handle form validation errors here if needed
+    //   console.log("Some weird error occured boiii");
+    //   return false;
+    // }
   }
 
 }

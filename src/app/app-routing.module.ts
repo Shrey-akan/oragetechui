@@ -1,57 +1,52 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FindjobComponent } from './findjob/findjob.component';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from './auth/auth.guard';
-import { ForhiddenComponent } from './forhidden/forhidden.component';
 import { AboutComponent } from './about/about.component';
-import { servicesVersion } from 'typescript';
-import { ServicesComponent } from './services/services.component';
+import { ServiceComponent } from './service/service.component';
 import { ContactComponent } from './contact/contact.component';
-import { FindjobsComponent } from './findjob/findjob.component';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { EmployerModule } from './employer/employer.module';
 
-const routes: Routes = [  
+const routes: Routes = [
   {
-    path:'', component:FindjobsComponent
+    path:'', component:FindjobComponent
   },
   {
-    path:'home' , component:HomeComponent
+    path:'home' ,component:HomeComponent
   },
   {
-    path:'about' , component:AboutComponent
+    path:'about',component:AboutComponent
   },
   {
-    path:'services' , component:ServicesComponent
+    path:'service',component:ServiceComponent
   },
   {
-    path:'contact' , component:ContactComponent
+    path:'contact',component:ContactComponent
   },
   {
-    path: 'employers', loadChildren: () => import('./employers/employers.module').then(m => m.EmployersModule) 
-   },
-  {
-    path:'register' , component:RegisterComponent
+    path:'login',component:LoginComponent
   },
-  { path: 'admin', component: AdminComponent },
-  { path: 'user', component: UserComponent },
   {
-    path:'login' , component:LoginComponent
+    path:'register',component:RegisterComponent
   },
-
-  { path: 'forbidden', component: ForhiddenComponent },
   {
-    path:'dashboard' , component:DashboardComponent
+    path: 'employer',
+    loadChildren: () => import('./employer/employer.module').then(m => m.EmployerModule)
   },
-
-   {
-    path: 'seeker', loadChildren: () => import('./seeker/seeker.module').then(m => m.SeekerModule) 
-   }
-
+  {
+    path: 'dashboarduser',
+    loadChildren: () => import('./dashboarduser/dashboarduser.module').then(m => m.DashboarduserModule)
+  },
+  {
+    path: 'dashboardemp',
+    loadChildren: () => import('./dashboardemp/dashboardemp.module').then(m => m.DashboardempModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  }
 ];
 
 @NgModule({

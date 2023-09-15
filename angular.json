@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "orageapp": {
+    "jobax": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/orageapp",
+            "outputPath": "dist/jobax",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "orageapp:build:production"
+              "browserTarget": "jobax:build:production"
             },
             "development": {
-              "browserTarget": "orageapp:build:development"
+              "browserTarget": "jobax:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "orageapp:build"
+            "browserTarget": "jobax:build"
           }
         },
         "test": {
@@ -96,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "0ec7d931-9190-4d1b-8009-09435d1e34be"
+    "analytics": "f7cb615a-0a6e-4de5-803a-0e58e6e26de1"
   }
 }
