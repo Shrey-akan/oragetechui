@@ -2,7 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
+import {
+  Auth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from '@angular/fire/auth';
 interface User {
   uid: Number;
   userName: String;
@@ -45,6 +50,8 @@ export class UserService {
 
 //Employer
   inserturle = "http://localhost:9001/insertemployer";
+//insertmail
+  inserturlemail = "http://localhost:9001/insertemployeremail";
  employercheckurl = "http://localhost:9001/logincheckemp";
  employerdetailsfetchurl="http://localhost:9001/fetchemployer";
 
@@ -65,7 +72,11 @@ export class UserService {
   notificationurl="http://localhost:9001/insertnotification";
 
 
-  constructor(private h1: HttpClient, private router: Router, public cookie: CookieService) { }
+  //Resume Builder
+  insertresume ="http://localhost:9001/resumeinsert";
+
+
+  constructor(private h1: HttpClient, private router: Router,private auth: Auth, public cookie: CookieService) { }
 
 
 
@@ -193,6 +204,21 @@ export class UserService {
       }
     });
   }
+  public insertemployeremail(data: any) {
+    console.log("done");
+    return this.h1.post(this.inserturlemail, data).subscribe({
+      next: (resp: any) => {
+        console.log("email is getting inserted");
+        console.log(resp);
+        this.router.navigate(['/dashboardemp/profilemep']);
+
+        console.log("Data inserted mail");
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
 
 
   fetchemployer(){
@@ -273,4 +299,31 @@ export class UserService {
     });
   }
 
+
+
+  public resumeinsert(data: any) {
+    console.log("done");
+    return this.h1.post(this.insertresume, data).subscribe({
+      next: (resp: any) => {
+        console.log(resp);
+
+        console.log("Data inserted");
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+
+
+
+  loginWithGoogle() {
+   
+    return signInWithPopup(this.auth, new GoogleAuthProvider());
+    
+  }
+
+  logout() {
+    return signOut(this.auth);
+  }
 }
