@@ -38,7 +38,6 @@ export class ProfilemepComponent implements OnInit {
 
     console.log(this.empId);
     console.log('Employer ID from cookie:', this.empId);
-  
     let response = this.b1.fetchemployer();
   
     response.subscribe((data1: any) => {
