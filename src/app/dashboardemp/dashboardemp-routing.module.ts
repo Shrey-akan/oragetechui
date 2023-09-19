@@ -5,6 +5,7 @@ import { PostjobComponent } from './postjob/postjob.component';
 import { AlljobsComponent } from './alljobs/alljobs.component';
 import { ProfilemepComponent } from './profilemep/profilemep.component';
 import { EmpmessageComponent } from './empmessage/empmessage.component';
+import { ApplieduserdetailsComponent } from './applieduserdetails/applieduserdetails.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
         path:'profilemep', component:ProfilemepComponent
       },{
         path:'empmessage',component:EmpmessageComponent
+      },
+      {
+        path:'applieduserdetails',component:ApplieduserdetailsComponent
       }
     ]
   }

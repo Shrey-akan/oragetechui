@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboarduserRoutingModule } from './dashboarduser-routing.module';
 import { DashboarduserComponent } from './dashboarduser.component';
-
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationComponent } from './notification/notification.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { HeaderuserComponent } from './headeruser/headeruser.component';
@@ -16,7 +16,10 @@ import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ResumeComponent } from './resume/resume.component';
 import { SettinguserComponent } from './settinguser/settinguser.component';
-
+import { MyjobsComponent } from './myjobs/myjobs.component';
+import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { HttpClientModule } from '@angular/common/http';
+import { QuestionpaperComponent } from './questionpaper/questionpaper.component';
 @NgModule({
   declarations: [
     DashboarduserComponent,
@@ -29,12 +32,17 @@ import { SettinguserComponent } from './settinguser/settinguser.component';
     HeaderuserComponent,
     ApplyjobComponent,
     ResumeComponent,
-    SettinguserComponent
+    SettinguserComponent,
+    MyjobsComponent,
+    UpdateprofileComponent,
+    QuestionpaperComponent
+    
   ],
   imports: [
     CommonModule,
     DashboarduserRoutingModule,
     ReactiveFormsModule,
+    NgbAccordionModule,
     FormsModule
   ]
 })

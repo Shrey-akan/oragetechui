@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="col">
-                    <h2 class="text-dark text-center"><b>Create an employer account</b></h2>
+                    <h2 class="text-dark text-center"><b>Create A Job Post</b></h2>
                 </div>
                 <div class="col text-center">
                     <img src="/assets/pictureindeed-removebg-preview.png" alt="">
@@ -16,6 +16,10 @@
   <div class="container mt-5">
     <h2>Jobs Details</h2>
     <form [formGroup]="jobdetail" (ngSubmit)="jobdetailsform(jobdetail)">
+      <div class="mb-3">
+        <label for="empmailid" class="form-label">Job Id*</label>
+        <input type="email" class="form-control" id="empmailid" formControlName="empmailid" required>
+      </div>
       <div class="mb-3">
         <label for="jobtitle" class="form-label">Job Title*</label>
         <input type="text" class="form-control" id="jobtitle" formControlName="jobtitle" required>
@@ -48,7 +52,7 @@
         <label for="payjobsup" class="form-label">Supplemental Pay *</label>
         <input type="text" class="form-control" id="payjobsup" formControlName="payjobsup" required>
       </div>
-      <textarea name="" id="" cols="30" rows="10" formControlName="descriptiondata"></textarea>
+      <textarea name="" id="" class="form-control" cols="30" rows="10" formControlName="descriptiondata"></textarea>
 
       <button type="submit" class="btn btn-primary">Continue</button>
     </form>

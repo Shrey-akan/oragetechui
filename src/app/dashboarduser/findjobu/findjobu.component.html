@@ -71,12 +71,15 @@
                 <div class="container custom-box" *ngIf="selectedJob">
                     <h4>{{ selectedJob.jobtitle }}</h4>
                     <p>{{ selectedJob.companyforthisjob }}</p>
+                    
                     <!-- <p>{{ selectedJob.location }}</p> -->
                     <button type="button" class="btn btn-primary" (click)="navigateToSignIn()">Apply Now</button>
                     <ul>
                       <li>{{ selectedJob.descriptiondata }}</li>
                     </ul>
                 </div>
+
+                
               </div>
             </div>
           </div>
@@ -84,12 +87,31 @@
     </div>
 </div>
 
-<a class="dropdown-item" routerLink="/dashboarduser/applyjob">Applyjob</a>
+
 <div class="container" [hidden]="!showJobSearches" id="showsearches">
     <div class="row">
         <div class="col-md-12">
-            Content for Job Searches
-        </div>
+            <div>
+                
+                <table class="table">
+                  <thead>
+                    <tr>
+                   
+                      <th>Job Title</th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let application of datajobs">
+                     
+                      <td>{{ application.jujobtitle }}</td> <!-- Display jujobtitle -->
+                     
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+        </div>  
     </div>
 </div>
 

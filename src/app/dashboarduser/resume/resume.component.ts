@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/auth/user.service';
 
@@ -7,10 +7,13 @@ import { UserService } from 'src/app/auth/user.service';
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css']
 })
-export class ResumeComponent {
+export class ResumeComponent implements OnInit{
   resumeForm!: FormGroup; // Define a FormGroup to hold your form controls
 
   constructor(private fb: FormBuilder, private http: UserService) {
+
+  }
+  ngOnInit(): void {
     this.resumeForm = this.fb.group({
       rname: ['', Validators.required],
       rmail: ['', [Validators.required, Validators.email]],
@@ -36,8 +39,8 @@ export class ResumeComponent {
       //     // Add error handling here, e.g., show error message to the user
       //   }
       // );
-
-      return this.http.resumeinsert(resumeData.value);
+      console.log(resumeData);
+      return this.http.resumeinsert(resumeData);
     }
     return false;
   }

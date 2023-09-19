@@ -1,0 +1,50 @@
+<!-- update-profile-form.component.html -->
+<div class="update-profile-form" *ngIf="isUpdateProfileFormOpen">
+    <h3>Update Profile</h3>
+    <form (submit)="updateProfile()">
+      <div class="form-group">
+        <label for="userFirstName">First Name</label>
+        <input type="text" id="userFirstName" name="userFirstName" [(ngModel)]="updatedUser.userFirstName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="userLastName">Last Name</label>
+        <input type="text" id="userLastName" name="userLastName" [(ngModel)]="updatedUser.userLastName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="userName">Email</label>
+        <input type="email" id="userName" name="userName" [(ngModel)]="updatedUser.userName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="userPassword">Password</label>
+        <input type="password" id="userPassword" name="userPassword" [(ngModel)]="updatedUser.userPassword" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="companyuser">Company</label>
+        <input type="text" id="companyuser" name="companyuser" [(ngModel)]="updatedUser.companyuser" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="websiteuser">Website</label>
+        <input type="text" id="websiteuser" name="websiteuser" [(ngModel)]="updatedUser.websiteuser" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="userphone">Phone</label>
+        <input type="tel" id="userphone" name="userphone" [(ngModel)]="updatedUser.userphone" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="usercountry">Country</label>
+        <input type="text" id="usercountry" name="usercountry" [(ngModel)]="updatedUser.usercountry" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="userstate">State</label>
+        <input type="text" id="userstate" name="userstate" [(ngModel)]="updatedUser.userstate" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="usercity">City</label>
+        <input type="text" id="usercity" name="usercity" [(ngModel)]="updatedUser.usercity" class="form-control">
+      </div>
+      <!-- Add more form fields for other properties as needed -->
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="closeUpdateProfileForm()">Cancel</button>
+    </form>
+  </div>
+  

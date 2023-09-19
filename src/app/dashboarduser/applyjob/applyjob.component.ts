@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/auth/user.service';
@@ -9,6 +9,11 @@ import { UserService } from 'src/app/auth/user.service';
   styleUrls: ['./applyjob.component.css']
 })
 export class ApplyjobComponent implements OnInit {
+
+  jobTitle: string | null = null;
+  companyName: string | null = null;
+
+  
   myformsubmission!: FormGroup; // Initialize with an empty group
   currentStep = 1;
   // router: any;
@@ -35,6 +40,8 @@ export class ApplyjobComponent implements OnInit {
     this.myformsubmission = this.formBuilder.group({
   
         juname: ['', Validators.required],
+        jumail:['',Validators.required],
+        jucompny:['',Validators.required],
         juresume: [''],
       
     
@@ -51,7 +58,15 @@ export class ApplyjobComponent implements OnInit {
         jucompanyname: ['', Validators.required]
       })
       // Add more steps as needed
+      this.b1.jobTitle$.subscribe((jobTitle) => {
+        this.jobTitle = jobTitle;
+      });
   
+      this.b1.companyName$.subscribe((companyName) => {
+        this.companyName = companyName;
+      });
+// Set the value of the form control
+this.myformsubmission.get('jucompny')?.setValue(this.companyName);
 
   }
 
@@ -59,6 +74,7 @@ export class ApplyjobComponent implements OnInit {
   insertUserForma(myformsubmission:{value:any;}){
     console.log("Done");
     this.router.navigate(['/dashboarduser']);
+    console.log(myformsubmission);
     return this.b1.insertapplyjob(myformsubmission.value);
   }
   nextStep() {

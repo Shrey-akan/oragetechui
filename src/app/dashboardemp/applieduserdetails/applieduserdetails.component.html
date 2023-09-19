@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="container">
+            <h2>Job Applications</h2>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Company</th>
+                  <th>Resume</th>
+                  <th>Location</th>
+                  <th>Education</th>
+                  <th>Experience</th>
+                  <th>Java Experience</th>
+                  <th>JSP Experience</th>
+                  <th>Interview Date</th>
+                  <th>Java Valid</th>
+                  <th>Job Title</th>
+                  <th>Company Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let application of data">
+                  <td>{{ application.juname }}</td>
+                  <td>{{ application.jumail }}</td>
+                  <td>{{ application.jucompny }}</td>
+                  <td>{{ application.juresume }}</td>
+                  <td>{{ application.jurelocation }}</td>
+                  <td>{{ application.jueducation }}</td>
+                  <td>{{ application.juexperience }}</td>
+                  <td>{{ application.juexpinjava }}</td>
+                  <td>{{ application.juexpjsp }}</td>
+                  <td>{{ application.juinterviewdate }}</td>
+                  <td>{{ application.jujavavalid }}</td>
+                  <td>{{ application.jujobtitle }}</td>
+                  <td>{{ application.jucompanyname }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+    </div>
+</div>

@@ -1,27 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/auth/user.service';
-interface User {
-  uid: Number;
-  userName: String;
-  userFirstName: String;
-  userLastName: String;
-  userPassword: String;
-  companyuser: String;
-  websiteuser: String;
-  userphone: String;
-  usercountry: String;
-  userstate: String;
-  usercity: String;
-}
+
 @Component({
-  selector: 'app-userprofile',
-  templateUrl: './userprofile.component.html',
-  styleUrls: ['./userprofile.component.css']
+  selector: 'app-myjobs',
+  templateUrl: './myjobs.component.html',
+  styleUrls: ['./myjobs.component.css']
 })
-export class UserprofileComponent implements OnInit {
+export class MyjobsComponent implements OnInit{
+
   data:any
-  userData1!: User;
+  userData1!: any;
   abc:any;
   user: any;
   constructor(public cookie:CookieService , private b1:UserService) {}
@@ -50,19 +39,17 @@ export class UserprofileComponent implements OnInit {
       console.log('Filtered Data:', this.userData1);
       this.abc = this.userData1.userName;
       console.log(this.abc);
+      this.fetchApplyJob();
     });
   }
-  userData: any = {
-    // Initialize with user data
-  };
-    // Define a function to handle saving updated profile data
-    saveUpdatedProfile(updatedUser: any) {
-      // Send updatedUser to your API to update the user profile in the database
-      // Optionally, update the userData with the updatedUser values
-      this.userData = { ...updatedUser };
-    }
-    openUpdateProfileForm() {
-      // Implement the logic to open the update profile form here
-      // You can set a flag or perform any other necessary actions
-    }
+  fetchApplyJob() {
+    let response = this.b1.fetchapplyform();
+
+    response
+      .subscribe((data1: any) => {
+        this.data = data1.filter((apply: any) => apply.jumail == this.abc);
+        console.log('Filtered Data:', this.data);
+      });
+  }
+
 }

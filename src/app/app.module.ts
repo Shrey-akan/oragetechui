@@ -18,6 +18,8 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import {CookieService} from 'ngx-cookie-service'
 import { environment } from 'src/environments/environment';
+import { UpdateProfilePopupComponent } from './update-profile-popup/update-profile-popup.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { environment } from 'src/environments/environment';
     ContactComponent,
     ServiceComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UpdateProfilePopupComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { environment } from 'src/environments/environment';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

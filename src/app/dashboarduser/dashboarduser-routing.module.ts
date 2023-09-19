@@ -10,6 +10,8 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { ApplyjobComponent } from './applyjob/applyjob.component';
 import { ResumeComponent } from './resume/resume.component';
 import { SettinguserComponent } from './settinguser/settinguser.component';
+import { MyjobsComponent } from './myjobs/myjobs.component';
+import { QuestionpaperComponent } from './questionpaper/questionpaper.component';
 
 const routes: Routes = [
   {
@@ -30,8 +32,15 @@ const routes: Routes = [
       },
       {
         path:'applyjob',component:ApplyjobComponent
-      },   {
+      },  
+      {
+        path:'myjobs',component:MyjobsComponent
+      },  
+      {
         path:'resume',component:ResumeComponent
+      },
+      {
+        path:'questionpaper',component:QuestionpaperComponent
       },
       {
         path:'settinguser',component:SettinguserComponent

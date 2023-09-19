@@ -12,6 +12,7 @@ import { HeaderdashboardempComponent } from './headerdashboardemp/headerdashboar
 
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ApplieduserdetailsComponent } from './applieduserdetails/applieduserdetails.component';
 @NgModule({
   declarations: [
     DashboardempComponent,
@@ -20,7 +21,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ProfilemepComponent,
     EmpmessageComponent,
 
-    HeaderdashboardempComponent
+    HeaderdashboardempComponent,
+     ApplieduserdetailsComponent
   ],
   imports: [
     CommonModule,
