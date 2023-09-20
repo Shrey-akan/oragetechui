@@ -19,7 +19,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import {CookieService} from 'ngx-cookie-service'
 import { environment } from 'src/environments/environment';
 import { UpdateProfilePopupComponent } from './update-profile-popup/update-profile-popup.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +41,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     HttpClientModule,
-    ReactiveFormsModule,
-    NgbModule
+    ReactiveFormsModule
+    // NgbModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

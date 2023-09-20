@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "jobax": {
+    "jobforjobax": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/jobax",
+            "outputPath": "dist/jobforjobax",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -25,7 +25,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -61,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "jobax:build:production"
+              "browserTarget": "jobforjobax:build:production"
             },
             "development": {
-              "browserTarget": "jobax:build:development"
+              "browserTarget": "jobforjobax:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "jobax:build"
+            "browserTarget": "jobforjobax:build"
           }
         },
         "test": {
@@ -97,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "f7cb615a-0a6e-4de5-803a-0e58e6e26de1"
+    "analytics": "54879207-ae76-4753-92cd-c17aa87501d3"
   }
 }

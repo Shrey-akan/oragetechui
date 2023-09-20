@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboarduserRoutingModule } from './dashboarduser-routing.module';
 import { DashboarduserComponent } from './dashboarduser.component';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationComponent } from './notification/notification.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { HeaderuserComponent } from './headeruser/headeruser.component';
@@ -42,7 +42,7 @@ import { QuestionpaperComponent } from './questionpaper/questionpaper.component'
     CommonModule,
     DashboarduserRoutingModule,
     ReactiveFormsModule,
-    NgbAccordionModule,
+    // NgbAccordionModule,
     FormsModule
   ]
 })
