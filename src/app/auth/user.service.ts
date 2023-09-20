@@ -59,46 +59,46 @@ export class UserService {
     this.companyNameSource.next(companyName);
   }
 
-      Path_of_api = "http://localhost:9001";
+      Path_of_api = "http://159.203.168.51:9001/";
 
     //Users
-      inserturlc = "http://localhost:9001/insertusermail";
-      logincheckurl = "http://localhost:9001/logincheck";
-      fetchuserurl = "http://localhost:9001/fetchuser";
+      inserturlc = "http://159.203.168.51:9001/insertusermail";
+      logincheckurl = "http://159.203.168.51:9001/logincheck";
+      fetchuserurl = "http://159.203.168.51:9001/fetchuser";
 
 
     //Employer
-      inserturle = "http://localhost:9001/insertemployer";
+      inserturle = "http://159.203.168.51:9001/insertemployer";
     //insertmail
-      inserturlemail = "http://localhost:9001/insertemployeremail";
-    employercheckurl = "http://localhost:9001/logincheckemp";
-    employerdetailsfetchurl="http://localhost:9001/fetchemployer";
+      inserturlemail = "http://159.203.168.51:9001/insertemployeremail";
+    employercheckurl = "http://159.203.168.51:9001/logincheckemp";
+    employerdetailsfetchurl="http://159.203.168.51:9001/fetchemployer";
 
     //Job Post
-        inserturljobpost = "http://localhost:9001/jobpostinsert";
-        fetchjobposturl ="http://localhost:9001/fetchjobpost";
+        inserturljobpost = "http://159.203.168.51:9001/jobpostinsert";
+        fetchjobposturl ="http://159.203.168.51:9001/fetchjobpost";
         
     //Contact
-      inserturlcontact = "http://localhost:9001/insertcontact";
-      fetchcontactdetails="http://localhost:9001/fetchcontact";
+      inserturlcontact = "http://159.203.168.51:9001/insertcontact";
+      fetchcontactdetails="http://159.203.168.51:9001/fetchcontact";
 
       //Apply Job
-      inserturlapplyjob = "http://localhost:9001/insertapplyjob";
-    fetchapplyjobform = "http://localhost:9001/fetchapplyform";
+      inserturlapplyjob = "http://159.203.168.51:9001/insertapplyjob";
+    fetchapplyjobform = "http://159.203.168.51:9001/fetchapplyform";
 
 
       //notification
-      notificationurl="http://localhost:9001/insertnotification";
+      notificationurl="http://159.203.168.51:9001/insertnotification";
 
 
       //Resume Builder
-      insert_resumeurl = "http://localhost:9001/resumeinsert";
+      insert_resumeurl = "http://159.203.168.51:9001/resumeinsert";
 
       //fetchquestion
-      fetchquestionpaperurl ="http://localhost:9001/fetchquestion";
+      fetchquestionpaperurl ="http://159.203.168.51:9001/fetchquestion";
 
     //check answere urkl 
-    checkalanswere="http://localhost:9001/checkallanswer";
+    checkalanswere="http://159.203.168.51:9001/checkallanswer";
   constructor(private h1: HttpClient, private router: Router,private auth: Auth, public cookie: CookieService) { }
 
 
