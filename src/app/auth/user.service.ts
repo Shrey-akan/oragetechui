@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import {
   Auth,
   GoogleAuthProvider,
@@ -120,7 +120,16 @@ export class UserService {
 
 
   fetchuser(){
-    return this.h1.get(this.fetchuserurl);
+    return this.h1.get(this.fetchuserurl).pipe(catchError(this.handleError));
+   }    
+
+
+   private handleError(error:any):Observable<never>{
+
+    console.error('An error occurred:', error);
+
+    // Return an observable with an error message or perform other error handling tasks.
+    return throwError('Something went wrong. Please try again later.');
    }
 
 
