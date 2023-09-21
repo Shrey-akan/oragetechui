@@ -7,11 +7,11 @@
             <h3 class="text-white">Chats</h3>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let user of users" (click)="selectUser(user)">
+            <li class="list-group-item" *ngFor="let user of data" (click)="selectUser(user)">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <img src="user-avatar.jpg" alt="User Avatar" class="user-avatar">
-                  <span class="ml-2">{{ data.userName }}</span>
+                  <span class="ml-2">{{ user.userName }}</span>
                 </div>
                 <span class="badge badge-primary badge-pill">3</span>
               </div>
