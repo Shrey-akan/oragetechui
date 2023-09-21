@@ -61,14 +61,20 @@ export class RegisterComponent implements OnInit {
         console.error('Authentication Error:', error);
       });
   }
+
+  
+
+
+
+
+
   userRegisteration(userregister:{value:any;}){
-    
     this.router.navigate(['/login']);
     console.log(this.userregister);
     return this.userservice.insertusermail(userregister.value);
   }
 
-    // 
+    
     //  islogin:any;
     //  userLogin(username:any,password:any){
     //   this.islogin=(username=='admin' && password=='12345');

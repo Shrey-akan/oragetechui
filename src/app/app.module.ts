@@ -19,6 +19,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import {CookieService} from 'ngx-cookie-service'
 import { environment } from 'src/environments/environment';
 import { UpdateProfilePopupComponent } from './update-profile-popup/update-profile-popup.component';
+import { CheckotpComponent } from './checkotp/checkotp.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UpdateProfilePopupComponent } from './update-profile-popup/update-profi
     ServiceComponent,
     LoginComponent,
     RegisterComponent,
-    UpdateProfilePopupComponent
+    UpdateProfilePopupComponent,
+    CheckotpComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EmployerModule } from './employer/employer.module';
+import { CheckotpComponent } from './checkotp/checkotp.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,9 @@ const routes: Routes = [
   },
   {
     path:'contact',component:ContactComponent
+  },
+  {
+    path:'checkotp',component:CheckotpComponent
   },
   {
     path:'login',component:LoginComponent
