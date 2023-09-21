@@ -120,7 +120,7 @@ export class UserService {
 
 
   fetchuser(){
-    return this.h1.get(this.fetchuserurl,{withCredentials:true}).pipe(catchError(this.handleError));
+    return this.h1.get(this.fetchuserurl).pipe(catchError(this.handleError));
    }    
 
 
