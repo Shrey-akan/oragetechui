@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../auth/user.service';
@@ -8,7 +8,7 @@ import { UserService } from '../auth/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   isHovered = false;
   userregister!: FormGroup;
   formSubmitted: any;
@@ -41,6 +41,25 @@ export class RegisterComponent {
     });
     // let responce = this.b1.viewuserdetailservice();
     // responce.subscribe((data1: any)=>this.data=data1);
+
+
+   
+  }
+
+  loginWithGoogle() {
+    this.userservice
+      .loginWithGoogle()
+      .then((userCredential) => {
+        // User is successfully authenticated
+        const user = userCredential.user;
+        console.log('Authenticated');
+        console.log('User Info:', user);
+        const empmailid = user.email;
+        return this.userservice.insertemployeremail(empmailid);
+      })
+      .catch((error) => {
+        console.error('Authentication Error:', error);
+      });
   }
   userRegisteration(userregister:{value:any;}){
     
@@ -76,3 +95,7 @@ export class RegisterComponent {
       }
     }
 }
+function loginWithGoogle() {
+  throw new Error('Function not implemented.');
+}
+

@@ -16,6 +16,9 @@
                     <div class="container custom-box">
                         <div class="row">
                             <h1>Register Now</h1>
+                            <button class="btn custom-button btn-lg btn-lg-responsive" (click)="loginWithGoogle()">
+                                <i class="fab fa-google"></i> Sign In with Google
+                              </button>
                             <div class="col-md 6">
                                 <form [formGroup]="userregister" (ngSubmit)="userRegisteration(userregister)">
         

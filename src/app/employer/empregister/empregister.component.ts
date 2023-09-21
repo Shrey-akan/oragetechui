@@ -37,7 +37,7 @@ export class EmpregisterComponent {
 
   empRegisteration(employerdetails:{value:any;}){
     
-    this.router.navigate(['/dashboardemp']);
+    this.router.navigate(['/employer/empsign']);
     
     return this.b1.insertemployer(employerdetails.value);
   }

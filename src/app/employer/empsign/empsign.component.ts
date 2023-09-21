@@ -39,7 +39,7 @@ export class EmpsignComponent {
   }
   
 
-  insertemp(emailFormemp:{value:any;}){
+  insertemp(){
     console.log("Done");
     this.router.navigate(['/employer/empregister']);
     // return this.b1.insertempmailadd(emailFormemp.value).subscribe();

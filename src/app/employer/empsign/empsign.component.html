@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         </div>  
-                        <form [formGroup]="emailFormemp" (ngSubmit)="insertemp(emailFormemp)" class="animated-form">
+                        <!-- <form [formGroup]="emailFormemp" (ngSubmit)="insertemp(emailFormemp)" class="animated-form">
                             <div class="form-group">
                               <label for="empmail"><b>Email:</b></label>
                               <input type="email" id="empmail" formControlName="empmail" class="form-control">
@@ -71,8 +71,8 @@
                             </div>
                             
                             <button type="submit"  class="submit-button">Continue</button>
-                          </form>
-                          
+                          </form> -->
+                          <button type="submit" (click)="insertemp()"  class="submit-button">Sign-In</button>
                     </div>
                 </div>
             </div>
