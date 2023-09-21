@@ -52,7 +52,9 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-primary" routerLink="/dashboardemp/updateempprofile">Update Profile</button>
+       
+        <button class="btn btn-primary" [routerLink]="['/dashboardemp/updateempprofile', empId]">Update Profile</button>
+
       </div>
     </div>
   </div>

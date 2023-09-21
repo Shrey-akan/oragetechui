@@ -25,7 +25,7 @@ const routes: Routes = [
         path:'applieduserdetails',component:ApplieduserdetailsComponent
       },
       {
-        path:'updateempprofile',component:UpdateempprofileComponent
+        path:'updateempprofile/:empId',component:UpdateempprofileComponent
       }
     ]
   }

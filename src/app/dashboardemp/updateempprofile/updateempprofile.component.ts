@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { UserService } from 'src/app/auth/user.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-updateempprofile',
   templateUrl: './updateempprofile.component.html',
@@ -10,10 +11,11 @@ import { UserService } from 'src/app/auth/user.service';
 })
 export class UpdateempprofileComponent implements OnInit {
   employeeForm!: FormGroup;
-
+  empId:any;
   constructor(
     private formBuilder: FormBuilder,
-    private employeeService: UserService
+    private employeeService: UserService,
+    private route:ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class UpdateempprofileComponent implements OnInit {
       empcity: ['', Validators.required],
       descriptionemp: ['', Validators.required]
     });
+    this.empId = this.route.snapshot.paramMap.get('empId');
   }
 
   updateEmployee() {
