@@ -69,10 +69,14 @@ export class UserService {
 
     //Employer
       inserturle = "http://159.203.168.51:9001/insertemployer";
-    //insertmail
+
       inserturlemail = "http://159.203.168.51:9001/insertemployeremail";
     employercheckurl = "http://159.203.168.51:9001/logincheckemp";
     employerdetailsfetchurl="http://159.203.168.51:9001/fetchemployer";
+    employerupdateurl ="http://159.203.168.51/updateEmployee";
+
+
+
 
     //Job Post
         inserturljobpost = "http://159.203.168.51:9001/jobpostinsert";
@@ -132,6 +136,11 @@ export class UserService {
     return throwError('Something went wrong. Please try again later.');
    }
 
+
+   //update employer data
+   updateEmployee(data:any){
+    return this.h1.post(this.employerupdateurl,data);
+   }
 
 
   public logincheck(data: any) {

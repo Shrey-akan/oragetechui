@@ -29,9 +29,13 @@ export class EmpsignComponent {
         // User is successfully authenticated
         const user = userCredential.user;
         console.log('Authenticated');
-        console.log('User Info:', user);
+        console.log('User Info:', user.email);
         const empmailid = user.email;
-        return this.authService.insertemployeremail(empmailid);
+       if(empmailid!=null){
+        this.router.navigate(['/dashboardemp/profilemep']);
+        return this.authService.insertemployer(empmailid);
+       }
+       return false;
       })
       .catch((error) => {
         console.error('Authentication Error:', error);
