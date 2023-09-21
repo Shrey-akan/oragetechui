@@ -73,7 +73,7 @@ export class UserService {
       inserturlemail = "http://159.203.168.51:9001/insertemployeremail";
     employercheckurl = "http://159.203.168.51:9001/logincheckemp";
     employerdetailsfetchurl="http://159.203.168.51:9001/fetchemployer";
-    employerupdateurl ="http://159.203.168.51/updateEmployee";
+    employerupdateurl ="http://159.203.168.51:9001/updateEmployee";
 
 
 
