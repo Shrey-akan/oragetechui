@@ -21,6 +21,7 @@ export class UpdateempprofileComponent implements OnInit {
   ngOnInit() {
     // Initialize the form with default values or load existing employee data
     this.employeeForm = this.formBuilder.group({
+      empId:[''],
       empfname: ['', Validators.required],
       emplname: ['', Validators.required],
       empcompany: ['', Validators.required],
@@ -32,6 +33,12 @@ export class UpdateempprofileComponent implements OnInit {
       descriptionemp: ['', Validators.required]
     });
     this.empId = this.route.snapshot.paramMap.get('empId');
+
+
+      // Set the empId value in the form
+  this.employeeForm.patchValue({
+    empId: this.empId
+  });
   }
 
   updateEmployee() {
