@@ -6,6 +6,7 @@ import { AlljobsComponent } from './alljobs/alljobs.component';
 import { ProfilemepComponent } from './profilemep/profilemep.component';
 import { EmpmessageComponent } from './empmessage/empmessage.component';
 import { ApplieduserdetailsComponent } from './applieduserdetails/applieduserdetails.component';
+import { UpdateempprofileComponent } from './updateempprofile/updateempprofile.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
       },
       {
         path:'applieduserdetails',component:ApplieduserdetailsComponent
+      },
+      {
+        path:'updateempprofile',component:UpdateempprofileComponent
       }
     ]
   }
