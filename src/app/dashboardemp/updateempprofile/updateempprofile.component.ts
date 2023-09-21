@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { catchError, throwError } from 'rxjs';
 import { UserService } from 'src/app/auth/user.service';
 
 @Component({
@@ -34,10 +35,27 @@ export class UpdateempprofileComponent implements OnInit {
     if (this.employeeForm.valid) {
       // Extract updated employee data from the form
       const updatedEmployee = this.employeeForm.value;
-
-      // Pass the updated employee data to your service to update the profile
-      this.employeeService.updateEmployee(updatedEmployee);
-    }
+      console.log(updatedEmployee);
+      this.employeeService.updateEmployee(updatedEmployee)
+      .pipe(
+        catchError((error) => {
+          // Handle the error response here
+          console.error('Error updating profile:', error);
+          return throwError(error); // Re-throw the error
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          // Handle the success response here
+          console.log('Profile updated successfully:', response);
+        },
+        complete: () => {
+          // This block is optional and can be used for handling completion
+        }
+      });
+  } else {
+    console.error('Form is invalid. Cannot update profile.');
+  }
   }
 
 }

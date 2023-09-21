@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -138,10 +138,23 @@ export class UserService {
 
 
    //update employer data
-   updateEmployee(data:any){
-    return this.h1.post(this.employerupdateurl,data);
+   updateEmployee(data:any): Observable<any>{
+    return this.h1.post(this.employerupdateurl,data).pipe(
+      catchError(this.handleEr)
+    );
    }
-
+   private handleEr(error: HttpErrorResponse) {
+    let errorMessage = 'An error occurred';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
+  }
 
   public logincheck(data: any) {
     console.log("done");
