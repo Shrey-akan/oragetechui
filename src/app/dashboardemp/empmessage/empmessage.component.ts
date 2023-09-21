@@ -27,7 +27,7 @@ export class EmpmessageComponent implements OnInit{
 
   constructor(private b1:UserService){}
   ngOnInit(): void {
-    let responce = this.b1.fetchjobpost();
+    let responce = this.b1.fetchuser();
     responce.subscribe((data1: any)=>this.data=data1);
   }
   // Function to handle user selection
