@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
     this.http.post('http://159.203.168.51:9001/insertusermail', this.userregister.getRawValue()).subscribe({
       next: (payload: any) => {
         if(payload) {
-          
+          this.generateOtp(payload);
         }
       },
       error: (err) => {
