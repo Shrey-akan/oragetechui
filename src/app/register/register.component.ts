@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../auth/user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
   data: any;
 
 
-  constructor(private formBuilder: FormBuilder , private router:Router , private userservice:UserService) {
+  constructor(private formBuilder: FormBuilder , private router:Router , private userservice:UserService, private http:HttpClient) {
 
 
 
@@ -68,10 +69,23 @@ export class RegisterComponent implements OnInit {
 
 
 
-  userRegisteration(userregister:{value:any;}){
-    this.router.navigate(['/login']);
-    console.log(this.userregister);
-    return this.userservice.insertusermail(userregister.value);
+  // userRegisteration(userregister:{value:any;}){
+  //   this.router.navigate(['/login']);
+  //   console.log(this.userregister);
+  //   return this.userservice.insertusermail(userregister.value);
+
+  // }
+  userRegisteration(): void {
+    this.http.post('http://159.203.168.51:9001/insertusermail', this.userregister.getRawValue()).subscribe({
+      next: (payload: any) => {
+        if(payload) {
+          console.log(payload);
+        }
+      },
+      error: (err) => {
+        console.error(`Some error occured: ${err}`);
+      }
+    })
   }
 
     
