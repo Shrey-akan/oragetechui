@@ -18,10 +18,6 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder , private router:Router , private userservice:UserService, private http:HttpClient) {
-
-
-
-
   }
 
 
@@ -79,10 +75,26 @@ export class RegisterComponent implements OnInit {
     this.http.post('http://159.203.168.51:9001/insertusermail', this.userregister.getRawValue()).subscribe({
       next: (payload: any) => {
         if(payload) {
-          console.log(payload);
+          
         }
       },
       error: (err) => {
+        console.error(`Some error occured: ${err}`);
+      }
+    })
+  }
+
+  generateOtp(payload: any) {
+    this.http.post('https://otpservice.onrender.com/0auth/generateOtp', {uid: payload.uid, email:payload.userName}).subscribe({
+      next:(response: any) => {
+        if(response.otpCreated) {
+          this.router.navigate(['checkotp', response.uid]);
+        }
+        else {
+          console.error("Otp not generated");
+        }
+      },
+      error: (err) => { 
         console.error(`Some error occured: ${err}`);
       }
     })

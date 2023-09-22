@@ -27,7 +27,7 @@ const routes: Routes = [
     path:'contact',component:ContactComponent
   },
   {
-    path:'checkotp',component:CheckotpComponent
+    path:'checkotp/:uid',component:CheckotpComponent
   },
   {
     path:'login',component:LoginComponent
