@@ -62,57 +62,57 @@ export class UserService {
     this.companyNameSource.next(companyName);
   }
 
-      Path_of_api = "https://job4jobless.com/";
+      Path_of_api = "http://159.203.168.51/";
 
 
 
 
       //contact form
-      contactformurl ="https://job4jobless.com:9001/contactform";
+      contactformurl ="http://159.203.168.51:9001/contactform";
 
 
     //Users
-      inserturlc = "https://job4jobless.com:9001/insertusermail";
-      logincheckurl = "https://job4jobless.com:9001/logincheck";
-      fetchuserurl = "https://job4jobless.com:9001/fetchuser";
-      updateUserurl ="https://job4jobless.com:9001/updateUser";
-      insertusermailurl ="https://job4jobless.com:9001/insertusermailgog";
+      inserturlc = "http://159.203.168.51:9001/insertusermail";
+      logincheckurl = "http://159.203.168.51:9001/logincheck";
+      fetchuserurl = "http://159.203.168.51:9001/fetchuser";
+      updateUserurl ="http://159.203.168.51:9001/updateUser";
+      insertusermailurl ="http://159.203.168.51:9001/insertusermailgog";
     //Employer
-      inserturle = "https://job4jobless.com:9001/insertemployer";
+      inserturle = "http://159.203.168.51:9001/insertemployer";
 
-      inserturlemail = "https://job4jobless.com:9001/insertemployeremail";
-    employercheckurl = "https://job4jobless.com:9001/logincheckemp";
-    employerdetailsfetchurl="https://job4jobless.com:9001/fetchemployer";
-    employerupdateurl ="https://job4jobless.com:9001/updateEmployee";
+      inserturlemail = "http://159.203.168.51:9001/insertemployeremail";
+    employercheckurl = "http://159.203.168.51:9001/logincheckemp";
+    employerdetailsfetchurl="http://159.203.168.51:9001/fetchemployer";
+    employerupdateurl ="http://159.203.168.51:9001/updateEmployee";
 
 
 
 
     //Job Post
-        inserturljobpost = "https://job4jobless.com:9001/jobpostinsert";
-        fetchjobposturl ="https://job4jobless.com:9001/fetchjobpost";
+        inserturljobpost = "http://159.203.168.51:9001/jobpostinsert";
+        fetchjobposturl ="http://159.203.168.51:9001/fetchjobpost";
         
     //Contact
-      inserturlcontact = "https://job4jobless.com:9001/insertcontact";
-      fetchcontactdetails="https://job4jobless.com:9001/fetchcontact";
+      inserturlcontact = "http://159.203.168.51:9001/insertcontact";
+      fetchcontactdetails="http://159.203.168.51:9001/fetchcontact";
 
       //Apply Job
-      inserturlapplyjob = "https://job4jobless.com:9001/insertapplyjob";
-    fetchapplyjobform = "https://job4jobless.com:9001/fetchapplyform";
+      inserturlapplyjob = "http://159.203.168.51:9001/insertapplyjob";
+    fetchapplyjobform = "http://159.203.168.51:9001/fetchapplyform";
 
 
       //notification
-      notificationurl="https://job4jobless.com:9001/insertnotification";
+      notificationurl="http://159.203.168.51:9001/insertnotification";
 
 
       //Resume Builder
-      insert_resumeurl = "https://job4jobless.com:9001/resumeinsert";
+      insert_resumeurl = "http://159.203.168.51:9001/resumeinsert";
 
       //fetchquestion
-      fetchquestionpaperurl ="https://job4jobless.com:9001/fetchquestion";
+      fetchquestionpaperurl ="http://159.203.168.51:9001/fetchquestion";
 
     //check answere urkl 
-    checkalanswere="https://job4jobless.com:9001/checkallanswer";
+    checkalanswere="http://159.203.168.51:9001/checkallanswer";
   constructor(private h1: HttpClient, private router: Router,private auth: Auth, public cookie: CookieService) { }
 
 

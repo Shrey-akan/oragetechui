@@ -37,7 +37,7 @@ export class EmpregisterComponent {
 
 
   empRegisteration(): void {
-    this.http.post('https://job4jobless.com:9001/insertemployer', this.employerdetails.getRawValue()).subscribe({
+    this.http.post('http://159.203.168.51:9001/insertemployer', this.employerdetails.getRawValue()).subscribe({
       next: (payload: any) => {
       
           console.log(payload);
