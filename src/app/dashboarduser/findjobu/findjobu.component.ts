@@ -21,7 +21,7 @@ interface Job {
 })
 export class FindjobuComponent {
 
-  showJobFeed = false;
+  showJobFeed = true;
   showJobSearches = false;
   selectedJob: Job | null = null;
   data: Job[] = [];
