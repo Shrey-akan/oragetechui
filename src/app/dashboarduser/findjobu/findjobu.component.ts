@@ -92,4 +92,8 @@ export class FindjobuComponent {
     // Replace 'sign-in' with the actual route name of your sign-in page
     this.router.navigate(['/dashboarduser/questionpaper']);
   }
+
+  toggleJobDetails(application: any) {
+    application.showDetails = !application.showDetails;
+  }
 }
