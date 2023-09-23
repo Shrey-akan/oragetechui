@@ -102,28 +102,24 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container *ngFor="let application of datajobs">
-                      <tr>
-                        <td (click)="toggleJobDetails(application)">{{ application.jujobtitle }}</td>
-                      </tr>
-                      <tr *ngIf="application.showDetails">
-                        <td colspan="6">
-                          <!-- Display other job details here -->
-                          <p>Company: {{ application.companyforthisjob }}</p>
-                          <p>Number of Openings: {{ application.numberofopening }}</p>
-                          <p>Location: {{ application.locationjob }}</p>
-                          <p>Description:</p>
-                          <ul>
-                            <li *ngFor="let desc of application.descriptiondata">{{ desc }}</li>
-                          </ul>
-                          <p>Job Type: {{ application.jobtype }}</p>
-                          <p>Schedule: {{ application.schedulejob }}</p>
-                          <p>Pay: {{ application.payjob }}</p>
-                          <p>Pay (Supplementary): {{ application.payjobsup }}</p>
-                        </td>
-                      </tr>
-                    </ng-container>
-                  </tbody>
+                    <tbody>
+                      <ng-container *ngFor="let application of datajobs">
+                        <tr>
+                          <td (click)="toggleJobDetails(application)">{{ application.jujobtitle }}</td>
+                        </tr>
+                        <tr *ngIf="application.showDetails">
+                          <td colspan="6">
+                            <!-- Display other job details here -->
+                            <p>Company: {{ application.jucompanyname }}</p>
+                            <p>Location: {{ application.jurelocation }}</p>
+                            <p>Description: {{ application.description }}</p>
+                            <p>Experience in Java: {{ application.juexpinjava }}</p>
+                            <p>Experience in JSP: {{ application.juexpjsp }}</p>
+                            <!-- Add other fields as needed -->
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
                 </table>
               </div>
               
