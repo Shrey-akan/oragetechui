@@ -10,6 +10,7 @@ import { HelpcenterComponent } from './helpcenter/helpcenter.component';
 import { AdvancesearchComponent } from './advancesearch/advancesearch.component';
 import { EmpsignComponent } from './empsign/empsign.component';
 import { EmpregisterComponent } from './empregister/empregister.component';
+import { OptverifyComponent } from './optverify/optverify.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,9 @@ const routes: Routes = [
       },
       {
         path:'helpcenter',component:HelpcenterComponent
+      },
+      {
+        path:'optverify/:empid',component:OptverifyComponent
       },
       {
         path:'advancesearch',component:AdvancesearchComponent

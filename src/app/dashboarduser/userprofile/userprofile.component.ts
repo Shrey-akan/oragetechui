@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/auth/user.service';
 interface User {
@@ -24,7 +25,7 @@ export class UserprofileComponent implements OnInit {
   userData1!: User;
   abc:any;
   user: any;
-  constructor(public cookie:CookieService , private b1:UserService) {}
+  constructor(public cookie:CookieService ,private router:Router , private b1:UserService) {}
 
   userID: String = "0";
   ngOnInit(): void {
@@ -56,13 +57,11 @@ export class UserprofileComponent implements OnInit {
     // Initialize with user data
   };
     // Define a function to handle saving updated profile data
-    saveUpdatedProfile(updatedUser: any) {
-      // Send updatedUser to your API to update the user profile in the database
-      // Optionally, update the userData with the updatedUser values
-      this.userData = { ...updatedUser };
-    }
+    // saveUpdatedProfile(updatedUser: any) {
+     
+    //   this.userData = { ...updatedUser };
+    // }
     openUpdateProfileForm() {
-      // Implement the logic to open the update profile form here
-      // You can set a flag or perform any other necessary actions
+      this.router.navigate(['/dashboarduser/updateprofile',this.userID]);
     }
 }

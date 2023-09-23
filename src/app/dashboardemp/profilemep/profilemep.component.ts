@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/auth/user.service';
 
@@ -7,7 +8,7 @@ interface Employer {
   empfname: String;
   emplname: String;
   empcompany: String;
-  empmailid: String;
+  empmailid: String;  
   emppass: String;
   empphone: String;
   empcountry: String;
@@ -27,7 +28,7 @@ export class ProfilemepComponent implements OnInit {
   empDetail!: Employer;
   abc:any;
   emp: any;
-  constructor(public cookie:CookieService , private b1:UserService) {}
+  constructor(public cookie:CookieService , private b1:UserService,private router:Router) {}
 
   empId: String = "0";
   ngOnInit(): void {
@@ -57,11 +58,13 @@ export class ProfilemepComponent implements OnInit {
       console.log(this.abc);
     });
   }
-  updateEmployee(employee: any) {
-    // Implement the logic to update the employee (e.g., open a modal or navigate to an update page)
-    console.log('Update employee:', employee);
+  // updateEmployee(employee: any) {
+  //   // Implement the logic to update the employee (e.g., open a modal or navigate to an update page)
+  //   console.log('Update employee:', employee);
+  // }
+  updateuserprofile(){
+    this.router.navigate(['/dashboardemp/updateempprofile',this.empId]);
   }
-  
 
   }
 

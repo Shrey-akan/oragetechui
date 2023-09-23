@@ -9,7 +9,7 @@
       <div class="col-lg-8">
         <h2>Profile Details</h2>
         <table class="table table-bordered">
-          <tbody>
+          <tbody> 
             <tr>
               <th>ID</th>
               <td>{{ empDetail.empid }}</td>
@@ -53,7 +53,7 @@
           </tbody>
         </table>
        
-        <button class="btn btn-primary" [routerLink]="['/dashboardemp/updateempprofile', empId]">Update Profile</button>
+        <button class="btn btn-primary" (click)="updateuserprofile()">Update Profile</button>
 
       </div>
     </div>

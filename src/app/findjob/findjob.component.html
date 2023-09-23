@@ -37,7 +37,7 @@
     </div>
 </div>
 <div class="container text-center">
-    <p><b>Post your resume</b> - It only takes a few seconds</p>
+    <p><a routerLink="/login"><b>Post your resume</b></a> - It only takes a few seconds</p>
 </div>
 <div class="container">
     <div class="row">
@@ -68,8 +68,8 @@
               </div>
               <div class="col-md-6">
                 <div class="container custom-box" *ngIf="selectedJob">
-                  <!-- <h4>{{ selectedJob.jobtitle }}</h4>
-                  <p>{{ selectedJob.companyforthisjob }}</p> -->
+                  <h4>{{ selectedJob.jobtitle }}</h4>
+                  <p>{{ selectedJob.companyforthisjob }}</p>
                   <!-- <p>{{ selectedJob.location }}</p> -->
                   <button type="button" class="btn btn-primary" (click)="navigateToSignIn()">Apply Now</button>
                   <ul>
@@ -86,8 +86,224 @@
 
 <div class="container" [hidden]="!showJobSearches" id="showsearches">
     <div class="row">
-        <div class="col-md-12">
-            Content for Job Searches
+        <div class="col-md-12 text-center">
+            <h2>Trending Searches</h2>
+            <p>Indeed हिंदी में भी उपलब्ध है</p> 
+            <button (click)="toggleTrending()" class="btn btn-primary text-center mt-4">
+                {{ showTrending ? 'Show Less' : 'Show More' }}
+              </button>
+              <div class="row mt-4" *ngIf="showTrending">
+                <div class="col-md-3">
+                    <ul class="list-unstyled">
+                        <li>Full Time Remote</li>
+                        <li>Full Time Kochi, Kerala</li>
+                        <!-- Add more items as needed -->
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="list-unstyled">
+                        <li>Full Time Indore, Madhya Pradesh</li>
+                        <li>Part Time Remote</li>
+                        <!-- Add more items as needed -->
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="list-unstyled">
+                        <li>Full Time Visakhapatnam, Andhra Pradesh</li>
+                        <li>Full Time Ahmedabad, Gujarat</li>
+                        <!-- Add more items as needed -->
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="list-unstyled">
+                        <li>Full Time Lucknow, Uttar Pradesh</li>
+                        <li>Work From Home Kalyan Dombivli, Maharashtra</li>
+                        <!-- Add more items as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row text-center mt-4" style="color: blue;"> 
+        <p>PRODUCTS AND SERVICES</p>
+        <h2>Get Pay Right</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="border-right: 2px solid blue;">
+            <div class="container">
+                <div class="row">
+                    <h4>For Employers</h4>
+                    <p>Empower your team with integrated compensation data and technology solutions.</p>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="container">
+                        <div class="row">
+                            <h4>It's Easy to Get Started</h4>
+                            <p>Transform compensation at your organization and get pay right — see how with a personalized demo.
+
+                            </p>
+                        </div>
+                        <div class="">
+                            <button routerLink="/employer" class="btn btn-info">SEE IT IN ACTION</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="border-left: 2px solid blue;">
+            <div class="container">
+                <div class="row">
+                    <h4>For Employees</h4>
+                    <p>Empower your team with integrated compensation data and technology solutions.</p>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="row concom">
+                            <div class="col-md-3">
+                                <img src="" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <a href="/">CompAnalyst</a>
+                                <p>Make smarter compensation decisions that keep you competitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="container">
+                        <div class="row">
+                            <h4>It's Easy to Get Started</h4>
+                            <p>Transform compensation at your organization and get pay right — see how with a personalized demo.
+
+                            </p>
+                        </div>
+                        <div class="">
+                            <button routerLink="/login" class="btn btn-info">GET START</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

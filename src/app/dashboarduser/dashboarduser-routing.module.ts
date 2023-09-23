@@ -12,6 +12,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { SettinguserComponent } from './settinguser/settinguser.component';
 import { MyjobsComponent } from './myjobs/myjobs.component';
 import { QuestionpaperComponent } from './questionpaper/questionpaper.component';
+import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,9 @@ const routes: Routes = [
         path:'notification',component:NotificationComponent
       },{
         path:'userprofile',component:UserprofileComponent
+      },
+      {
+        path:'updateprofile/:userId',component:UpdateprofileComponent
       },
       {
         path:'applyjob',component:ApplyjobComponent

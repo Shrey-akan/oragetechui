@@ -14,6 +14,7 @@ import { HelpcenterComponent } from './helpcenter/helpcenter.component';
 import { AdvancesearchComponent } from './advancesearch/advancesearch.component';
 import { EmpsignComponent } from './empsign/empsign.component';
 import { EmpregisterComponent } from './empregister/empregister.component';
+import { OptverifyComponent } from './optverify/optverify.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EmpregisterComponent } from './empregister/empregister.component';
     HelpcenterComponent,
     AdvancesearchComponent,
     EmpsignComponent,
-    EmpregisterComponent
+    EmpregisterComponent,
+    OptverifyComponent
   ],
   imports: [
     CommonModule,

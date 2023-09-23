@@ -22,7 +22,7 @@ export class FindjobComponent implements OnInit{
 
   data1:any;
 
-  showJobFeed = false;
+  showJobFeed = true;
   showJobSearches = false;
   selectedJob: Job | null = null;
   data: Job[] = [];
@@ -53,6 +53,10 @@ export class FindjobComponent implements OnInit{
     // Replace 'sign-in' with the actual route name of your sign-in page
     this.router.navigate(['/login']);
   }
+  showTrending = false;
 
+  toggleTrending() {
+    this.showTrending = !this.showTrending;
+  }
 
 }

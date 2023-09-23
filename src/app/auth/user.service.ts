@@ -40,6 +40,9 @@ interface Employer {
   providedIn: 'root'
 })
 export class UserService {
+  getUser(incoming_id: string) {
+    throw new Error('Method not implemented.');
+  }
  
 
 
@@ -59,53 +62,65 @@ export class UserService {
     this.companyNameSource.next(companyName);
   }
 
-      Path_of_api = "http://159.203.168.51:9001/";
+      Path_of_api = "https://job4jobless.com/";
+
+
+
+
+      //contact form
+      contactformurl ="https://job4jobless.com:9001/contactform";
+
 
     //Users
-      inserturlc = "http://159.203.168.51:9001/insertusermail";
-      logincheckurl = "http://159.203.168.51:9001/logincheck";
-      fetchuserurl = "http://159.203.168.51:9001/fetchuser";
-
-
+      inserturlc = "https://job4jobless.com:9001/insertusermail";
+      logincheckurl = "https://job4jobless.com:9001/logincheck";
+      fetchuserurl = "https://job4jobless.com:9001/fetchuser";
+      updateUserurl ="https://job4jobless.com:9001/updateUser";
+      insertusermailurl ="https://job4jobless.com:9001/insertusermailgog";
     //Employer
-      inserturle = "http://159.203.168.51:9001/insertemployer";
+      inserturle = "https://job4jobless.com:9001/insertemployer";
 
-      inserturlemail = "http://159.203.168.51:9001/insertemployeremail";
-    employercheckurl = "http://159.203.168.51:9001/logincheckemp";
-    employerdetailsfetchurl="http://159.203.168.51:9001/fetchemployer";
-    employerupdateurl ="http://159.203.168.51:9001/updateEmployee";
+      inserturlemail = "https://job4jobless.com:9001/insertemployeremail";
+    employercheckurl = "https://job4jobless.com:9001/logincheckemp";
+    employerdetailsfetchurl="https://job4jobless.com:9001/fetchemployer";
+    employerupdateurl ="https://job4jobless.com:9001/updateEmployee";
 
 
 
 
     //Job Post
-        inserturljobpost = "http://159.203.168.51:9001/jobpostinsert";
-        fetchjobposturl ="http://159.203.168.51:9001/fetchjobpost";
+        inserturljobpost = "https://job4jobless.com:9001/jobpostinsert";
+        fetchjobposturl ="https://job4jobless.com:9001/fetchjobpost";
         
     //Contact
-      inserturlcontact = "http://159.203.168.51:9001/insertcontact";
-      fetchcontactdetails="http://159.203.168.51:9001/fetchcontact";
+      inserturlcontact = "https://job4jobless.com:9001/insertcontact";
+      fetchcontactdetails="https://job4jobless.com:9001/fetchcontact";
 
       //Apply Job
-      inserturlapplyjob = "http://159.203.168.51:9001/insertapplyjob";
-    fetchapplyjobform = "http://159.203.168.51:9001/fetchapplyform";
+      inserturlapplyjob = "https://job4jobless.com:9001/insertapplyjob";
+    fetchapplyjobform = "https://job4jobless.com:9001/fetchapplyform";
 
 
       //notification
-      notificationurl="http://159.203.168.51:9001/insertnotification";
+      notificationurl="https://job4jobless.com:9001/insertnotification";
 
 
       //Resume Builder
-      insert_resumeurl = "http://159.203.168.51:9001/resumeinsert";
+      insert_resumeurl = "https://job4jobless.com:9001/resumeinsert";
 
       //fetchquestion
-      fetchquestionpaperurl ="http://159.203.168.51:9001/fetchquestion";
+      fetchquestionpaperurl ="https://job4jobless.com:9001/fetchquestion";
 
     //check answere urkl 
-    checkalanswere="http://159.203.168.51:9001/checkallanswer";
+    checkalanswere="https://job4jobless.com:9001/checkallanswer";
   constructor(private h1: HttpClient, private router: Router,private auth: Auth, public cookie: CookieService) { }
 
 
+
+
+  contactform(data:any){
+      this.h1.post(this.contactformurl,data);
+  }
 
   public insertusermail(data: any) {
     console.log("done");
@@ -117,11 +132,24 @@ export class UserService {
         console.log("Data inserted");
       },
       error: (err: any) => {
-        console.log(err);
+        console.log(err, "get the error");
       }
     });
   }
+  insertusermailgog(data:string){
+    
+      console.log("inside user google login");
 
+      return this.h1.post(this.insertusermailurl , data).subscribe({
+        next:(resp: any)=>{
+          console.log(resp);
+          console.log("data inserted");
+        },
+        error:(err:any)=>{
+          console.log(err,"get the error");
+        }
+      })
+  }
 
   fetchuser(){
     return this.h1.get(this.fetchuserurl).pipe(catchError(this.handleError));
@@ -136,6 +164,14 @@ export class UserService {
     return throwError('Something went wrong. Please try again later.');
    }
 
+
+
+   //update user
+   updateUser(data:any): Observable<any>{
+    return this.h1.post(this.updateUserurl,data).pipe(
+      catchError(this.handleEr)
+    );
+   }
 
    //update employer data
    updateEmployee(data:any): Observable<any>{

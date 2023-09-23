@@ -51,8 +51,9 @@ export class RegisterComponent implements OnInit {
         const user = userCredential.user;
         console.log('Authenticated');
         console.log('User Info:', user);
-        const empmailid = user.email;
-        return this.userservice.insertemployeremail(empmailid);
+        const userName = user.email;
+        console.log(userName);
+        //  this.userservice.insertusermailgog(userName);
       })
       .catch((error) => {
         console.error('Authentication Error:', error);
@@ -72,11 +73,13 @@ export class RegisterComponent implements OnInit {
 
   // }
   userRegisteration(): void {
-    this.http.post('http://159.203.168.51:9001/insertusermail', this.userregister.getRawValue()).subscribe({
+    this.http.post('https://job4jobless.com:9001/insertusermail', this.userregister.getRawValue()).subscribe({
       next: (payload: any) => {
-        if(payload) {
+      
+          console.log(payload);
+          console.log(payload.uid);
           this.generateOtp(payload);
-        }
+        
       },
       error: (err) => {
         console.error(`Some error occured: ${err}`);
@@ -88,7 +91,10 @@ export class RegisterComponent implements OnInit {
     this.http.post('https://otpservice.onrender.com/0auth/generateOtp', {uid: payload.uid, email:payload.userName}).subscribe({
       next:(response: any) => {
         if(response.otpCreated) {
-          this.router.navigate(['checkotp', response.uid]);
+          console.log(response.otpCreated);
+
+this.router.navigate(['/checkotp', payload.uid]);
+          // this.router.navigate(['/checkotp/', response.uid]);
         }
         else {
           console.error("Otp not generated");

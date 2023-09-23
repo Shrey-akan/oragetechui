@@ -17,7 +17,7 @@ export class EmpregisterComponent {
   data1: any;
 
 
-  constructor(private formBuilder: FormBuilder , private router:Router , private b1:UserService) {
+  constructor(private formBuilder: FormBuilder , private router:Router , private b1:UserService , private http:HttpClient) {
     this.employerdetails = this.formBuilder.group({
       empfname: ['', Validators.required],
       emplname: ['', Validators.required],
@@ -35,11 +35,39 @@ export class EmpregisterComponent {
 
   }
 
-  empRegisteration(employerdetails:{value:any;}){
-    
-    this.router.navigate(['/employer/empsign']);
-    
-    return this.b1.insertemployer(employerdetails.value);
+
+  empRegisteration(): void {
+    this.http.post('https://job4jobless.com:9001/insertemployer', this.employerdetails.getRawValue()).subscribe({
+      next: (payload: any) => {
+      
+          console.log(payload);
+          console.log(payload.empid);
+          this.generateOtp(payload);
+        
+      },
+      error: (err) => {
+        console.error(`Some error occured: ${err}`);
+      }
+    })
+  }
+
+  generateOtp(payload: any) {
+    this.http.post('https://otpservice.onrender.com/0auth/generateOtp', {uid: payload.empid, email:payload.empmailid}).subscribe({
+      next:(response: any) => {
+        if(response.otpCreated) {
+          console.log(response.otpCreated);
+
+this.router.navigate(['/employer/optverify', payload.empid]);
+          // this.router.navigate(['/checkotp/', response.uid]);
+        }
+        else {
+          console.error("Otp not generated");
+        }
+      },
+      error: (err: any) => { 
+        console.error(`Some error occured: ${err}`);
+      }
+    })
   }
 
 

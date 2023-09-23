@@ -1,26 +1,36 @@
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { OtpService } from 'src/app/auth/otp.service';
+import { UserService } from 'src/app/auth/user.service';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent {
-  users = [
-    { id: 1, name: 'Employer 1' },
-    { id: 2, name: 'Employer 2' },
-    // Add more users here...
-  ];
+export class MessageComponent implements OnInit {
+  user: any;
+  messages: any[] = [];
+  incoming_id!: string;
 
-  selectedUser: any = null; // Store the selected user
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private chatService: OtpService
+  ) { }
 
-  messages: any[] = [
-    // Initialize with some default messages...
-  ];
+  ngOnInit(): void {
+    // this.route.params.subscribe(params => {
+    //   this.incoming_id = params['id'];
+    //   this.userService.getUser(this.incoming_id).subscribe(user => {
+    //     this.user = user;
+    //   });
+    // });
+  }
 
-  // Function to handle user selection
-  selectUser(user: any) {
-    this.selectedUser = user;
-    // Load chat messages for the selected user or implement message loading logic.
+  sendMessage(message: string): void {
+    // this.chatService.sendMessage(this.incoming_id, message).subscribe(response => {
+    //   // Handle response or update messages array
+    // });
   }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { UserService } from 'src/app/auth/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-updateempprofile',
   templateUrl: './updateempprofile.component.html',
@@ -11,17 +12,47 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UpdateempprofileComponent implements OnInit {
   employeeForm!: FormGroup;
-  empId:any;
+  empDetail: any;
+  abc: any;
+
   constructor(
     private formBuilder: FormBuilder,
-    private employeeService: UserService,
-    private route:ActivatedRoute
+    private b1: UserService,
+    private route:ActivatedRoute,
+    private router:Router,
+    public cookie:CookieService
   ) { }
-
+  empId: String = "0";
   ngOnInit() {
+
+
+    this.empId = this.cookie.get('emp');
+
+    console.log(this.empId);
+    console.log('Employer ID from cookie:', this.empId);
+    let response = this.b1.fetchemployer();
+  
+    response.subscribe((data1: any) => {
+      // Debugging: Log the data received from the API
+      console.log('Data from API:', data1);
+      const eeid=this.empId;
+      console.log(eeid);
+      
+      // Filter the data array to include only the user with the matching userID
+      // this.data = data1.find((user: any) => user.uid === uuid);
+      this.empDetail = data1.find((emp: any) => emp.empid == eeid);
+      console.log(this.empDetail);
+      // Debugging: Log the filtered data
+      console.log("hello");
+      console.log('Filtered Data:', this.empDetail);
+      this.abc = this.empDetail.empmailid;
+      console.log(this.abc);
+    });
+
+
     // Initialize the form with default values or load existing employee data
     this.employeeForm = this.formBuilder.group({
-   
+      empid: this.empId,
       empfname: ['', Validators.required],
       emplname: ['', Validators.required],
       empcompany: ['', Validators.required],
@@ -32,7 +63,7 @@ export class UpdateempprofileComponent implements OnInit {
       empcity: ['', Validators.required],
       descriptionemp: ['', Validators.required]
     });
-    this.empId = this.route.snapshot.paramMap.get('empId');
+   
 
 
 
@@ -43,7 +74,7 @@ export class UpdateempprofileComponent implements OnInit {
       // Extract updated employee data from the form
       const updatedEmployee = this.employeeForm.value;
       console.log(updatedEmployee);
-      this.employeeService.updateEmployee(updatedEmployee)
+      this.b1.updateEmployee(updatedEmployee)
       .pipe(
         catchError((error) => {
           // Handle the error response here
@@ -55,6 +86,7 @@ export class UpdateempprofileComponent implements OnInit {
         next: (response) => {
           // Handle the success response here
           console.log('Profile updated successfully:', response);
+          
         },
         complete: () => {
           // This block is optional and can be used for handling completion

@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../auth/user.service';
+import { UserService } from 'src/app/auth/user.service';
 
 @Component({
-  selector: 'app-checkotp',
-  templateUrl: './checkotp.component.html',
-  styleUrls: ['./checkotp.component.css']
+  selector: 'app-optverify',
+  templateUrl: './optverify.component.html',
+  styleUrls: ['./optverify.component.css']
 })
-export class CheckotpComponent implements OnInit {
+export class OptverifyComponent  implements OnInit {
   otpForm!: FormGroup;
   otp: string = '';
 
@@ -23,13 +23,13 @@ export class CheckotpComponent implements OnInit {
   }
 
   verifyOTP(): void {
-    this.http.post('https://otpservice.onrender.com/0auth/verifyOtp', {uid: this.activatedRoute.snapshot.paramMap.get('uid'), otp: this.otpForm.controls['otp'].value, email: this.otpForm.controls['email'].value})
+    this.http.post('https://otpservice.onrender.com/0auth/verifyOtp', {uid: this.activatedRoute.snapshot.paramMap.get('empid'), otp: this.otpForm.controls['otp'].value, email: this.otpForm.controls['email'].value})
     .subscribe({
       next: (payload: any) => {
         if(payload.otpValid) {
           if(!payload.otpExpired) {
             
-            this.router.navigate(['login']);
+            this.router.navigate(['/employer/empregister']);
             
           }
           else {
@@ -45,4 +45,5 @@ export class CheckotpComponent implements OnInit {
       }
     })
   }
+
 }

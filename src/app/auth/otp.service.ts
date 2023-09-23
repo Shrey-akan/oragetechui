@@ -10,6 +10,9 @@ import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class OtpService {
+  sendMessage(incoming_id: string, message: string) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor() { }
 }
