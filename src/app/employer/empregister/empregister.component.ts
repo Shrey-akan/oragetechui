@@ -13,7 +13,7 @@ export class EmpregisterComponent {
   isHovered = false;
   employerdetails: FormGroup;
   formSubmitted: any;
-  empsignin!:FormGroup;
+
   data1: any;
 
 
@@ -21,12 +21,12 @@ export class EmpregisterComponent {
     this.employerdetails = this.formBuilder.group({
       empfname: ['', Validators.required],
       emplname: ['', Validators.required],
-      empmailid: ['', [Validators.required, Validators.email]],
-      emppass:['',Validators.required],
+      empmailid: ['', [Validators.required, Validators.email, Validators.pattern(/\b[A-Za-z0-9._%+-]+@gmail\.com\b/)]],
+      emppass: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]],
+      empphone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       empcompany: [''],
       descriptionemp: [''],
-      empphone: ['', Validators.required],
-      empcountry: ['', Validators.required],
+     empcountry: ['', Validators.required],
       empstate: ['', Validators.required],
       empcity: ['', Validators.required]
     });
@@ -37,7 +37,7 @@ export class EmpregisterComponent {
 
 
   empRegisteration(): void {
-    this.http.post('http://159.203.168.51:9001/insertemployer', this.employerdetails.getRawValue()).subscribe({
+    this.http.post('http://localhost:9001/insertEmployer', this.employerdetails.getRawValue()).subscribe({
       next: (payload: any) => {
       
           console.log(payload);
@@ -58,7 +58,7 @@ export class EmpregisterComponent {
           console.log(response.otpCreated);
 
 this.router.navigate(['/employer/optverify', payload.empid]);
-          // this.router.navigate(['/checkotp/', response.uid]);
+          
         }
         else {
           console.error("Otp not generated");
@@ -71,29 +71,6 @@ this.router.navigate(['/employer/optverify', payload.empid]);
   }
 
 
-  ngOnInit(): void {
-    // let responce = this.b1.viewemployerdetailservice();
-    // responce.subscribe((data11: any)=>this.data1=data11);
-    this.empsignin = this.formBuilder.group({
-      empmailid:['',[Validators.required, Validators.email]],
-      emppass:['',Validators.required]
-    });
-  }
+  ngOnInit(): void {  }
 
-    //  // user LOGIN CHECK
-    //  islogin:any;
-    //  userLogin(username:any,password:any){
-    //   this.islogin=(username=='admin' && password=='12345');
-    //   console.log(this.islogin);
-    //   localStorage.setItem("islogin",this.islogin?"true":"false");
-    //   console.log(this.islogin);
-    //   return (this.islogin);
-    // }
-    
-  empCheckInfo(){
-  
-console.log(this.empsignin.getRawValue());
-    return this.b1.logincheckemp(this.empsignin.getRawValue());
-    
-  }
 }

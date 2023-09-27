@@ -19,7 +19,7 @@ const routes: Routes = [
       },{
         path:'profilemep', component:ProfilemepComponent
       },{
-        path:'empmessage',component:EmpmessageComponent
+        path:'empmessage/:email',component:EmpmessageComponent
       },
       {
         path:'applieduserdetails',component:ApplieduserdetailsComponent

@@ -143,7 +143,7 @@
   
 
 
-  <div class="container text-center" style="margin: 50px;">
+  <div class="container text-center" style="margin: 50px auto;">
     <h2>Best Companies to Work For</h2>
     <div class="row">
       <ng-container *ngFor="let company of companies.slice(0, showMore ? companies.length : initialDisplayCount); let i = index">
@@ -252,31 +252,47 @@
         <img src="assets/1 (2).jpg" alt="">
       </div>
       <div class="col-md-6 card">
-        <form>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="exampleInputName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
-         
+            <input type="text" class="form-control" id="exampleInputName" formControlName="name">
+            <div *ngIf="contactForm.get('name')?.hasError('required') && contactForm.get('name')?.touched" class="text-danger">
+              Name is required.
+            </div>
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email">
+            <div *ngIf="contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched" class="text-danger">
+              Email is required.
+            </div>
+            <div *ngIf="contactForm.get('email')?.hasError('email') && contactForm.get('email')?.touched" class="text-danger">
+              Please enter a valid email address.
+            </div>
+            <div *ngIf="contactForm.get('email')?.hasError('invalidGmail') && contactForm.get('email')?.touched" class="text-danger">
+              Email must end with @gmail.com.
+            </div>
           </div>
           <div class="mb-3">
             <label for="exampleInputcont" class="form-label">Contact Number</label>
-            <input type="tel" class="form-control" id="exampleInputcont" aria-describedby="emailHelp">
-          
+            <input type="tel" class="form-control" id="exampleInputcont" formControlName="contactNumber">
+            <div *ngIf="contactForm.get('contactNumber')?.hasError('required') && contactForm.get('contactNumber')?.touched" class="text-danger">
+              Contact number is required.
+            </div>
+            <div *ngIf="contactForm.get('contactNumber')?.hasError('invalidContactNumber') && contactForm.get('contactNumber')?.touched" class="text-danger">
+              Please enter a 10-digit contact number.
+            </div>
           </div>
-  
-              <div class="mb-3">
+          <div class="mb-3">
             <label for="exampleInputmessage" class="form-label">Message</label>
-            <textarea class="form-control" name="exampleInputmessage" id="exampleInputmessage" cols="30" rows="5"></textarea>
-          
+            <textarea class="form-control" name="exampleInputmessage" id="exampleInputmessage" cols="30" rows="5" formControlName="message"></textarea>
+            <div *ngIf="contactForm.get('message')?.hasError('required') && contactForm.get('message')?.touched" class="text-danger">
+              Message is required.
+            </div>
           </div>
-     
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        
       </div>
     </div>
   </div>

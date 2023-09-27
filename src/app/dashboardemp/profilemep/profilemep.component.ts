@@ -23,14 +23,15 @@ interface Employer {
   styleUrls: ['./profilemep.component.css']
 })
 export class ProfilemepComponent implements OnInit {
-
+  isOpen: boolean = false;
+  active: number = 0;
   data:any
   empDetail!: Employer;
   abc:any;
   emp: any;
   constructor(public cookie:CookieService , private b1:UserService,private router:Router) {}
 
-  empId: String = "0";
+  empId: string = "0";
   ngOnInit(): void {
 
 
@@ -65,7 +66,32 @@ export class ProfilemepComponent implements OnInit {
   updateuserprofile(){
     this.router.navigate(['/dashboardemp/updateempprofile',this.empId]);
   }
+  handleActive(id: number) {
+    this.active = id;
+  }
 
+  handleToggle() {
+    this.isOpen = !this.isOpen;
+  }
+
+
+  deleteAccountemp(){
+    console.log(this.empId);
+    // Use this.userID to pass the user's ID for deletion
+    this.b1.deleteEmployer(this.empId).subscribe(
+      {
+        next: (response: any) => {
+          if(response === true) {
+            alert("Employer Deleted Successfully");
+            this.router.navigate(['/']);
+          }
+        },
+        error: (err) => {
+          alert(err);
+        }
+      }
+    );
+  }
   }
 
 

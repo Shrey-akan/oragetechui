@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginform = this.fb.group({
-      userName: ['', Validators.required],
-      userPassword: ['', Validators.required]
+      userName: ['', [Validators.required, Validators.pattern(/.+@gmail\.com$/)]],
+      userPassword: ['', Validators.required],
     });
   }
 
@@ -25,11 +25,6 @@ export class LoginComponent implements OnInit {
    
    return this.b1.logincheck(loginform.value);
 
-    // } else {
-    //   Handle form validation errors here if needed
-    //   console.log("Some weird error occured boiii");
-    //   return false;
-    // }
   }
 
 }

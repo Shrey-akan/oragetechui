@@ -11,7 +11,7 @@ import { UserService } from 'src/app/auth/user.service';
 export class ProductsComponent implements OnInit{
   contactForma: FormGroup;
   formSubmitted: any;
-  companyswitch: FormGroup;
+  companyswitch!: FormGroup;
   data: any;
  
 
@@ -28,16 +28,21 @@ export class ProductsComponent implements OnInit{
 
       
     });
-    this.companyswitch = this.formBuilder.group({
-      companyName: ['', Validators.required],
-      empemail: ['', [Validators.required, Validators.email]],
-      emppass:['']
-    });
+
   }
 
 
 
   ngOnInit(): void {
+
+    this.companyswitch = this.formBuilder.group({
+      empcompany: ['', [Validators.required]],
+      empmailid: [
+        '',
+        [Validators.required, Validators.email, this.gmailValidator],
+      ],
+      emppass: ['', [Validators.required]],
+    });
     // let responce = this.b1.viewemployerdetailservice();
     // responce.subscribe((data1:any)=>this.data=data1);
     const showPostJobButtonscom = document.getElementsByClassName('contactform');
@@ -86,7 +91,13 @@ export class ProductsComponent implements OnInit{
     }
 }
 
-
+  // Custom validator for Gmail
+  gmailValidator(control: { value: string; }) {
+    if (control.value && !control.value.endsWith('@gmail.com')) {
+      return { invalidGmail: true };
+    }
+    return null;
+  }
 
 
 
@@ -98,19 +109,15 @@ contactdetailsemp(contactForma:{value:any;}) {
 }
 
 
-switchtoemployer(companyswitch:{value:any;}){
-  const empem = companyswitch.value.companyName;
-  const empemail = companyswitch.value.empemail;
-  const emppassword = companyswitch.value.emppass;
-
-  const checkemp = this.data.find((data: any)=> data.empcompany === empem &&  data.empmailid === empemail && data.emppass === emppassword );
-  if(checkemp){
-    this.router.navigate(['/employerdashboard/']);
-    console.log("Done");
-    console.log(companyswitch.value);
-  }
-  else{
-    alert("Invalid Credentials");
+switchtoemployer(){
+  if (this.companyswitch.valid) {
+    console.log(this.companyswitch.getRawValue());
+    console.log(this.companyswitch);
+    return this.b1.logincheckemp(this.companyswitch.getRawValue());
+  } else {
+    // Form is not valid, display an alert
+    alert('Form is not valid. Please check the fields.');
+    return; // Return early to prevent further execution
   }
 }
 

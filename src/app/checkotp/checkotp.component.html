@@ -13,6 +13,10 @@
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="otpForm.invalid">Verify Otp</button>
       </form>
+<!-- Add the Resend button and bind its [disabled] property -->
+<button class="btn btn-primary" (click)="resendOTP()" [disabled]="!otpExpired">Resend OTP</button>
+
+
     </div>
   </div>
 </div>

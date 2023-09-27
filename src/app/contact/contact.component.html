@@ -4,7 +4,7 @@
       <img src="assets/1 (2).jpg" alt="" width="100%">
     </div>
     <div class="col-md-6 card">
-      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmitForm()">
         <div class="mb-3">
           <label for="exampleInputName" class="form-label">Name</label>
           <input type="text" class="form-control" id="exampleInputName" formControlName="name">
@@ -13,13 +13,25 @@
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          <!-- Add error message handling here if needed -->
+          <div *ngIf="contactForm.get('email')?.hasError('required') && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)" class="text-danger">
+            Email is required.
+          </div>
+          <div *ngIf="contactForm.get('email')?.hasError('email') && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)" class="text-danger">
+            Please enter a valid email address.
+          </div>
+          <div *ngIf="contactForm.get('email')?.hasError('invalidGmail') && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)" class="text-danger">
+            Email must end with @gmail.com.
+          </div>
         </div>
         <div class="mb-3">
           <label for="exampleInputcont" class="form-label">Contact Number</label>
           <input type="tel" class="form-control" id="exampleInputcont" formControlName="contactNumber">
-          <!-- Add error message handling here if needed -->
+          <div *ngIf="contactForm.get('contactNumber')?.hasError('required') && (contactForm.get('contactNumber')?.dirty || contactForm.get('contactNumber')?.touched)" class="text-danger">
+            Contact number is required.
+          </div>
+          <div *ngIf="contactForm.get('contactNumber')?.hasError('invalidContactNumber') && (contactForm.get('contactNumber')?.dirty || contactForm.get('contactNumber')?.touched)" class="text-danger">
+            Please enter a 10-digit contact number.
+          </div>
         </div>
 
         <div class="mb-3">

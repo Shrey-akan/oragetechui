@@ -9,28 +9,19 @@ import { UserService } from 'src/app/auth/user.service';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  user: any;
-  messages: any[] = [];
-  incoming_id!: string;
-
-  constructor(
-    private route: ActivatedRoute,
-    private userService: UserService,
-    private chatService: OtpService
-  ) { }
-
+selectedUser: any;
   ngOnInit(): void {
-    // this.route.params.subscribe(params => {
-    //   this.incoming_id = params['id'];
-    //   this.userService.getUser(this.incoming_id).subscribe(user => {
-    //     this.user = user;
-    //   });
-    // });
+    throw new Error('Method not implemented.');
   }
+  messages: any[] = [];
+  newMessage: string = '';
 
-  sendMessage(message: string): void {
-    // this.chatService.sendMessage(this.incoming_id, message).subscribe(response => {
-    //   // Handle response or update messages array
-    // });
+  sendMessage() {
+    // In a real application, you would send the message to the selected user
+    // and update the messages array with the sent message
+    if (this.newMessage) {
+      this.messages.push({ text: this.newMessage, sender: 'You' });
+      this.newMessage = '';
+    }
   }
 }

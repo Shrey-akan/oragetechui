@@ -102,24 +102,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tbody>
-                      <ng-container *ngFor="let application of datajobs">
-                        <tr>
-                          <td (click)="toggleJobDetails(application)">{{ application.jujobtitle }}</td>
-                        </tr>
-                        <tr *ngIf="application.showDetails">
-                          <td colspan="6">
-                            <!-- Display other job details here -->
-                            <p>Company: {{ application.jucompanyname }}</p>
-                            <p>Location: {{ application.jurelocation }}</p>
-                            <p>Description: {{ application.description }}</p>
-                            <p>Experience in Java: {{ application.juexpinjava }}</p>
-                            <p>Experience in JSP: {{ application.juexpjsp }}</p>
-                            <!-- Add other fields as needed -->
-                          </td>
-                        </tr>
-                      </ng-container>
-                    </tbody>
+                    <tr *ngFor="let application of datajobs">
+                     
+                      <td>{{ application.jujobtitle }}</td> <!-- Display jujobtitle -->
+                     
+                    </tr>
+                  </tbody>
                 </table>
               </div>
               

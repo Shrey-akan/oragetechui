@@ -12,7 +12,9 @@ import { UserService } from '../auth/user.service';
 export class CheckotpComponent implements OnInit {
   otpForm!: FormGroup;
   otp: string = '';
-
+  otpExpired: boolean = false;
+  snackBar: any;
+  
   constructor(private fb:FormBuilder, private http:HttpClient, private router:Router, private activatedRoute: ActivatedRoute,private b1:UserService) {}
 
   ngOnInit(): void {
@@ -23,6 +25,59 @@ export class CheckotpComponent implements OnInit {
   }
 
   verifyOTP(): void {
+
+    const uid = this.activatedRoute.snapshot.paramMap.get('uid');
+    const otpValue = this.otpForm.controls['otp'].value;
+    const emailValue = this.otpForm.controls['email'].value;
+    this.http.post('https://otpservice.onrender.com/0auth/verifyOtp', {uid: this.activatedRoute.snapshot.paramMap.get('uid'), otp: this.otpForm.controls['otp'].value, email: this.otpForm.controls['email'].value})
+    .subscribe({
+      next: (payload: any) => {
+        if(payload.otpValid) {
+          if(!payload.otpExpired) {
+            
+            this.updateUserificationStatus(emailValue);
+            
+          }
+          else {
+            this.otpExpired = true; 
+            this.snackBar.open('OTP expired', 'Resend', {
+              duration: 2000*60, // Display the message for 5 seconds
+            });
+              this.resendOTP();
+          }
+        }
+        else {
+          this.snackBar.open('OTP not valid', 'Dismiss', {
+            duration: 5000, // Display the message for 5 seconds
+          });
+          
+        }
+      },
+      error: (err) => {
+        console.error(`Some error occured: ${err}`);
+      }
+    })
+  }
+
+
+
+
+  updateUserificationStatus(userName:string):void{
+    this.http.post('http://localhost:9001/verifyUser', { userName })
+    .subscribe({
+        next: (response: any) => {
+            console.log("User verified successfully");
+            // Navigate to the desired route (e.g., '/employer/empsign')
+            this.router.navigate(['/login']);
+            alert('Register successful!');
+        },
+        error: (err) => {
+            console.error(`Error updating employer verification status: ${err}`);
+        }
+    });
+
+  }
+  resendOTP(): void {
     this.http.post('https://otpservice.onrender.com/0auth/verifyOtp', {uid: this.activatedRoute.snapshot.paramMap.get('uid'), otp: this.otpForm.controls['otp'].value, email: this.otpForm.controls['email'].value})
     .subscribe({
       next: (payload: any) => {
@@ -33,11 +88,18 @@ export class CheckotpComponent implements OnInit {
             
           }
           else {
-            console.error("Otp expired");
+            this.otpExpired = true; 
+            this.snackBar.open('OTP expired', 'Resend', {
+              duration: 5000, // Display the message for 5 seconds
+            });
+
           }
         }
         else {
-          console.error("Otp not valid");
+          this.snackBar.open('OTP not valid', 'Dismiss', {
+            duration: 5000, // Display the message for 5 seconds
+          });
+          
         }
       },
       error: (err) => {

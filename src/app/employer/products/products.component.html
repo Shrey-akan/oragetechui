@@ -223,54 +223,60 @@
             <h1>Contact Us</h1>
             <form [formGroup]="contactForma" (ngSubmit)="contactdetailsemp(contactForma)">
                 <div class="form-group">
-                    <div class="mb-3">
-                        <label class="form-label">*How can we help?</label>
-                        <select class="form-select" formControlName="contacthelp">
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="accountverification">Account Verification</option>
-                            <option value="advertiseonindeed">Advertise on Indeed</option>
-                            <option value="billing">Billing</option>
-                            <option value="contact">Contact</option>
-                            <option value="contactsales">Contactc Sales</option>
-                            <option value="disabledaccount">Disabled Account</option>
-                            <option value="passwordreset">Password Reset</option>
-                            <option value="resumesearch">Resume Search</option>
-                        </select>
-                    </div>
+                  <div class="mb-3">
+                    <label class="form-label">*How can we help?</label>
+                    <select class="form-select" formControlName="contacthelp">
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="accountverification">Account Verification</option>
+                      <option value="advertiseonindeed">Advertise on Indeed</option>
+                      <option value="billing">Billing</option>
+                      <option value="contact">Contact</option>
+                      <option value="contactsales">Contact Sales</option>
+                      <option value="disabledaccount">Disabled Account</option>
+                      <option value="passwordreset">Password Reset</option>
+                      <option value="resumesearch">Resume Search</option>
+                    </select>
+                  </div>
                 </div>
-
+              
                 <div class="form-group">
-                    <label for="contactname">Name:</label>
-                    <input type="text" id="contactname" formControlName="contactname" class="form-control" required>
+                  <label for="contactname">Name:</label>
+                  <input type="text" id="contactname" formControlName="contactname" class="form-control" required>
+                  <div *ngIf="contactForma.get('contactname')?.hasError('required') && (contactForma.get('contactname')?.dirty || contactForma.get('contactname')?.touched)" class="text-danger">
+                    Name is required.
+                  </div>
                 </div>
-
-
-             
+              
                 <div class="form-group">
-                    <label for="contactmail">Email:</label>
-                    <input type="email" id="contactmail" formControlName="contactmail" class="form-control" required>
+                  <label for="contactmail">Email:</label>
+                  <input type="email" id="contactmail" formControlName="contactmail" class="form-control" required>
+                  <div *ngIf="contactForma.get('contactmail')?.hasError('required') && (contactForma.get('contactmail')?.dirty || contactForma.get('contactmail')?.touched)" class="text-danger">
+                    Email is required.
+                  </div>
+                  <div *ngIf="contactForma.get('contactmail')?.hasError('pattern') && (contactForma.get('contactmail')?.dirty || contactForma.get('contactmail')?.touched)" class="text-danger">
+                    Invalid email format. Must end with '@gmail.com'.
+                  </div>
                 </div>
-
-
+              
                 <div class="form-group">
-                    <label for="contactcompany">Company:</label>
-                    <input type="text" id="contactcompany" formControlName="contactcompany" class="form-control"
-                        required>
+                  <label for="contactcompany">Company:</label>
+                  <input type="text" id="contactcompany" formControlName="contactcompany" class="form-control" required>
+                  <div *ngIf="contactForma.get('contactcompany')?.hasError('required') && (contactForma.get('contactcompany')?.dirty || contactForma.get('contactcompany')?.touched)" class="text-danger">
+                    Company is required.
+                  </div>
                 </div>
-
-
-
+              
                 <div class="form-group">
-                    <label for="contactphone">Phone:</label>
-                    <input type="tel" id="contactphone" formControlName="contactphone" class="form-control" required>
+                  <label for="contactphone">Phone:</label>
+                  <input type="tel" id="contactphone" formControlName="contactphone" class="form-control" required>
+                  <div *ngIf="contactForma.get('contactphone')?.hasError('required') && (contactForma.get('contactphone')?.dirty || contactForma.get('contactphone')?.touched)" class="text-danger">
+                    Phone is required.
+                  </div>
                 </div>
-
-
-
-
-
+              
                 <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+              </form>
+              
 
         </div>
 
@@ -282,26 +288,35 @@
         <span class="close" id="closeButtonJob">&times;</span>
         <div class="popup-form">
             <h1>Let's Get Started</h1>
-            <p>Already have an account? <b> <a routerLink="/employers/sign-in-emp">Sign up</a>
+            <p>Already have an account? <b> <a routerLink="/employer/empregister">Register</a>
                 </b> </p>
-                <form [formGroup]="companyswitch" (ngSubmit)="switchtoemployer(companyswitch)">
+                <form [formGroup]="companyswitch" (ngSubmit)="switchtoemployer()">
                     <div class="form-group">
-                        <label for="companyName">Company Name:</label>
-                        <input type="text" id="companyName" formControlName="companyName"
-                            class="form-control" required>
+                      <label for="companyName">Company Name:</label>
+                      <input type="text" id="companyName" formControlName="empcompany" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="empemail">Email:</label>
-                        <input type="email" id="empemail" formControlName="empemail" class="form-control"
-                            required>
+                      <label for="empmailid">Email:</label>
+                      <input type="email" id="empmailid" formControlName="empmailid" class="form-control" required>
+                      <div *ngIf="companyswitch.get('empmailid')?.hasError('required') && companyswitch.get('empmailid')?.touched" class="text-danger">
+                        Email is required.
+                      </div>
+                      <div *ngIf="companyswitch.get('empmailid')?.hasError('email') && companyswitch.get('empmailid')?.touched" class="text-danger">
+                        Please enter a valid email address.
+                      </div>
+                      <div *ngIf="companyswitch.get('empmailid')?.hasError('invalidGmail') && companyswitch.get('empmailid')?.touched" class="text-danger">
+                        Email must end with @gmail.com.
+                      </div>
                     </div>
                     <div class="form-group">
-                        <label for="emppass">Password:</label>
-                        <input type="password" id="emppass" formControlName="emppass" class="form-control"
-                            required>
+                      <label for="emppass">Password:</label>
+                      <input type="password" id="emppass" formControlName="emppass" class="form-control" required>
+                      <div *ngIf="companyswitch.get('emppass')?.hasError('required') && companyswitch.get('emppass')?.touched" class="text-danger">
+                        Password is required.
+                      </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                  </form>
             <p>By creating an account, you agree to Indeed’s <a href="">Terms of Service</a> ,
                 <a href="">Cookie Policy</a> and <a href="">Privacy Policy</a>. You consent to
                 receiving marketing messages from Indeed and may opt out from receiving such

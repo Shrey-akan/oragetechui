@@ -15,19 +15,37 @@ export class ContactComponent {
  constructor(private fb: FormBuilder,private router:Router,private h1:UserService) {
    // Initialize the form with FormBuilder
    this.contactForm = this.fb.group({
-     name: ['', Validators.required],
-     email: ['', [Validators.required, Validators.email]],
-     contactNumber: ['', Validators.required],
-     message: ['', Validators.required]
+    name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email, this.gmailValidator]],
+      contactNumber: ['', [Validators.required, this.contactNumberValidator]],
+      message: ['', [Validators.required]],
    });
  }
 
+  // Custom validator for Gmail
+  gmailValidator(control: { value: string; }) {
+    if (control.value && !control.value.endsWith('@gmail.com')) {
+      return { invalidGmail: true };
+    }
+    return null;
+  }
+
+  // Custom validator for 10-digit contact number
+  contactNumberValidator(control: { value: any; }) {
+    const value = control.value;
+    const isValid = /^\d{10}$/.test(value);
+
+    if (!isValid) {
+      return { invalidContactNumber: true };
+    }
+    return null;
+  }
  // Handle form submission
- onSubmit() {
+ onSubmitForm() {
    if (this.contactForm.valid) {
      // Form data is valid, you can access it using this.contactForm.value
      console.log(this.contactForm.value);
-     this.h1.contactform(this.contactForm);
+     this.h1.insertfrontform(this.contactForm);
    }
  }
 }

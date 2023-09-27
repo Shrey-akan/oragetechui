@@ -23,13 +23,16 @@ export class OptverifyComponent  implements OnInit {
   }
 
   verifyOTP(): void {
+    const empid = this.activatedRoute.snapshot.paramMap.get('empid');
+    const otpValue = this.otpForm.controls['otp'].value;
+    const emailValue = this.otpForm.controls['email'].value;
     this.http.post('https://otpservice.onrender.com/0auth/verifyOtp', {uid: this.activatedRoute.snapshot.paramMap.get('empid'), otp: this.otpForm.controls['otp'].value, email: this.otpForm.controls['email'].value})
     .subscribe({
       next: (payload: any) => {
         if(payload.otpValid) {
           if(!payload.otpExpired) {
             
-            this.router.navigate(['/employer/empregister']);
+            this.updateEmployerVerificationStatus(emailValue);
             
           }
           else {
@@ -45,5 +48,19 @@ export class OptverifyComponent  implements OnInit {
       }
     })
   }
+  updateEmployerVerificationStatus(empmailid: string): void {
+    this.http.post('http://localhost:9001/verifyEmployer', { empmailid })
+        .subscribe({
+            next: (response: any) => {
+                console.log("Employer verified successfully");
+                // Navigate to the desired route (e.g., '/employer/empsign')
+                this.router.navigate(['/employer/empsign']);
+                alert('Register successful!');
+            },
+            error: (err) => {
+                console.error(`Error updating employer verification status: ${err}`);
+            }
+        });
+}
 
 }

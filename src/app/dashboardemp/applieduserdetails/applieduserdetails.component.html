@@ -1,8 +1,12 @@
+
+
+
 <div class="container">
-    <div class="row">
-        <div class="container">
-            <h2>Job Applications</h2>
-            <table class="table table-bordered">
+  <div class="row">
+    <div class="container">
+      <h2>Job Applications</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -35,10 +39,16 @@
                   <td>{{ application.jujavavalid }}</td>
                   <td>{{ application.jujobtitle }}</td>
                   <td>{{ application.jucompanyname }}</td>
+                  <td>
+                   <!-- Add a click event handler that passes the jumail when clicking the button -->
+<button class="btn btn-primary" (click)="navigateToMessage(application.jumail)">Send Message</button>
+
+                  </td>
+                  
                 </tr>
               </tbody>
             </table>
           </div>
-          
+        </div>
+      </div>
     </div>
-</div>

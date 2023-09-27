@@ -1,49 +1,19 @@
+<div class="container">
+  <h2>{{ chatEmail }}</h2>
 
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Left Sidebar (User List) -->
-      <div class="col-md-4 bg-secondary p-0">
-        <div class="chat-sidebar">
-          <div class="chat-sidebar-header p-3">
-            <h3 class="text-white">Chats</h3>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let user of data" (click)="selectUser(user)">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <img src="user-avatar.jpg" alt="User Avatar" class="user-avatar">
-                  <span class="ml-2">{{ data.userName }}</span>
-                </div>
-                <span class="badge badge-primary badge-pill">3</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-  
-      <!-- Message Screen -->
-      <div class="col-md-8 p-0">
-        <div class="chat-header bg-primary text-white p-3" *ngIf="selectedUser">
-          <div class="d-flex align-items-center">
-            <img src="user-avatar.jpg" alt="User Avatar" class="user-avatar">
-            <h2 class="ml-3">{{ selectedUser.userName }}</h2>
-          </div>
-        </div>
-        <div class="message-container" *ngIf="selectedUser">
-          <div *ngFor="let message of messages" [ngClass]="{'message-right': message.sender === 'me', 'message-left': message.sender !== 'me'}">
-            <div class="message-content">
-              {{ message.text }}
-            </div>
-          </div>
-        </div>
-        <div class="chat-input" *ngIf="selectedUser">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Type a message...">
-            <div class="input-group-append">
-              <button class="btn btn-primary">Send</button>
-            </div>
-          </div>
-        </div>
+  <div class="messages">
+    <!-- Display messages here -->
+    <div *ngFor="let message of messages" class="message" [ngClass]="{'sender-message': message.sender === 'sender', 'receiver-message': message.sender === 'receiver'}">
+      <div class="message-text">{{ message.text }}</div>
+      <div class="message-actions">
+        <button class="btn btn-danger" (click)="deleteMessage(message)">Delete</button>
       </div>
     </div>
   </div>
+
+  <div class="message-input">
+    <textarea class="form-control" [(ngModel)]="newMessage" rows="3" placeholder="Type your message..."></textarea>
+    <button class="btn btn-primary" (click)="sendMessage()">Send</button>
+    <button class="btn btn-secondary" (click)="refreshMessages()">Refresh</button>
+  </div>
+</div>

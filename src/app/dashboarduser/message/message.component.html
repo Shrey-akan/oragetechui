@@ -1,28 +1,13 @@
-<!-- chat.component.html -->
-
-<div class="wrapper">
-  <section class="chat-area">
-    <header>
-      <a routerLink="/users" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-      <img [src]="'assets/uploads/' + user.avatar" alt="{{ user.firstname + ' ' + user.lastname }}">
-      <div class="details">
-        <span>{{ user.firstname + ' ' + user.lastname }}</span>
-        <p>{{ user.status }}</p>
-      </div>
-    </header>
-    <div class="chat-box">
-      <!-- Render messages here -->
-      <div *ngFor="let message of messages">
-        {{ message.content }}
-      </div>
+<div class="message-container">
+  <h2>{{ selectedUser?.name }} Messages</h2>
+  <div class="messages">
+    <div *ngFor="let message of messages" class="message">
+      <div class="message-text">{{ message.text }}</div>
+      <!-- You can display the sender's name, timestamp, etc. here -->
     </div>
-    <form (ngSubmit)="sendMessage(messageInput.value)" class="typing-area" enctype="multipart/form-data">
-      <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off" #messageInput>
-      <label for="file-upload" class="file-upload-label">
-        <i class="fas fa-paperclip"></i>
-      </label>
-      <input type="file" id="file-upload" name="file" class="file-input" accept="image/*, .pdf, .docx" style="display:none;">
-      <button type="submit"><i class="fab fa-telegram-plane"></i></button>
-    </form>
-  </section>
+  </div>
+</div>
+<div class="send-message">
+  <input type="text" [(ngModel)]="newMessage" placeholder="Type your message..." />
+  <button (click)="sendMessage()">Send</button>
 </div>

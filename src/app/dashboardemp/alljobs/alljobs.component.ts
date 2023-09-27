@@ -32,7 +32,7 @@ export class AlljobsComponent implements OnInit {
       this.empDetail = data1.find((emp: any) => emp.empid == eeid);
       console.log(this.empDetail);
 
-      this.abc = this.empDetail.empmailid;
+      this.abc = this.empDetail.empid;
       console.log(this.abc);
 
       // Now that we have the empmailid, fetch job post details
@@ -45,7 +45,7 @@ export class AlljobsComponent implements OnInit {
 
     response
       .subscribe((data1: any) => {
-        this.data = data1.filter((job: any) => job.empmailid == this.abc);
+        this.data = data1.filter((job: any) => job.empid == this.abc);
         console.log('Filtered Data:', this.data);
       });
   }

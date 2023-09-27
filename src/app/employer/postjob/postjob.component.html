@@ -283,26 +283,36 @@
         <span class="close" id="closeButtonJob">&times;</span>
         <div class="popup-form">
             <h1>Let's Get Started</h1>
-            <p>Already have an account? <b> <a routerLink="/employers/sign-in-emp">Sign up</a>
+            <p>Already have an account? <b> <a routerLink="/employer/empregister">Register</a>
                 </b> </p>
-            <form [formGroup]="companyswitch" (ngSubmit)="switchtoemployer(companyswitch)">
-                <div class="form-group">
-                    <label for="companyName">Company Name:</label>
-                    <input type="text" id="companyName" formControlName="companyName"
-                        class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="empemail">Email:</label>
-                    <input type="email" id="empemail" formControlName="empemail" class="form-control"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="emppass">Password:</label>
-                    <input type="password" id="emppass" formControlName="emppass" class="form-control"
-                        required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <form [formGroup]="companyswitch" (ngSubmit)="switchtoemployer()">
+                    <div class="form-group">
+                      <label for="companyName">Company Name:</label>
+                      <input type="text" id="companyName" formControlName="empcompany" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="empmailid">Email:</label>
+                      <input type="email" id="empmailid" formControlName="empmailid" class="form-control" required>
+                      <div *ngIf="companyswitch.get('empmailid')?.hasError('required') && companyswitch.get('empmailid')?.touched" class="text-danger">
+                        Email is required.
+                      </div>
+                      <div *ngIf="companyswitch.get('empmailid')?.hasError('email') && companyswitch.get('empmailid')?.touched" class="text-danger">
+                        Please enter a valid email address.
+                      </div>
+                      <div *ngIf="companyswitch.get('empmailid')?.hasError('invalidGmail') && companyswitch.get('empmailid')?.touched" class="text-danger">
+                        Email must end with @gmail.com.
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="emppass">Password:</label>
+                      <input type="password" id="emppass" formControlName="emppass" class="form-control" required>
+                      <div *ngIf="companyswitch.get('emppass')?.hasError('required') && companyswitch.get('emppass')?.touched" class="text-danger">
+                        Password is required.
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                  
             <p>By creating an account, you agree to Indeed’s <a href="">Terms of Service</a> ,
                 <a href="">Cookie Policy</a> and <a href="">Privacy Policy</a>. You consent to
                 receiving marketing messages from Indeed and may opt out from receiving such

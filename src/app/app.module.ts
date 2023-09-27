@@ -20,6 +20,7 @@ import {CookieService} from 'ngx-cookie-service'
 import { environment } from 'src/environments/environment';
 import { UpdateProfilePopupComponent } from './update-profile-popup/update-profile-popup.component';
 import { CheckotpComponent } from './checkotp/checkotp.component';
+import { OtpexpiredComponent } from './otpexpired/otpexpired.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CheckotpComponent } from './checkotp/checkotp.component';
     LoginComponent,
     RegisterComponent,
     UpdateProfilePopupComponent,
-    CheckotpComponent
+    CheckotpComponent,
+    OtpexpiredComponent
   ],
   imports: [
     BrowserModule,

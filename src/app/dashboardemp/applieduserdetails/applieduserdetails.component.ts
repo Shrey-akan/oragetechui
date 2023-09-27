@@ -15,6 +15,7 @@ export class ApplieduserdetailsComponent implements OnInit {
   abc: any;
   logval: any;
   data: any;
+  public chatEmail:string="";
   constructor(private router:Router, private formbuilder:FormBuilder,private b1:UserService , public cookie:CookieService){}
 
 
@@ -24,8 +25,8 @@ export class ApplieduserdetailsComponent implements OnInit {
   ngOnInit(): void {
     this.empId = this.cookie.get('emp');
 
-    console.log(this.empId);
-    console.log('Employer ID from cookie:', this.empId);
+    // console.log(this.empId);
+    // console.log('Employer ID from cookie:', this.empId);
       let response = this.b1.fetchemployer();
       response.subscribe((data1: any) => {
         // Debugging: Log the data received from the API
@@ -40,7 +41,7 @@ export class ApplieduserdetailsComponent implements OnInit {
         // Debugging: Log the filtered data
         console.log("hello");
         console.log('Filtered Data:', this.empDetail);
-        this.abc = this.empDetail.empcompany;
+        this.abc = this.empDetail.empId;
         const logval=this.abc;
         console.log(this.abc+"hello check the detail");
         this.fetchJobapplieddetails();
@@ -48,15 +49,27 @@ export class ApplieduserdetailsComponent implements OnInit {
     }
 
       fetchJobapplieddetails(){
-        let response = this.b1.fetchapplyform();
-        console.log(response);
+        let response :any= this.b1.fetchapplyform();
+        console.log('Value of this.abc:', this.abc);
+        // console.log('Empid values:', data1.map((applyjobf: any) => applyjobf.empid));
+        
+        console.log("checking response",response);
         response
           .subscribe((data1: any) => {
-            this.data = data1.filter((applyjobf: any) => applyjobf.jucompny == this.abc);
+            this.data = data1.filter((applyjobf: any) => applyjobf.empid == this.empId);
             console.log('Filtered Data:', this.data);
+            
+            
           });
-      
+          
 
   }
+
+  navigateToMessage(email: string) {
+  
+    // Use the passed email as a parameter when navigating
+    this.router.navigate(['/dashboardemp/empmessage/', email]);
+  }
+  
 }  
 

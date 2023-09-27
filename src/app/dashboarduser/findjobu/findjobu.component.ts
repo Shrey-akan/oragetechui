@@ -13,6 +13,7 @@ interface Job {
   schedulejob: string;
   payjob: string;
   payjobsup: string;
+  empid: string;
 }
 @Component({
   selector: 'app-findjobu',
@@ -45,6 +46,8 @@ export class FindjobuComponent {
     this.selectedJob = data;
     this.b1.setJobTitle(this.selectedJob.jobtitle);
     this.b1.setCompanyName(this.selectedJob.companyforthisjob);
+    this.b1.setEmpId(this.selectedJob.empid);
+    console.log('Setting EmpId:', this.selectedJob.empid);
   }
 
   userID: String = "0";
@@ -91,9 +94,5 @@ export class FindjobuComponent {
   navigateToSignIn() {
     // Replace 'sign-in' with the actual route name of your sign-in page
     this.router.navigate(['/dashboarduser/questionpaper']);
-  }
-
-  toggleJobDetails(application: any) {
-    application.showDetails = !application.showDetails;
   }
 }

@@ -1,48 +1,22 @@
-.container-fluid {
-  height: 100vh;
-}
-
-.col-md-4 {
-  border-right: 1px solid #ccc;
-  overflow-y: auto;
-  max-height: 100%;
-}
-
-.col-md-8 {
-  overflow-y: auto;
-  max-height: 100%;
-}
-
 .message-container {
-  height: 70vh;
+  flex: 1;
+  padding: 20px;
+}
+
+.messages {
+  max-height: 300px;
   overflow-y: auto;
-}
-
-.message-right {
-  text-align: right;
-}
-
-.message-left {
-  text-align: left;
-}
-
-.message-container div {
+  border: 1px solid #ccc;
   padding: 10px;
 }
 
-.message-container span {
-  font-weight: bold;
-}
-
-.chat-input input {
-  width: 80%;
+.message {
+  margin: 10px 0;
   padding: 5px;
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
 }
 
-.chat-input button {
-  padding: 5px 10px;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
+.send-message {
+  margin-top: 20px;
 }

@@ -9,6 +9,9 @@ import {
   signInWithPopup,
   signOut,
 } from '@angular/fire/auth';
+
+// Define your API base URL as a constant variable
+const API_BASE_URL = 'http://localhost:9001/';
 interface User {
   uid: Number;
   userName: String;
@@ -40,16 +43,18 @@ interface Employer {
   providedIn: 'root'
 })
 export class UserService {
-  getUser(incoming_id: string) {
+  getUser() {
     throw new Error('Method not implemented.');
   }
- 
+
 
 
 
   private jobTitleSource = new BehaviorSubject<string | null>(null);
   private companyNameSource = new BehaviorSubject<string | null>(null);
 
+  private empIdSource = new BehaviorSubject<string | null>(null);
+  empId$ = this.empIdSource.asObservable();
 
   jobTitle$ = this.jobTitleSource.asObservable();
   companyName$ = this.companyNameSource.asObservable();
@@ -57,69 +62,65 @@ export class UserService {
   setJobTitle(jobTitle: string) {
     this.jobTitleSource.next(jobTitle);
   }
-  
+
+  setEmpId(empId: string) {
+    this.empIdSource.next(empId);
+  }
+
   setCompanyName(companyName: string) {
     this.companyNameSource.next(companyName);
   }
 
-      Path_of_api = "http://159.203.168.51/";
+  contactformurl = `${API_BASE_URL}insertfrontform`;
+  inserturlc = `${API_BASE_URL}insertusermail`;
+  logincheckurl = `${API_BASE_URL}logincheck`;
+  fetchuserurl = `${API_BASE_URL}fetchuser`;
+  updateUserurl = `${API_BASE_URL}updateUser`;
+  insertusermailurl = `${API_BASE_URL}insertusermailgog`;
+  deleteuseraccount = `${API_BASE_URL}`;
+  // Employer
+  inserturle = `${API_BASE_URL}insertemployer`;
+  inserturlemail = `${API_BASE_URL}insertemployeremail`;
+  employercheckurl = `${API_BASE_URL}logincheckemp`;
+  employerdetailsfetchurl = `${API_BASE_URL}fetchemployer`;
+  employerupdateurl = `${API_BASE_URL}updateEmployee`;
+  deleteemployeraccount = `${API_BASE_URL}`;
+  // Job Post
+  inserturljobpost = `${API_BASE_URL}jobpostinsert`;
+  fetchjobposturl = `${API_BASE_URL}fetchjobpost`;
+  // Contact
+  inserturlcontact = `${API_BASE_URL}insertcontact`;
+  fetchcontactdetails = `${API_BASE_URL}fetchcontact`;
+  // Apply Job
+  inserturlapplyjob = `${API_BASE_URL}insertapplyjob`;
+  fetchapplyjobform = `${API_BASE_URL}fetchapplyform`;
+  // Notification
+  notificationurl = `${API_BASE_URL}insertnotification`;
+  // Resume Builder
+  insert_resumeurl = `${API_BASE_URL}resumeinsert`;
+  // Fetch Question
+  fetchquestionpaperurl = `${API_BASE_URL}fetchquestion`;
+  // Check Answer URL
+  checkalanswere = `${API_BASE_URL}checkallanswer`;
+  constructor(private h1: HttpClient, private router: Router, private auth: Auth, public cookie: CookieService) { }
 
 
 
 
-      //contact form
-      contactformurl ="http://159.203.168.51:9001/contactform";
+  insertfrontform(data: any) {
+    this.h1.post(this.contactformurl, data);
+  }
 
 
-    //Users
-      inserturlc = "http://159.203.168.51:9001/insertusermail";
-      logincheckurl = "http://159.203.168.51:9001/logincheck";
-      fetchuserurl = "http://159.203.168.51:9001/fetchuser";
-      updateUserurl ="http://159.203.168.51:9001/updateUser";
-      insertusermailurl ="http://159.203.168.51:9001/insertusermailgog";
-    //Employer
-      inserturle = "http://159.203.168.51:9001/insertemployer";
-
-      inserturlemail = "http://159.203.168.51:9001/insertemployeremail";
-    employercheckurl = "http://159.203.168.51:9001/logincheckemp";
-    employerdetailsfetchurl="http://159.203.168.51:9001/fetchemployer";
-    employerupdateurl ="http://159.203.168.51:9001/updateEmployee";
+  deleteUser(uid: string): Observable<any> {
+    const urldu = `${this.deleteuseraccount}/deleteUser/${uid}`;
+    return this.h1.delete(urldu);
+  }
 
 
-
-
-    //Job Post
-        inserturljobpost = "http://159.203.168.51:9001/jobpostinsert";
-        fetchjobposturl ="http://159.203.168.51:9001/fetchjobpost";
-        
-    //Contact
-      inserturlcontact = "http://159.203.168.51:9001/insertcontact";
-      fetchcontactdetails="http://159.203.168.51:9001/fetchcontact";
-
-      //Apply Job
-      inserturlapplyjob = "http://159.203.168.51:9001/insertapplyjob";
-    fetchapplyjobform = "http://159.203.168.51:9001/fetchapplyform";
-
-
-      //notification
-      notificationurl="http://159.203.168.51:9001/insertnotification";
-
-
-      //Resume Builder
-      insert_resumeurl = "http://159.203.168.51:9001/resumeinsert";
-
-      //fetchquestion
-      fetchquestionpaperurl ="http://159.203.168.51:9001/fetchquestion";
-
-    //check answere urkl 
-    checkalanswere="http://159.203.168.51:9001/checkallanswer";
-  constructor(private h1: HttpClient, private router: Router,private auth: Auth, public cookie: CookieService) { }
-
-
-
-
-  contactform(data:any){
-      this.h1.post(this.contactformurl,data);
+  deleteEmployer(empid: string): Observable<any> {
+    const urlde = `${this.deleteemployeraccount}deleteEmployer/${empid}`;
+    return this.h1.delete(urlde);
   }
 
   public insertusermail(data: any) {
@@ -136,50 +137,50 @@ export class UserService {
       }
     });
   }
-  insertusermailgog(data:string){
-    
-      console.log("inside user google login");
+  insertusermailgog(data: string) {
 
-      return this.h1.post(this.insertusermailurl , data).subscribe({
-        next:(resp: any)=>{
-          console.log(resp);
-          console.log("data inserted");
-        },
-        error:(err:any)=>{
-          console.log(err,"get the error");
-        }
-      })
+    console.log("inside user google login");
+
+    return this.h1.post(this.insertusermailurl, data).subscribe({
+      next: (resp: any) => {
+        console.log(resp);
+        console.log("data inserted");
+      },
+      error: (err: any) => {
+        console.log(err, "get the error");
+      }
+    })
   }
 
-  fetchuser(){
+  fetchuser() {
     return this.h1.get(this.fetchuserurl).pipe(catchError(this.handleError));
-   }    
+  }
 
 
-   private handleError(error:any):Observable<never>{
+  private handleError(error: any): Observable<never> {
 
     console.error('An error occurred:', error);
 
     // Return an observable with an error message or perform other error handling tasks.
     return throwError('Something went wrong. Please try again later.');
-   }
+  }
 
 
 
-   //update user
-   updateUser(data:any): Observable<any>{
-    return this.h1.post(this.updateUserurl,data).pipe(
+  //update user
+  updateUser(data: any): Observable<any> {
+    return this.h1.post(this.updateUserurl, data).pipe(
       catchError(this.handleEr)
     );
-   }
+  }
 
-   //update employer data
-   updateEmployee(data:any): Observable<any>{
-    return this.h1.post(this.employerupdateurl,data).pipe(
+  //update employer data
+  updateEmployee(data: any): Observable<any> {
+    return this.h1.post(this.employerupdateurl, data).pipe(
       catchError(this.handleEr)
     );
-   }
-   private handleEr(error: HttpErrorResponse) {
+  }
+  private handleEr(error: HttpErrorResponse) {
     let errorMessage = 'An error occurred';
     if (error.error instanceof ErrorEvent) {
       // Client-side error
@@ -196,19 +197,6 @@ export class UserService {
     console.log("done");
     return this.h1.post(this.logincheckurl, data).subscribe({
       next: (resp: any) => {
-        const res: User = {
-          uid: resp.uid,
-          userName: resp.userName,
-          userFirstName: resp.userFirstName,
-          userLastName: resp.userLastName,
-          userPassword: resp.userPassword,
-          companyuser: resp.companyuser,
-          websiteuser: resp.websiteuser,
-          userphone: resp.userphone,
-          usercountry: resp.usercountry,
-          userstate: resp.userstate,
-          usercity: resp.usercity,
-        };
 
         const mainres: User = resp;
         console.log(`Login response from server: ${mainres}`);
@@ -217,61 +205,55 @@ export class UserService {
           console.log("Server responded with a object of user");
 
           // Redirect to the dashboard if the response is true
+          alert('Login Successfull!');
           this.router.navigate(['/dashboarduser/']);
         } else {
           // Handle other response statuses or errors
+          alert('Incorrect Credentials!');
           this.router.navigate(['/login']);
+
         }
         console.log("Data checked");
       },
       error: (err: any) => {
         console.log(err);
+        alert('Incorrect Credentials!');
         this.router.navigate(['/login']);
       }
     });
   }
 
 
-   logincheckemp(data: any) {
+  logincheckemp(data: any) {
     console.log(data);
     console.log("shreyanspagal");
 
     return this.h1.post(this.employercheckurl, data).subscribe({
       next: (resp: any) => {
-        const res: Employer = {
-          empid: resp.empid,
-          empfname: resp.empfname,
-          emplname: resp.emplname,
-          empcompany: resp.empcompany,
-          empmailid: resp.empmailid,
-          emppass: resp.emppass,
-          empphone: resp.empphone,
-          empcountry: resp.empcountry,
-          empstate: resp.empstate,
-          empcity: resp.empcity,
-          descriptionemp: resp.descriptionemp,
-        };
 
         const mainres: Employer = resp;
         console.log("emoployer");
         console.log(`Login response from server: ${mainres.descriptionemp}`);
         this.cookie.set('emp', resp.empid);
-        console.log(resp+"this is gaurav");
+
         console.log(resp.empfname);
-        if (resp.empfname != null ) {
+        if (resp.empfname != null) {
           console.log("Server responded with a object of user");
-           
+
           // Redirect to the dashboard if the response is true
+          alert('Login successful!');
           this.router.navigate(['/dashboardemp/']);
         } else {
           // Handle other response statuses or errors
-          this.router.navigate(['/employer/empsign']);
+          alert('Incorrect Credentials!');
+          this.router.navigate(['/employer']);
         }
-     
+
       },
       error: (err: any) => {
         console.log(err);
-        this.router.navigate(['/login']);
+        alert('Incorrect Credentials!');
+        this.router.navigate(['/employer']);
       }
     });
   }
@@ -311,9 +293,9 @@ export class UserService {
   }
 
 
-  fetchemployer(){
+  fetchemployer() {
     return this.h1.get(this.employerdetailsfetchurl);
-   }
+  }
 
 
   public jobpostinsert(data: any) {
@@ -331,9 +313,9 @@ export class UserService {
     });
   }
 
-  fetchjobpost(){
+  fetchjobpost() {
     return this.h1.get(this.fetchjobposturl);
-   }
+  }
 
 
 
@@ -355,11 +337,11 @@ export class UserService {
     });
   }
 
-  fetchcontact(){
+  fetchcontact() {
     return this.h1.get(this.fetchcontactdetails);
   }
 
-  fetchapplyform(){
+  fetchapplyform() {
     return this.h1.get(this.fetchapplyjobform);
   }
   public insertapplyjob(data: any) {
@@ -397,7 +379,7 @@ export class UserService {
     console.log(data);
     console.log("done");
 
-      return this.h1.post(this.insert_resumeurl, data).subscribe({
+    return this.h1.post(this.insert_resumeurl, data).subscribe({
       next: (resp: any) => {
         console.log(resp);
 
@@ -410,14 +392,14 @@ export class UserService {
     });
   }
   //fetch question paper fetchquestionpaperurl
-  fetchquestion(){
+  fetchquestion() {
     return this.h1.get(this.fetchquestionpaperurl);
   }
 
   loginWithGoogle() {
-   
+
     return signInWithPopup(this.auth, new GoogleAuthProvider());
-    
+
   }
 
   logout() {
@@ -429,15 +411,15 @@ export class UserService {
   //check all answere from database 
   public checkallanswer(userAnswers: any[]) {
     console.log("Sending the answere to checked in database");
-    console.log(userAnswers,"checking all the values are correct or not");
-    
+    console.log(userAnswers, "checking all the values are correct or not");
+
     // Replace `this.checkalanswere` with the actual URL where your Spring backend is hosted
     const url = this.checkalanswere;
-    
+
     return this.h1.post(url, userAnswers).subscribe({
       next: (resp: any) => {
         console.log(resp);
-        if(resp){
+        if (resp) {
           this.router.navigate(['/dashboarduser/applyjob'])
         }
         console.log("Data checked from the database");
@@ -448,5 +430,5 @@ export class UserService {
       }
     });
   }
-  
+
 }

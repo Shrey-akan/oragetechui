@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  contactForm!: FormGroup;
+  constructor(private fb: FormBuilder) {}
   states: string[] = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
     'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
@@ -20,7 +22,42 @@ export class HomeComponent implements OnInit {
  ngOnInit() {
   // Set the carousel to auto-play every 5 seconds
   this.runCarousel();
+  this.contactForm = this.fb.group({
+    name: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email, this.gmailValidator]],
+    contactNumber: ['', [Validators.required, this.contactNumberValidator]],
+    message: ['', [Validators.required]],
+  });
 }
+
+
+  // Custom validator for Gmail
+  gmailValidator(control: { value: string; }) {
+    if (control.value && !control.value.endsWith('@gmail.com')) {
+      return { invalidGmail: true };
+    }
+    return null;
+  }
+
+  // Custom validator for 10-digit contact number
+  contactNumberValidator(control: { value: any; }) {
+    const value = control.value;
+    const isValid = /^\d{10}$/.test(value);
+
+    if (!isValid) {
+      return { invalidContactNumber: true };
+    }
+    return null;
+  }
+
+  onSubmit() {
+    // Handle form submission here
+    if (this.contactForm.valid) {
+      // Form is valid, proceed with submission
+      const formData = this.contactForm.value;
+      console.log(formData);
+    }
+  }
 
 runCarousel() {
   const interval = 100; // 5 seconds interval (adjust as needed)

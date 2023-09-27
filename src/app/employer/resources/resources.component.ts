@@ -12,7 +12,7 @@ export class ResourcesComponent implements OnInit{
     
     }
     gotopage(){
-      this.router.navigate(['employers/sign-in-emp']);
+      this.router.navigate(['/employer/empsign']);
         }
 
 }

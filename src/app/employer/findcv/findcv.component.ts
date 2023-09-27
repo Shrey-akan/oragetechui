@@ -15,4 +15,7 @@ export class FindcvComponent {
   goToSignIn(){
     this.router.navigate(['/employer/sign-in-emp']);
   }
+  navigateTo(){
+    this.router.navigate(['/employer/empsign']);
+  }
 }

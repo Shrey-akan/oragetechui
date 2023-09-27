@@ -1,48 +1,19 @@
-.container-fluid {
-  height: 100vh;
-}
-
-.col-md-4 {
-  border-right: 1px solid #ccc;
-  overflow-y: auto;
-  max-height: 100%;
-}
-
-.col-md-8 {
-  overflow-y: auto;
-  max-height: 100%;
-}
-
-.message-container {
-  height: 70vh;
-  overflow-y: auto;
-}
-
-.message-right {
+/* Style sender messages */
+.sender-message {
   text-align: right;
-}
-
-.message-left {
-  text-align: left;
-}
-
-.message-container div {
+  background-color: #4CAF50; /* Green background for sender */
+  color: white;
+  margin-bottom: 10px;
   padding: 10px;
+  border-radius: 10px;
 }
 
-.message-container span {
-  font-weight: bold;
-}
-
-.chat-input input {
-  width: 80%;
-  padding: 5px;
-  border: 1px solid #ccc;
-}
-
-.chat-input button {
-  padding: 5px 10px;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
+/* Style receiver messages */
+.receiver-message {
+  text-align: left;
+  background-color: #f1f1f1; /* Light gray background for receiver */
+  color: #333;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
 }
