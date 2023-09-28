@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../auth/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   contactForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder , private b1:UserService,private router:Router) {}
   states: string[] = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
     'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
@@ -51,11 +53,26 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    // Handle form submission here
     if (this.contactForm.valid) {
-      // Form is valid, proceed with submission
-      const formData = this.contactForm.value;
-      console.log(formData);
+      // Form data is valid, you can access it using this.contactForm.value
+      console.log(this.contactForm.value);
+      this.b1.insertfrontform(this.contactForm.value).subscribe(
+    {
+     next: (response:any)=>{
+       if(response === true) {
+         alert('Contact form submitted successfully');
+         this.router.navigate(['/']);
+       }
+       else {
+         // Handle the case where the backend did not save the data successfully
+         alert('Failed to submit contact form');
+       }
+     },
+     error:(err: any) => {
+       alert(err);
+     }
+    }
+     );
     }
   }
 

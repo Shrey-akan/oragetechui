@@ -107,10 +107,10 @@ export class UserService {
 
 
 
-  insertfrontform(data: any) {
-    this.h1.post(this.contactformurl, data);
-  }
 
+  insertfrontform(formData: any) {
+    return this.h1.post(this.contactformurl, formData);
+  }
 
   deleteUser(uid: string): Observable<any> {
     const urldu = `${this.deleteuseraccount}/deleteUser/${uid}`;

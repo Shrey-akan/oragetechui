@@ -45,7 +45,23 @@ export class ContactComponent {
    if (this.contactForm.valid) {
      // Form data is valid, you can access it using this.contactForm.value
      console.log(this.contactForm.value);
-     this.h1.insertfrontform(this.contactForm);
+     this.h1.insertfrontform(this.contactForm.value).subscribe(
+   {
+    next: (response:any)=>{
+      if(response === true) {
+        alert('Contact form submitted successfully');
+        this.router.navigate(['/']);
+      }
+      else {
+        // Handle the case where the backend did not save the data successfully
+        alert('Failed to submit contact form');
+      }
+    },
+    error:(err) => {
+      alert(err);
+    }
+   }
+    );
    }
  }
 }
