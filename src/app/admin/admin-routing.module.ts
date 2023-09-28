@@ -10,36 +10,38 @@ import { JobprovidedComponent } from './jobprovided/jobprovided.component';
 import { EnquirydetailsComponent } from './enquirydetails/enquirydetails.component';
 import { NotificationComponent } from '../dashboarduser/notification/notification.component';
 import { NotifyComponent } from './notify/notify.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
-    path:'',component:LoginadminComponent
-  },{
-    path:'dashboardadmin', component:DashboardadminComponent,
-    children:[
+    path: '', component: LoginadminComponent
+  }, {
+    path: 'dashboardadmin', component: DashboardadminComponent,
+    children: [
       {
-        path:'',component:DashhomeComponent
+        path: '', component: DashhomeComponent
       },
       {
-        path:'userdetails',component:UserdetailsComponent
-      },    {
-        path:'employerdetails',component:EmployerdetailsComponent
-      },   
-       {
-        path:'jobprovided',component:JobprovidedComponent
+        path: 'userdetails', component: UserdetailsComponent
+      }, 
+      {
+        path: 'employerdetails', component: EmployerdetailsComponent
       },
       {
-        path:'notify',component:NotifyComponent
+        path: 'jobprovided', component: JobprovidedComponent
       },
-      // {
-      //   path:'adminprofile',component:
-      // },
+      {
+        path: 'notify/:userId', component: NotifyComponent
+      },
+      {
+        path: 'profile', component: ProfileComponent
+      },
 
       {
-        path:'enquirydetails',component:EnquirydetailsComponent
+        path: 'enquirydetails', component: EnquirydetailsComponent
       }
     ]
-  
+
   }
 ];
 

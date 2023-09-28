@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/auth/user.service';
 
 @Component({
@@ -9,36 +10,41 @@ import { UserService } from 'src/app/auth/user.service';
 })
 export class NotifyComponent implements OnInit {
   notificationForm!: FormGroup;
+  uid!: string | null;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.notificationForm = this.formBuilder.group({
-     
-      nhead: ['', Validators.required],
-      nsubhead: [''],
-      ndescription: [''],
-      notisend: ['', Validators.required]
-    });
+    // this.route.params.subscribe(params => {
+    //   // Retrieve the uid from the route parameters
+    //   this.uid = +params['userId'];
+    this.uid = this.route.snapshot.paramMap.get("userId");
+      // Initialize the form with the uid as a number
+      this.notificationForm = this.formBuilder.group({
+        notifyuid: [this.uid, Validators.required], // Initialize with the uid value as a number
+        nhead: ['', Validators.required],
+        nsubhead: [''],
+        ndescription: [''],
+        notisend: ['', Validators.required]
+      });
+ 
+    
+  
   }
-
   shareNotification() {
     if (this.notificationForm.valid) {
-      // Form is valid, you can access the form values like this:
       const formData = this.notificationForm.value;
       console.log('Notification shared:', formData);
-  
-      // Send the data to the service and handle the response
-      this.userService.insertnotification(formData);
-        // (response) => {
-        //   // Handle the response here, if needed
-        //   console.log('Response from service:', response);
-        // },
-        // (error) => {
-        //   // Handle errors here, if needed
-        //   console.error('Error from service:', error);
-        // }
       
+      this.userService.insertnotification(formData);
+        // .subscribe(
+        //   (response) => {
+        //     console.log('Response from service:', response);
+        //   },
+        //   (error) => {
+        //     console.error('Error from service:', error);
+        //   }
+        // );
     }
   }
   

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminserviceService } from '../adminauth/adminservice.service';
 
 @Component({
   selector: 'app-loginadmin',
@@ -9,15 +10,14 @@ import { Router } from '@angular/router';
 })
 export class LoginadminComponent implements OnInit {
   myForm!: FormGroup;
-  adminId = 'admin@orage.com';
-  adminPassword = 'admin123';
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  showFooter = false;
+  constructor(private formBuilder: FormBuilder, private router: Router,private adminauth:AdminserviceService) { }
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      adminMail: ['', [Validators.required, Validators.email]],
+      adminPass: ['', [Validators.required, Validators.minLength(6)]],
       rememberMe: false
     });
   }
@@ -25,13 +25,22 @@ export class LoginadminComponent implements OnInit {
   onSubmit() {
     if (this.myForm.valid) {
       const formData = this.myForm.value;
-      if (formData.email === this.adminId && formData.password === this.adminPassword) {
-        // Redirect to the dashboard
-        this.router.navigate(['/admin/dashboardadmin']);
-      } else {
-        // Redirect to the login admin page
-        this.router.navigate(['/admin']);
+      this.adminauth.loginCheck(formData).subscribe(
+    {
+      next : (Response:any) => {
+        if(Response === true){
+          alert("Login SuccessFull");
+          this.router.navigate(['/admin/dashboardadmin']);
+        }
+        else{
+          this.router.navigate(['/admin']);
+        }
+      },
+      error: (err: any) => {
+        alert(err);
       }
+    }
+      );
     }
   }
 
