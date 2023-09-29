@@ -49,7 +49,7 @@ export class OptverifyComponent  implements OnInit {
     })
   }
   updateEmployerVerificationStatus(empmailid: string): void {
-    this.http.post('http://localhost:9001/verifyEmployer', { empmailid })
+    this.http.post('http://159.203.168.51:9001/verifyEmployer', { empmailid })
         .subscribe({
             next: (response: any) => {
                 console.log("Employer verified successfully");

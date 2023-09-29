@@ -50,7 +50,7 @@ export class EmpmessageComponent implements OnInit {
   fetchMessages() {
     // Fetch previous messages from the server
     this.http
-      .get<SendMessage[]>('http://localhost:9001/fetchMessages')
+      .get<SendMessage[]>('http://159.203.168.51:9001/fetchMessages')
       .subscribe((messages: SendMessage[]) => {
         // Filter messages to only include the relevant ones
         this.messages = messages.filter(
@@ -77,7 +77,7 @@ export class EmpmessageComponent implements OnInit {
 
       // Make an HTTP POST request to send the message
       this.http
-        .post<SendMessage>('http://localhost:9001/send', messageToSend)
+        .post<SendMessage>('http://159.203.168.51:9001/send', messageToSend)
         .subscribe({
           next: (response: any) => {
             console.log('Message sent successfully:', response);

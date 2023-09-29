@@ -10,9 +10,10 @@
     <div class="chat-messages">
       <!-- Display received and sent messages here -->
       <div *ngFor="let message of messages" class="message {{ message.messageFrom === message.messageTo ? 'sent' : 'received' }}">
-        {{ message.message }}
+        <div class="message-content">{{ message.message }}</div>
       </div>
     </div>
+
     <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
       <div class="form-group">
         <textarea
@@ -20,6 +21,7 @@
           formControlName="message"
           placeholder="Type your message..."
           required
+          class="form-control"
         ></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Send</button>

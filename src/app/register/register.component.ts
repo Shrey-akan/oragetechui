@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
 
   userRegisteration(): void {
     if (this.userregister.valid) {
-      this.http.post('http://localhost:9001/insertusermail', this.userregister.getRawValue()).subscribe({
+      this.http.post('http://159.203.168.51:9001/insertusermail', this.userregister.getRawValue()).subscribe({
         next: (payload: any) => {
 
           console.log(payload);
