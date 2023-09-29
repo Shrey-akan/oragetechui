@@ -1,13 +1,8 @@
-<!-- notification.component.html -->
-
-<div class="container mx-auto w-3/4 card mt-4">
-    <div class="bg-[#EEEEEE] flex flex-col px-3 py-3 rounded-2xl">
-      <p class="text-lg sm:text-2xl font-bold">{{ notificationData.heading }}</p>
-      <p class="text-sm sm:text-lg font-semibold">{{ notificationData.subHeading }}</p>
-      <p class="text-sm sm:text-base">{{ notificationData.desc }}</p>
-      <div class="flex justify-end mt-4">
-        <button class="bg-slate-500 px-3 py-2 rounded-lg w-16 text-white cursor-pointer btn btn-primary" (click)="show()">Show</button>
-      </div>
-    </div>
+<div *ngFor="let notification of notifications">
+  <div class="notification">
+    <h3>{{ notification.nhead }}</h3>
+    <p>{{ notification.nsubhead }}</p>
+    <p>{{ notification.ndescription }}</p>
+    <p>{{ notification.notisend }}</p>
   </div>
-  
+</div>

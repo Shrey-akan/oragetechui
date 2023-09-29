@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { ApplieduserdetailsComponent } from './applieduserdetails/applieduserdetails.component';
 import { GeinfoformComponent } from './geinfoform/geinfoform.component';
 import { UpdateempprofileComponent } from './updateempprofile/updateempprofile.component';
+import { NotificationempComponent } from './notificationemp/notificationemp.component';
 @NgModule({
   declarations: [
     DashboardempComponent,
@@ -26,7 +27,8 @@ import { UpdateempprofileComponent } from './updateempprofile/updateempprofile.c
     HeaderdashboardempComponent,
      ApplieduserdetailsComponent,
      GeinfoformComponent,
-     UpdateempprofileComponent
+     UpdateempprofileComponent,
+     NotificationempComponent
   ],
   imports: [
     CommonModule,

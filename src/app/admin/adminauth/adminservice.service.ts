@@ -24,4 +24,8 @@ export class AdminserviceService {
   return this.http.get<any[]>(`${this.apiUrl}fetchcontactfront`);
 }
 
+addQuestion(questionData: any) {
+  return this.http.post(`${this.apiUrl}add`,  questionData);
+}
+
 }

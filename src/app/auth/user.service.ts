@@ -96,6 +96,8 @@ export class UserService {
   fetchapplyjobform = `${API_BASE_URL}fetchapplyform`;
   // Notification
   notificationurl = `${API_BASE_URL}insertnotification`;
+  fetchnotificationurl = `${API_BASE_URL}fetchnotify`;
+  
   // Resume Builder
   insert_resumeurl = `${API_BASE_URL}resumeinsert`;
   // Fetch Question
@@ -374,7 +376,9 @@ export class UserService {
     });
   }
 
-
+  fetchnotify(): Observable<any[]> {
+    return this.h1.get<any[]>(this.fetchnotificationurl);
+  }
 
   public resumeinsert(data: any) {
     console.log(data);

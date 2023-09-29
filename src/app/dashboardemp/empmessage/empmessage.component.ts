@@ -3,18 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http'; // Import HttpClient
 import { UserService } from 'src/app/auth/user.service';
 import { CookieService } from 'ngx-cookie-service';
+import { __importDefault } from 'tslib';
+import { FormBuilder, Validators } from '@angular/forms';
 
-class Message {
-  from: string;
-  to: string;
-  message: string;
-
-  constructor(from: string, to: string, message: string) {
-    this.from = from;
-    this.to = to;
-    this.message = message;
-  }
+class SendMessage {
+  messageTo!: string;
+  messageFrom!: string;
+  message!: string;
 }
+
 
 @Component({
   selector: 'app-empmessage',
@@ -22,88 +19,80 @@ class Message {
   styleUrls: ['./empmessage.component.css']
 })
 export class EmpmessageComponent implements OnInit {
-  userName: string = 'User Name';
-  messages: any[] = [];
-  newMessage: string = '';
-
-  chatEmail: string = '';
-  empId!: string;
-  empDetail: any;
-  abc: any;
 
 
-  constructor(
-    private route: ActivatedRoute,
-    private cookie:CookieService,
-    private b1:UserService,
-    private http: HttpClient // Inject HttpClient
-  ) {
-    this.route.params.subscribe(params => {
-      this.chatEmail = params['email'];
+  message: SendMessage = new SendMessage(); // Initialize an empty message
+  uid!: string | null;
+  messageForm!: any;
+  messages!: SendMessage[];
+
+  constructor(private http: HttpClient, private route: ActivatedRoute,
+    private cookie: CookieService,private formBuilder: FormBuilder) {
+  }
+  ngOnInit(): void {
+    this.uid = this.route.snapshot.paramMap.get("email");
+  console.log("uid:", this.uid); 
+    // Get the "to" value from the cookie (assuming "empemailid" is the cookie name)
+    this.message.messageFrom = this.cookie.get('emp');
+    console.log(this.message.messageFrom);
+    console.log(this.uid);
+
+    this.fetchMessages();
+    this.messageForm = this.formBuilder.group({
+      messageFrom: [this.message.messageFrom, Validators.required],
+      messageTo: [this.uid, Validators.required],
+      message: [this.message.message, Validators.required]
     });
   }
 
-  ngOnInit(): void {
-    this.empId = this.cookie.get('emp');
 
-    console.log(this.empId);
-    console.log('Employer ID from cookie:', this.empId);
-    let response = this.b1.fetchemployer();
-  
-    response.subscribe((data1: any) => {
-      // Debugging: Log the data received from the API
-      console.log('Data from API:', data1);
-      const eeid=this.empId;
-      console.log(eeid);
-      
-      // Filter the data array to include only the user with the matching userID
-      // this.data = data1.find((user: any) => user.uid === uuid);
-      this.empDetail = data1.find((emp: any) => emp.empid == eeid);
-      console.log(this.empDetail);
-      // Debugging: Log the filtered data
-      console.log("hello");
-      console.log('Filtered Data:', this.empDetail);
-      this.abc = this.empDetail.empmailid;
-      console.log(this.abc);
-    });
 
+  fetchMessages() {
+    // Fetch previous messages from the server
+    this.http
+      .get<SendMessage[]>('http://localhost:9001/fetchMessages')
+      .subscribe((messages: SendMessage[]) => {
+        // Filter messages to only include the relevant ones
+        this.messages = messages.filter(
+          (message) =>
+            (message.messageTo === this.uid &&
+            message.messageFrom === this.message.messageFrom)||
+            (message.messageTo === this.message.messageFrom &&
+              message.messageFrom === this.uid)
+            
+        );
+
+        // If relevant messages are found, set the previousMessage field
+        if (this.messages.length > 0) {
+          this.messageForm.patchValue({
+            previousMessage: this.messages[this.messages.length - 1].message,
+          });
+        }
+      });
   }
 
   sendMessage() {
-    if (this.newMessage.trim() !== '') {
-      // Create a Message object with 'from', 'to', and 'message' properties
-      const messageToSend = new Message(this.abc, this.chatEmail, this.newMessage);
+    if (this.messageForm.valid) {
+      const messageToSend = this.messageForm.value;
 
       // Make an HTTP POST request to send the message
-      this.http.post('https://chat-1nf0.onrender.com/0notif/sendMsg', messageToSend)
+      this.http
+        .post<SendMessage>('http://localhost:9001/send', messageToSend)
         .subscribe({
           next: (response: any) => {
-            // Handle the response from the API, e.g., update UI or show a confirmation message
             console.log('Message sent successfully:', response);
-
-            // Add the new message to the local messages array
-            this.messages.push({ text: this.newMessage, from: 'You' });
-
-            // Clear the input field
-            this.newMessage = '';
+            // Optionally, reset the form
+            this.messageForm.patchValue({
+              message: '',
+              previousMessage: response.message, // Set previousMessage to the sent message
+            });
+            this.fetchMessages();
+            
           },
-          error: (error: any) => {
-            // Handle any errors that occur during the HTTP request
-            console.error('Error sending message:', error);
-          }
+          error: (err: any) => {
+            console.error('Error sending message:', err);
+          },
         });
     }
-  }
-
-  deleteMessage(message: any) {
-    // Remove the message from the messages array
-    const index = this.messages.indexOf(message);
-    if (index !== -1) {
-      this.messages.splice(index, 1);
-    }
-  }
-
-  refreshMessages() {
-    // Implement your logic to refresh messages here, e.g., fetching messages from a server
   }
 }

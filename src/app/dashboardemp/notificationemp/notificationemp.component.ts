@@ -3,19 +3,19 @@ import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/auth/user.service';
 
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css']
+  selector: 'app-notificationemp',
+  templateUrl: './notificationemp.component.html',
+  styleUrls: ['./notificationemp.component.css']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationempComponent implements OnInit {
   notifications!: any;
 
   constructor(private notificationService: UserService,public cookie:CookieService) { }
-  userID: String = "0";
+  empId: String = "0";
   ngOnInit(): void {
-    this.userID = this.cookie.get('user');
-    console.log(this.userID);
-    console.log('User ID from cookie:', this.userID);
+    this.empId = this.cookie.get('emp');
+    console.log(this.empId);
+    console.log('User ID from cookie:', this.empId);
     this.fetchNotifications();
   }
   fetchNotifications(): void {
@@ -26,7 +26,7 @@ export class NotificationComponent implements OnInit {
 
     // Filter notifications based on the user ID
     this.notifications = response.filter((notification: any) => {
-      return notification.notifyuid === this.userID;
+      return notification.notifyuid === this.empId;
     });
   },
   error:(err:any) =>{
@@ -37,8 +37,5 @@ export class NotificationComponent implements OnInit {
   }
   
   
-
-  
-
 
 }

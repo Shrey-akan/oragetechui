@@ -11,6 +11,7 @@ import { EnquirydetailsComponent } from './enquirydetails/enquirydetails.compone
 import { NotificationComponent } from '../dashboarduser/notification/notification.component';
 import { NotifyComponent } from './notify/notify.component';
 import { ProfileComponent } from './profile/profile.component';
+import { QuestionComponent } from './question/question.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,9 @@ const routes: Routes = [
 
       {
         path: 'enquirydetails', component: EnquirydetailsComponent
+      },
+      {
+        path: 'question', component: QuestionComponent
       }
     ]
 

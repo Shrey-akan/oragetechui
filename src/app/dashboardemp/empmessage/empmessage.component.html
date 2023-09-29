@@ -1,19 +1,28 @@
 <div class="container">
-  <h2>{{ chatEmail }}</h2>
+  <h2>Chat</h2>
+  <div class="chat-container">
+    <!-- Video Call and Screen Sharing Icons -->
+    <div class="video-options">
+      <i class="fas fa-video fa-3x"></i>
+      <i class="fas fa-desktop fa-3x"></i>
+    </div>
 
-  <div class="messages">
-    <!-- Display messages here -->
-    <div *ngFor="let message of messages" class="message" [ngClass]="{'sender-message': message.sender === 'sender', 'receiver-message': message.sender === 'receiver'}">
-      <div class="message-text">{{ message.text }}</div>
-      <div class="message-actions">
-        <button class="btn btn-danger" (click)="deleteMessage(message)">Delete</button>
+    <div class="chat-messages">
+      <!-- Display received and sent messages here -->
+      <div *ngFor="let message of messages" class="message {{ message.messageFrom === message.messageTo ? 'sent' : 'received' }}">
+        {{ message.message }}
       </div>
     </div>
-  </div>
-
-  <div class="message-input">
-    <textarea class="form-control" [(ngModel)]="newMessage" rows="3" placeholder="Type your message..."></textarea>
-    <button class="btn btn-primary" (click)="sendMessage()">Send</button>
-    <button class="btn btn-secondary" (click)="refreshMessages()">Refresh</button>
+    <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
+      <div class="form-group">
+        <textarea
+          id="message"
+          formControlName="message"
+          placeholder="Type your message..."
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
   </div>
 </div>

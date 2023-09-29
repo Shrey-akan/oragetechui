@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EnquirydetailsComponent } from './enquirydetails/enquirydetails.component';
 import { DashhomeComponent } from './dashhome/dashhome.component';
 import { NotifyComponent } from './notify/notify.component';
+import { QuestionComponent } from './question/question.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NotifyComponent } from './notify/notify.component';
      ProfileComponent,
      EnquirydetailsComponent,
      DashhomeComponent,
-     NotifyComponent
+     NotifyComponent,
+     QuestionComponent
   ],
   imports: [
     CommonModule,
