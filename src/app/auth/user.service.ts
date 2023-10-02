@@ -11,7 +11,7 @@ import {
 } from '@angular/fire/auth';
 
 // Define your API base URL as a constant variable
-const API_BASE_URL = 'http://159.203.168.51:9001/';
+const API_BASE_URL = 'http://localhost:9001/';
 interface User {
   uid: Number;
   userName: String;

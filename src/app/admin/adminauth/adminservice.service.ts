@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminserviceService {
 
-  private apiUrl = 'http://159.203.168.51:9001/';
+  private apiUrl = 'http://localhost:9001/';
 
   constructor(private http: HttpClient) {}
 
