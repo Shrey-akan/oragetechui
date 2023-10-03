@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row" style="position: relative;">
-      <div class="col-md-12" style="color: black;">
+      <div class="col-md-12" style="color: white;">
           <h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Welcome to Our Website</h1>
           <p style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Your awesome slogan goes here.</p>
           <a routerLink="/about" class="btn btn-primary btn-lg" style="position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%);">Learn More</a>
@@ -251,8 +251,8 @@
       <div class="col-md-6">
         <img src="assets/1 (2).jpg" alt="">
       </div>
-      <div class="col-md-6 card">
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="col-md-6 card" >
+        <form style="padding: 10px 0px;" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="exampleInputName" class="form-label">Name</label>
             <input type="text" class="form-control" id="exampleInputName" formControlName="name">

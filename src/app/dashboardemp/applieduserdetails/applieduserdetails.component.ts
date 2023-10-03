@@ -70,6 +70,9 @@ export class ApplieduserdetailsComponent implements OnInit {
     // Use the passed email as a parameter when navigating
     this.router.navigate(['/dashboardemp/empmessage/', email]);
   }
+  navigateToVideo(email:string){
+    this.router.navigate(['/dashboardemp/videocall/', email]);
+  }
   
 }  
 

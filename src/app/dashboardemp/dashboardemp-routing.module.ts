@@ -9,6 +9,7 @@ import { ApplieduserdetailsComponent } from './applieduserdetails/applieduserdet
 import { UpdateempprofileComponent } from './updateempprofile/updateempprofile.component';
 import { NotificationComponent } from '../dashboarduser/notification/notification.component';
 import { NotificationempComponent } from './notificationemp/notificationemp.component';
+import { VideocallComponent } from './videocall/videocall.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,9 @@ const routes: Routes = [
       },
       {
         path: 'notificationemp', component: NotificationempComponent
+      },
+      {
+        path:'videocall', component:VideocallComponent
       }
     ]
   }

@@ -21,7 +21,7 @@ interface Job {
 export class FindjobComponent implements OnInit{
 
   data1:any;
-
+  showFooter = true;
   showJobFeed = true;
   showJobSearches = false;
   selectedJob: Job | null = null;

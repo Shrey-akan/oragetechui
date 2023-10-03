@@ -9,6 +9,7 @@ import {
   signInWithPopup,
   signOut,
 } from '@angular/fire/auth';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // Define your API base URL as a constant variable
 const API_BASE_URL = 'http://localhost:9001/';
@@ -199,7 +200,7 @@ export class UserService {
     console.log("done");
     return this.h1.post(this.logincheckurl, data).subscribe({
       next: (resp: any) => {
-
+        AuthInterceptor.accessToken=resp.accessToken;
         const mainres: User = resp;
         console.log(`Login response from server: ${mainres}`);
         this.cookie.set('user', resp.uid);
@@ -228,18 +229,18 @@ export class UserService {
 
   logincheckemp(data: any) {
     console.log(data);
-    console.log("shreyanspagal");
+  
 
     return this.h1.post(this.employercheckurl, data).subscribe({
       next: (resp: any) => {
-
+        AuthInterceptor.accessToken=resp.accessToken;
         const mainres: Employer = resp;
         console.log("emoployer");
-        console.log(`Login response from server: ${mainres.descriptionemp}`);
+        console.log(`Login response from server: ${mainres}`);
         this.cookie.set('emp', resp.empid);
 
         console.log(resp.empfname);
-        if (resp.empfname != null) {
+        if (resp) {
           console.log("Server responded with a object of user");
 
           // Redirect to the dashboard if the response is true

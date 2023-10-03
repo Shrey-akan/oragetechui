@@ -16,6 +16,7 @@ import { ApplieduserdetailsComponent } from './applieduserdetails/applieduserdet
 import { GeinfoformComponent } from './geinfoform/geinfoform.component';
 import { UpdateempprofileComponent } from './updateempprofile/updateempprofile.component';
 import { NotificationempComponent } from './notificationemp/notificationemp.component';
+import { VideocallComponent } from './videocall/videocall.component';
 @NgModule({
   declarations: [
     DashboardempComponent,
@@ -28,7 +29,8 @@ import { NotificationempComponent } from './notificationemp/notificationemp.comp
      ApplieduserdetailsComponent,
      GeinfoformComponent,
      UpdateempprofileComponent,
-     NotificationempComponent
+     NotificationempComponent,
+     VideocallComponent
   ],
   imports: [
     CommonModule,
