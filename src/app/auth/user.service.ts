@@ -12,7 +12,7 @@ import {
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // Define your API base URL as a constant variable
-const API_BASE_URL = 'http://job4jobless.com:9001/';
+const API_BASE_URL = 'https://job4jobless.com:9001/';
 interface User {
   uid: Number;
   userName: String;
