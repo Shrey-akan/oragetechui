@@ -86,7 +86,8 @@ export class UpdateempprofileComponent implements OnInit {
         next: (response) => {
           // Handle the success response here
           console.log('Profile updated successfully:', response);
-          
+          alert("Profile updated successfully");
+          this.router.navigate(['/dashboardemp/profilemep']);
         },
         complete: () => {
           // This block is optional and can be used for handling completion

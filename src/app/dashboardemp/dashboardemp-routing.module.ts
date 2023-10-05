@@ -34,7 +34,7 @@ const routes: Routes = [
         path: 'notificationemp', component: NotificationempComponent
       },
       {
-        path:'videocall', component:VideocallComponent
+        path:'videocall/:email', component:VideocallComponent
       }
     ]
   }

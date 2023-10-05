@@ -22,6 +22,12 @@ import { UpdateProfilePopupComponent } from './update-profile-popup/update-profi
 import { CheckotpComponent } from './checkotp/checkotp.component';
 import { OtpexpiredComponent } from './otpexpired/otpexpired.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ResetpassComponent } from './resetpass/resetpass.component';
+import { CheckotpuserComponent } from './checkotpuser/checkotpuser.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
+import { Job4joblesspComponent } from './job4joblessp/job4joblessp.component'; // Import MatSelectModule
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
@@ -37,7 +43,11 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     RegisterComponent,
     UpdateProfilePopupComponent,
     CheckotpComponent,
-    OtpexpiredComponent
+    OtpexpiredComponent,
+    ResetpassComponent,
+    CheckotpuserComponent,
+    ResetpasswordComponent,
+    Job4joblesspComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSelectModule
     // NgbModule
   ],
   providers: [CookieService,{

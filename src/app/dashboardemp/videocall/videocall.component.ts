@@ -24,10 +24,7 @@ export class VideocallComponent implements OnInit {
     private cookie: CookieService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.loadScript('assets/video-call.js').then(() => {
-      // The script has been loaded and executed.
-      // You can now call functions and use variables from the script.
-    });
+
     this.uid = this.route.snapshot.paramMap.get("email");
     console.log("uid:", this.uid); 
       // Get the "to" value from the cookie (assuming "empemailid" is the cookie name)
@@ -41,38 +38,15 @@ export class VideocallComponent implements OnInit {
         messageTo: [this.uid, Validators.required],
         message: [this.message.message, Validators.required]
       });
+      this.loadScript('assets/video-call.js').then(() => {
+        // The script has been loaded and executed.
+        // You can now call functions and use variables from the script.
+      });
   }
-
-  createRoom() {
-    // Implement your createRoom logic here
-  }
-
-  joinRoom() {
-    // Implement your joinRoom logic here
-  }
-
-  startScreenShare() {
-    // Implement your startScreenShare logic here
-  }
-
-  private loadScript(scriptUrl: string): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      const script = this.renderer.createElement('script');
-      script.src = scriptUrl;
-      script.onload = () => {
-        resolve();
-      };
-      script.onerror = (error: any) => {
-        reject(error);
-      };
-      this.renderer.appendChild(document.body, script);
-    });
-  }
-  
   fetchMessages() {
     // Fetch previous messages from the server
     this.http
-      .get<SendMessage[]>('http://localhost:9001/fetchMessages')
+      .get<SendMessage[]>('http://job4jobless.com:9001/fetchMessages')
       .subscribe((messages: SendMessage[]) => {
         // Filter messages to only include the relevant ones
         this.messages = messages.filter(
@@ -99,7 +73,7 @@ export class VideocallComponent implements OnInit {
 
       // Make an HTTP POST request to send the message
       this.http
-        .post<SendMessage>('http://localhost:9001/send', messageToSend)
+        .post<SendMessage>('http://job4jobless.com:9001/send', messageToSend)
         .subscribe({
           next: (response: any) => {
             console.log('Message sent successfully:', response);
@@ -117,4 +91,31 @@ export class VideocallComponent implements OnInit {
         });
     }
   }
+  createRoom() {
+    // Implement your createRoom logic here
+  }
+
+  joinRoom() {
+    // Implement your joinRoom logic here
+  }
+
+  startScreenShare() {
+    // Implement your startScreenShare logic here
+  }
+
+  private loadScript(scriptUrl: string): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const script = this.renderer.createElement('script');
+      script.src = scriptUrl;
+      script.onload = () => {
+        resolve();
+      };
+      script.onerror = (error: any) => {
+        reject(error);
+      };
+      this.renderer.appendChild(document.body, script);
+    });
+  }
+  
+
 }

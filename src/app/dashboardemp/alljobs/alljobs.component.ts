@@ -49,4 +49,8 @@ export class AlljobsComponent implements OnInit {
         console.log('Filtered Data:', this.data);
       });
   }
+  showMoreInfo(job: any): void {
+    // Toggle the showDetails property to show/hide additional job details
+    job.showDetails = !job.showDetails;
+  }
 }

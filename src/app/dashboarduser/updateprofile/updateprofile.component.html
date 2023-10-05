@@ -1,11 +1,11 @@
 <div class="container">
-  <h2>Update Employee Profile</h2>
-  <div>
+  <h2>Update User Profile</h2>
+  <!-- <div>
     <p>Username: {{ abc }}</p>
-  </div>
+  </div> -->
   
   <form [formGroup]="userform" (ngSubmit)="updateUser()">
-    <input type="text" formControlName="userName" [value]="abc" />
+    <input type="hidden" formControlName="userName" [value]="abc" />
 
     <div class="form-group">
       <label for="empfname">First Name</label>

@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,7 +12,7 @@ import {
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // Define your API base URL as a constant variable
-const API_BASE_URL = 'http://localhost:9001/';
+const API_BASE_URL = 'http://job4jobless.com:9001/';
 interface User {
   uid: Number;
   userName: String;
@@ -98,7 +98,7 @@ export class UserService {
   // Notification
   notificationurl = `${API_BASE_URL}insertnotification`;
   fetchnotificationurl = `${API_BASE_URL}fetchnotify`;
-  
+
   // Resume Builder
   insert_resumeurl = `${API_BASE_URL}resumeinsert`;
   // Fetch Question
@@ -170,6 +170,20 @@ export class UserService {
 
 
 
+  checkUser(userName: string): Observable<any> {
+    const url = `${API_BASE_URL}checkuser?userName=${userName}`;
+    return this.h1.get(url);
+  }
+
+
+  checkEmployer(empmailid: string): Observable<any> {
+    const url = `${API_BASE_URL}checkEmployer?empmailid=${empmailid}`;
+    return this.h1.get(url);
+  }
+
+
+
+
   //update user
   updateUser(data: any): Observable<any> {
     return this.h1.post(this.updateUserurl, data).pipe(
@@ -200,7 +214,7 @@ export class UserService {
     console.log("done");
     return this.h1.post(this.logincheckurl, data).subscribe({
       next: (resp: any) => {
-        AuthInterceptor.accessToken=resp.accessToken;
+        AuthInterceptor.accessToken = resp.accessToken;
         const mainres: User = resp;
         console.log(`Login response from server: ${mainres}`);
         this.cookie.set('user', resp.uid);
@@ -229,11 +243,11 @@ export class UserService {
 
   logincheckemp(data: any) {
     console.log(data);
-  
+
 
     return this.h1.post(this.employercheckurl, data).subscribe({
       next: (resp: any) => {
-        AuthInterceptor.accessToken=resp.accessToken;
+        AuthInterceptor.accessToken = resp.accessToken;
         const mainres: Employer = resp;
         console.log("emoployer");
         console.log(`Login response from server: ${mainres}`);

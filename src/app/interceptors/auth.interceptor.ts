@@ -28,7 +28,7 @@ export class AuthInterceptor  implements HttpInterceptor {
       if (err.status === 401 && !this.refresh) {
         this.refresh = true;
 
-        return this.http.post('http://localhost:8000/api/refresh', {}, {withCredentials: true}).pipe(
+        return this.http.post('http://job4jobless.com:8000/api/refresh', {}, {withCredentials: true}).pipe(
           switchMap((res: any) => {
             AuthInterceptor.accessToken = res.token;
 

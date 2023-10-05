@@ -11,6 +11,9 @@ import { AdvancesearchComponent } from './advancesearch/advancesearch.component'
 import { EmpsignComponent } from './empsign/empsign.component';
 import { EmpregisterComponent } from './empregister/empregister.component';
 import { OptverifyComponent } from './optverify/optverify.component';
+import { ResetpassComponent } from './resetpass/resetpass.component';
+import { CheckotpemployerComponent } from './checkotpemployer/checkotpemployer.component';
+import { ResetpasswordemployerComponent } from './resetpasswordemployer/resetpasswordemployer.component';
 
 const routes: Routes = [
 
@@ -43,6 +46,15 @@ const routes: Routes = [
       },
       {
         path:'empregister',component:EmpregisterComponent
+      },
+      {
+        path:'resetpass',component:ResetpassComponent
+      },
+      {
+        path:'checkotpemployer/:empid' , component:CheckotpemployerComponent
+      },
+      {
+        path:'resetpasswordemployer' , component:ResetpasswordemployerComponent
       }
     ]
   },

@@ -33,7 +33,10 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active"><button class="btn btn-primary">Sign-out</button></a>
+          <a class="nav-link" (click)="logoutEmployer()" routerLinkActive="active">
+            <button class="btn btn-primary">Sign-out</button>
+        </a>
+        
         </li>
       </ul>
     </div>

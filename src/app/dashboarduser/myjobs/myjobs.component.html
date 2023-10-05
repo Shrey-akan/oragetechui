@@ -1,40 +1,31 @@
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <!-- <th>ID</th> -->
-        <th>Name</th>
-        <th>Email</th>
-        <th>Education</th>
-        <th>Experience</th>
-        <th>Location</th>
-        <th>Resume</th>
-        <th>Java Experience</th>
-        <th>JSP Experience</th>
-        <th>Interview Date</th>
-        <th>Java Valid</th>
-        <th>Job Title</th>
-        <th>Company Name</th>
-        <!-- Add more table headers for other properties -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let application of data">
-        <!-- <td>{{ application.juid }}</td> -->
-        <td>{{ application.juname }}</td>
-        <td>{{ application.jumail }}</td>
-        <td>{{ application.jueducation }}</td>
-        <td>{{ application.juexperience }}</td>
-        <td>{{ application.jurelocation }}</td>
-        <td>{{ application.juresume }}</td>
-        <td>{{ application.juexpinjava }}</td>
-        <td>{{ application.juexpjsp }}</td>
-        <td>{{ application.juinterviewdate }}</td>
-        <td>{{ application.jujavavalid }}</td>
-        <td>{{ application.jujobtitle }}</td>
-        <td>{{ application.jucompanyname }}</td>
-        <!-- Add more table cells for other properties -->
-      </tr>
-    </tbody>
-  </table>
+
+<div class="container">
+  <div class="row" *ngFor="let application of data">
+    <!-- <div class="col-md-6"> -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">{{ application.juname }}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ application.jumail }}</p>
+          <p class="card-text">{{ application.jueducation }}</p>
+          <!-- Display other summary information here -->
+          <button class="btn btn-link" (click)="toggleDetails()">Read More</button>
+        </div>
+        <div class="card-footer" *ngIf="showDetails">
+          <p class="card-text">{{ application.juexperience }}</p>
+          <p class="card-text">{{ application.jurelocation }}</p>
+          <p class="card-text"><a href="{{ application.juresume }}" target="_blank">View Resume</a></p>
+          <p class="card-text">{{ application.juexpinjava }}</p>
+          <p class="card-text">{{ application.juexpjsp }}</p>
+          <p class="card-text">{{ application.juinterviewdate }}</p>
+          <p class="card-text">{{ application.jujavavalid }}</p>
+          <p class="card-text">{{ application.jujobtitle }}</p>
+          <p class="card-text">{{ application.jucompanyname }}</p>
+          <button class="btn btn-link" (click)="toggleDetails()">Read Less</button>
+        </div>
+      <!-- </div> -->
+    </div>
+    <!-- Repeat the above card for other data entries -->
+  </div>
 </div>

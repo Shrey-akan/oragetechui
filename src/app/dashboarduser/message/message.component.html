@@ -15,10 +15,12 @@
     <div class="col-md-8">
       <div class="message-container">
         <h3 *ngIf="selectedUser">Messages from {{ selectedUser }}</h3>
-        <div class="messages-list" style="max-height: 400px; overflow-y: auto;">
-          <div *ngFor="let message of filteredMessages" class="message">
-            <div class="message-content">
-              <div class="message-text">{{ message.message }}</div>
+        <div class="messages-list-container">
+          <div class="messages-list">
+            <div *ngFor="let message of filteredMessages" class="message">
+              <div class="message-content">
+                <div class="message-text">{{ message.message }}</div>
+              </div>
             </div>
           </div>
         </div>

@@ -15,6 +15,10 @@ import { AdvancesearchComponent } from './advancesearch/advancesearch.component'
 import { EmpsignComponent } from './empsign/empsign.component';
 import { EmpregisterComponent } from './empregister/empregister.component';
 import { OptverifyComponent } from './optverify/optverify.component';
+import { ResetpassComponent } from './resetpass/resetpass.component';
+import { CheckotpemployerComponent } from './checkotpemployer/checkotpemployer.component';
+import { ResetpasswordemployerComponent } from './resetpasswordemployer/resetpasswordemployer.component';
+import { FootercComponent } from './footerc/footerc.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { OptverifyComponent } from './optverify/optverify.component';
     AdvancesearchComponent,
     EmpsignComponent,
     EmpregisterComponent,
-    OptverifyComponent
+    OptverifyComponent,
+    ResetpassComponent,
+    CheckotpemployerComponent,
+    ResetpasswordemployerComponent,
+    FootercComponent
   ],
   imports: [
     CommonModule,

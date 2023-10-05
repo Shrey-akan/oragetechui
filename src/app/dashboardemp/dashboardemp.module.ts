@@ -9,6 +9,7 @@ import { ProfilemepComponent } from './profilemep/profilemep.component';
 import { EmpmessageComponent } from './empmessage/empmessage.component';
 
 import { HeaderdashboardempComponent } from './headerdashboardemp/headerdashboardemp.component';
+import { MatSelectModule } from '@angular/material/select';
 
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -36,6 +37,7 @@ import { VideocallComponent } from './videocall/videocall.component';
     CommonModule,
     DashboardempRoutingModule,
     ReactiveFormsModule,
+    MatSelectModule,
     FormsModule
   ]
 })

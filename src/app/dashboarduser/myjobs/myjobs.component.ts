@@ -13,6 +13,11 @@ export class MyjobsComponent implements OnInit{
   userData1!: any;
   abc:any;
   user: any;
+  showDetails = false;
+
+  toggleDetails() {
+    this.showDetails = !this.showDetails;
+  }
   constructor(public cookie:CookieService , private b1:UserService) {}
 
   userID: String = "0";

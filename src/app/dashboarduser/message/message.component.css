@@ -24,3 +24,9 @@
 
   cursor: pointer;
 }
+.messages-list-container {
+  max-height: 400px;
+  overflow-y: auto;
+  /* Add a fixed height here */
+  height: 400px; /* Adjust the height as needed */
+}

@@ -81,7 +81,7 @@ export class MessageComponent implements OnInit {
       // Create a Set to store unique names
       const uniqueNames = new Set<string>();
     
-      this.http.get<SendMessage[]>('http://localhost:9001/fetchMessages')
+      this.http.get<SendMessage[]>('http://job4jobless.com:9001/fetchMessages')
         .subscribe((messages: SendMessage[]) => {
           // Filter the messages to display only those where messageTo === this.abc
           this.messages = messages.filter((message) => {
@@ -99,7 +99,7 @@ export class MessageComponent implements OnInit {
 
   //   fetchSentMessages() {
   //   // Fetch messages sent by you to the selected user
-  //   this.http.get<SendMessage[]>('http://localhost:9001/fetchMessages')
+  //   this.http.get<SendMessage[]>('http://job4jobless.com:9001/fetchMessages')
   //     .subscribe((messages: SendMessage[]) => {
   //       // Filter messages to display only those where messageFrom === this.abc and messageTo === selectedUser
   //       this.filteredMessages = messages.filter(
@@ -111,7 +111,7 @@ export class MessageComponent implements OnInit {
   // }
   fetchMyMessages() {
     // Make an HTTP GET request to fetch messages
-    this.http.get<SendMessage[]>('http://localhost:9001/fetchMessages')
+    this.http.get<SendMessage[]>('http://job4jobless.com:9001/fetchMessages')
       .subscribe((messages: SendMessage[]) => {
         this.filteredMessages = [];
         const uniqueMessageIds = new Set<string>();
@@ -145,7 +145,7 @@ export class MessageComponent implements OnInit {
       const messageToSend = new SendMessage(this.selectedUser, this.abc, this.newMessage);
   
       // Make an HTTP POST request to send the message
-      this.http.post<SendMessage>('http://localhost:9001/send', messageToSend)
+      this.http.post<SendMessage>('http://job4jobless.com:9001/send', messageToSend)
         .subscribe({
           next: (response: SendMessage) => {
             console.log('Message sent successfully:', response);

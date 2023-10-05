@@ -1,59 +1,29 @@
-
-
-
 <div class="container">
-  <div class="row">
-    <div class="container">
-      <h2>Job Applications</h2>
-      <div class="table-responsive">
-        <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Company</th>
-                  <th>Resume</th>
-                  <th>Location</th>
-                  <th>Education</th>
-                  <th>Experience</th>
-                  <th>Java Experience</th>
-                  <th>JSP Experience</th>
-                  <th>Interview Date</th>
-                  <th>Java Valid</th>
-                  <th>Job Title</th>
-                  <th>Company Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let application of data">
-                  <td>{{ application.juname }}</td>
-                  <td>{{ application.jumail }}</td>
-                  <td>{{ application.jucompny }}</td>
-                  <td>{{ application.juresume }}</td>
-                  <td>{{ application.jurelocation }}</td>
-                  <td>{{ application.jueducation }}</td>
-                  <td>{{ application.juexperience }}</td>
-                  <td>{{ application.juexpinjava }}</td>
-                  <td>{{ application.juexpjsp }}</td>
-                  <td>{{ application.juinterviewdate }}</td>
-                  <td>{{ application.jujavavalid }}</td>
-                  <td>{{ application.jujobtitle }}</td>
-                  <td>{{ application.jucompanyname }}</td>
-                  <td>
-                   <!-- Add a click event handler that passes the jumail when clicking the button -->
-<button class="btn btn-primary" (click)="navigateToMessage(application.jumail)">Send Message</button>
-
-                  </td>
-                  <td>
-                    <!-- Add a click event handler that passes the jumail when clicking the button -->
- <button class="btn btn-primary" (click)="navigateToVideo(application.jumail)">Video Call</button>
- 
-                   </td>
-                  
-                </tr>
-              </tbody>
-            </table>
-          </div>
+  <h2 class="mt-5">Job Applications</h2>
+  <div class="row" *ngFor="let application of data">
+    <!-- <div class="col-md-4" *ngFor="let application of data"> -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ application.juname }}</h5>
+          <p class="card-text">{{ application.jumail }}</p>
+          <p class="card-text">{{ application.jucompny }}</p>
+          <button class="btn btn-primary" (click)="showMoreInfo(application)">More Info</button>
+        </div>
+        <div class="card-footer" *ngIf="expandedUser === application">
+          <p class="card-text"><strong>Location:</strong> {{ application.jurelocation }}</p>
+          <p class="card-text"><strong>Education:</strong> {{ application.jueducation }}</p>
+          <p class="card-text"><strong>Experience:</strong> {{ application.juexperience }}</p>
+          <p class="card-text"><strong>Java Experience:</strong> {{ application.juexpinjava }}</p>
+          <p class="card-text"><strong>JSP Experience:</strong> {{ application.juexpjsp }}</p>
+          <p class="card-text"><strong>Interview Date:</strong> {{ application.juinterviewdate }}</p>
+          <p class="card-text"><strong>Java Valid:</strong> {{ application.jujavavalid }}</p>
+          <p class="card-text"><strong>Job Title:</strong> {{ application.jujobtitle }}</p>
+          <p class="card-text"><strong>Company Name:</strong> {{ application.jucompanyname }}</p>
+          <button class="btn btn-primary" (click)="navigateToMessage(application.jumail)">Send Message</button>
+          <br>
+          <button class="btn btn-primary" (click)="navigateToVideo(application.jumail)">Video Call</button>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
+  </div>
+</div>

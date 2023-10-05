@@ -16,6 +16,9 @@ export class ApplieduserdetailsComponent implements OnInit {
   logval: any;
   data: any;
   public chatEmail:string="";
+
+  // Define a property to keep track of the expanded user profile
+  expandedUser: any | null = null;
   constructor(private router:Router, private formbuilder:FormBuilder,private b1:UserService , public cookie:CookieService){}
 
 
@@ -73,6 +76,10 @@ export class ApplieduserdetailsComponent implements OnInit {
   navigateToVideo(email:string){
     this.router.navigate(['/dashboardemp/videocall/', email]);
   }
-  
+    // Define the showMoreInfo method
+    showMoreInfo(user: any) {
+      // Toggle the expandedUser property to show/hide additional information
+      this.expandedUser = this.expandedUser === user ? null : user;
+    }
 }  
 

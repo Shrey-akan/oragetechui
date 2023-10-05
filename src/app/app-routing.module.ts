@@ -9,6 +9,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EmployerModule } from './employer/employer.module';
 import { CheckotpComponent } from './checkotp/checkotp.component';
+import { ResetpassComponent } from './resetpass/resetpass.component';
+import { CheckotpuserComponent } from './checkotpuser/checkotpuser.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { Job4joblesspComponent } from './job4joblessp/job4joblessp.component';
 
 const routes: Routes = [
   {
@@ -50,6 +54,18 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  {
+    path:'resetpass',component:ResetpassComponent
+  },
+  {
+    path:'checkotpuser/:uid',component:CheckotpuserComponent
+  },
+  {
+    path:'resetpassword', component:ResetpasswordComponent
+  },
+  {
+    path:'job4joblessp' , component:Job4joblesspComponent
   }
 ];
 

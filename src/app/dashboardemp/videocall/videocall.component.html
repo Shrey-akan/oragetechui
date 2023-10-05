@@ -2,16 +2,24 @@
 
 <div class="video-call-container">
   <div class="video-area">
-    <!-- Remote Video Element-->
-    <div class="remote-video">
-      <video id="remote-video" autoplay muted></video>
-      <div class="participant-name">Participant 1</div>
+    <p id="notification" hidden></p>
+    <div class="entry-modal" id="entry-modal">
+        <p>Create or Join Meeting</p>
+        <input id="room-input" class="room-input" placeholder="Enter Room ID">
+        <div>
+            <button (click)="createRoom()">Create Room</button>
+            <button (click)="joinRoom()">Join Room</button>
+        </div>
     </div>
-
-    <!-- Local Video Element-->
-    <div class="local-video">
-      <video id="local-video" autoplay></video>
-      <div class="participant-name">You</div>
+    <div class="meet-area">
+        <!-- Remote Video Element-->
+        <video id="remote-video"></video>
+    
+        <!-- Local Video Element-->
+        <video id="local-video"></video>
+        <div class="meet-controls-bar">
+            <button (click)="startScreenShare()">Screen Share</button>
+        </div>
     </div>
   </div>
 
@@ -34,8 +42,8 @@
       <div class="chat-panel">
         <h2>Chat</h2>
         <div class="chat-container">
-    
-      
+
+
           <div class="chat-messages">
             <!-- Display received and sent messages here -->
             <div *ngFor="let message of messages"
@@ -43,7 +51,7 @@
               <div class="message-content">{{ message.message }}</div>
             </div>
           </div>
-      
+
           <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
             <div class="form-group">
               <textarea id="message" formControlName="message" placeholder="Type your message..." required
