@@ -13,7 +13,7 @@ export class EmpregisterComponent {
   isHovered = false;
   employerdetails: FormGroup;
   formSubmitted: any;
-
+  empPasswordVisible: boolean = false;
   data1: any;
 
 
@@ -70,7 +70,9 @@ this.router.navigate(['/employer/optverify', payload.empid]);
     })
   }
 
-
+  toggleEmpPasswordVisibility() {
+    this.empPasswordVisible = !this.empPasswordVisible;
+  }
   ngOnInit(): void {  }
 
 }

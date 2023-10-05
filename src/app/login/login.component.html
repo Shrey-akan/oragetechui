@@ -19,9 +19,14 @@
             </div>
             <div class="form-group">
               <input type="password" class="form-control mb-3" formControlName="userPassword" id="userPassword"
-                placeholder="Enter Password" />
+                placeholder="Enter Password" [type]="passwordVisible ? 'text' : 'password'" />
+              <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
+                {{ passwordVisible ? 'Hide' : 'Show' }} Password
+              </span>
             </div>
-            <a class="nav-link active" aria-current="page" routerLink="/resetpass" style="color: red">Forgot Password</a>
+
+            <a class="nav-link active" aria-current="page" routerLink="/resetpass" style="color: red">Forgot
+              Password</a>
             <input type="submit" value="Login" class="btn btn-outline-primary form-control rounded-0" />
             <a class="nav-link active" aria-current="page" style="margin: 5px 0px;" routerLink="/register">Register
               user</a>

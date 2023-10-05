@@ -13,7 +13,7 @@ export class EmpsignComponent {
   isHovereda = false;
   emailFormemp: FormGroup;
   empsignin!: FormGroup;
-
+  empPasswordVisible: boolean = false;
   constructor(private formBuilder: FormBuilder, private router: Router, private readonly authService: UserService) {
     this.emailFormemp = this.formBuilder.group({
       empmail: ['', [Validators.required, Validators.email]]
@@ -60,5 +60,9 @@ export class EmpsignComponent {
     console.log("Done");
     this.router.navigate(['/employer/empregister']);
     // return this.b1.insertempmailadd(emailFormemp.value).subscribe();
+  }
+
+  toggleEmpPasswordVisibility() {
+    this.empPasswordVisible = !this.empPasswordVisible;
   }
 }

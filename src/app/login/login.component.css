@@ -6,4 +6,12 @@
       opacity: 1;
     }
   }
+  .password-toggle-icon {
+    cursor: pointer;
+    color: #007bff;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: right;
+    display: block;
+  }
   

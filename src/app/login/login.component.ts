@@ -10,7 +10,7 @@ import { UserService } from '../auth/user.service';
 })
 export class LoginComponent implements OnInit {
   loginform!: FormGroup;
-
+  passwordVisible: boolean = false;
   constructor(private fb: FormBuilder, private router:Router , private b1:UserService) {
       }
 
@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
    
    return this.b1.logincheck(loginform.value);
 
+  }
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
 }

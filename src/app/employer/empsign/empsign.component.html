@@ -48,13 +48,23 @@
                                                                 required>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="form-group">
-                                                            <label for="emppass1">Password:</label>
-                                                            <input type="password" id="emppass1"
-                                                                formControlName="emppass" class="form-control" required>
+                                                    <div class="form-group">
+                                                        <label for="emppass1">Password:</label>
+                                                        <div class="input-group">
+                                                            <input type="{{ empPasswordVisible ? 'text' : 'password' }}"
+                                                                id="emppass1" formControlName="emppass"
+                                                                class="form-control" required />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text"
+                                                                    (click)="toggleEmpPasswordVisibility()"
+                                                                    style="cursor: pointer;">
+                                                                    <i class="fa"
+                                                                        [ngClass]="empPasswordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="row">
                                                         <a routerLink="/employer/resetpass">Forgot password</a>
                                                     </div>

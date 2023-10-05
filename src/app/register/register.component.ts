@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   isHovered = false;
   userregister!: FormGroup;
   formSubmitted: any;
-
+  passwordVisible: boolean = false;
   data: any;
 
 
@@ -124,6 +124,9 @@ export class RegisterComponent implements OnInit {
       alert("Invalid Details");
       // Optionally, show an error message to the user
     }
+  }
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }
 function loginWithGoogle() {
