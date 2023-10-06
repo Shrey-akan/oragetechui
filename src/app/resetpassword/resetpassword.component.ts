@@ -8,61 +8,100 @@ import { Router } from '@angular/router';
   templateUrl: './resetpassword.component.html',
   styleUrls: ['./resetpassword.component.css']
 })
-export class ResetpasswordComponent implements OnInit{
-  passwordResetForm!: FormGroup;
+export class ResetpasswordComponent implements OnInit {
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+  passwordResetForm: FormGroup; // Declare the property
   successMessage = '';
   errorMessage = '';
+  passwordVisible: boolean = false;
+  passwordsDoNotMatch: boolean = false;
 
 
-  constructor(private formBuilder:FormBuilder,private router:Router,private http:HttpClient){}
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) {
     this.passwordResetForm = this.formBuilder.group({
-      userName: ['', Validators.required],
-      // oldPassword: ['', Validators.required],
-      newPassword: ['', [Validators.required, Validators.minLength(8)]],
+      userName: [''],
+      newPassword: ['', [Validators.required, Validators.minLength(8), this.passwordPatternValidator()]],
       verifyPassword: ['', Validators.required],
     });
+  }
+  passwordPatternValidator(): any | string {
+    return (control: { value: any; }) => {
+      const password = control.value;
+      const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+      if (!pattern.test(password)) {
+        return { invalidPassword: true };
+      }
+
+      return null;
+    };
+  }
+  ngOnInit(): void {
+    // this.passwordResetForm = this.formBuilder.group({
+    //   userName: [''],
+    //   newPassword: ['', [Validators.required, Validators.minLength(8), this.passwordPatternValidator()]],
+    //   verifyPassword: ['', Validators.required],
+    // });
   }
 
 
 
   submitForm() {
     if (this.passwordResetForm.valid) {
-      // Set userName field in formData to the value of abc
-      // this.passwordResetForm.patchValue({ userName: this.abc });
+      const newPasswordControl = this.passwordResetForm.get('newPassword');
+      const verifyPasswordControl = this.passwordResetForm.get('verifyPassword');
 
-      const formData = this.passwordResetForm.value;
+      if (newPasswordControl && verifyPasswordControl) {
+        const newPassword = newPasswordControl.value;
+        const verifyPassword = verifyPasswordControl.value;
 
-      // Make a POST request to your backend for password reset
-      this.http.post('https://job4jobless.com:9001/resetPasswordUser', formData)
-        .subscribe(
-     {
-      next:     (response: any) => {
-        // Handle success
-        console.log(response);
-        this.successMessage = 'Password updated successfully';
-        this.errorMessage = '';
-        alert('Password updated successfully');
-        this.router.navigate(['/login']);
-      },
-
-     error: (err: any) => {
-        // Handle errors
-        if (err.status === 401) {
-          this.errorMessage = 'Invalid old password';
-          this.successMessage = '';
-        } else if (err.status === 404) {
-          this.errorMessage = 'User not found';
-          this.successMessage = '';
-        } else {
-          this.errorMessage = 'An error occurred: ' + err.message;
-          this.successMessage = '';
+        if (newPassword !== verifyPassword) {
+          this.passwordsDoNotMatch = true;
+          return;
         }
+
+        this.passwordsDoNotMatch = false;
+
+
+        const formData = this.passwordResetForm.value;
+
+        // Make a POST request to your backend for password reset
+        this.http.post('https://job4jobless.com:9001/resetPasswordUser', formData)
+          .subscribe(
+            {
+              next: (response: any) => {
+                // Handle success
+                console.log(response);
+                this.successMessage = 'Password updated successfully';
+                this.errorMessage = '';
+                alert('Password updated successfully');
+                this.router.navigate(['/login']);
+              },
+
+              error: (err: any) => {
+                // Handle errors
+                if (err.status === 401) {
+                  this.errorMessage = 'Invalid old password';
+                  this.successMessage = '';
+                } else if (err.status === 404) {
+                  this.errorMessage = 'User not found';
+                  this.successMessage = '';
+                } else {
+                  this.errorMessage = 'An error occurred: ' + err.message;
+                  this.successMessage = '';
+                }
+              }
+            }
+          );
+      } else {
+        // Form is invalid, show error messages or perform desired actions
       }
-     }
-        );
-    } else {
-      // Form is invalid, show error messages or perform desired actions
     }
+
+
+
   }
+
 }

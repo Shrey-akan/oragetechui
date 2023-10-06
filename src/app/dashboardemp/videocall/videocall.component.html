@@ -2,25 +2,35 @@
 
 <div class="video-call-container">
   <div class="video-area">
-    <p id="notification" hidden></p>
-    <div class="entry-modal" id="entry-modal">
+    <p>JOB4JOBLESS</p>
+    <!-- video-chat.component.html -->
+    <div>
+      <h1>JOB4JOBLESS Video Chat</h1>
+    
+      <div class="entry-modal" #entryModal>
         <p>Create or Join Meeting</p>
-        <input id="room-input" class="room-input" placeholder="Enter Room ID">
+        <input class="room-input" #roomInput placeholder="Enter Room ID">
         <div>
-            <button (click)="createRoom()">Create Room</button>
-            <button (click)="joinRoom()">Join Room</button>
+          <button (click)="createRoom()">Create Room</button>
+          <button (click)="joinRoom()">Join Room</button>
         </div>
-    </div>
-    <div class="meet-area">
+      </div>
+    
+      <div class="meet-area">
         <!-- Remote Video Element-->
-        <video id="remote-video"></video>
+        <video #remoteVideo></video>
     
         <!-- Local Video Element-->
-        <video id="local-video"></video>
+        <video #localVideo muted autoplay></video>
+    
         <div class="meet-controls-bar">
-            <button (click)="startScreenShare()">Screen Share</button>
+          <button (click)="startScreenShare()">Screen Share</button>
         </div>
+      </div>
     </div>
+    
+    <p #notification class="notification" [hidden]="true"></p>
+    
   </div>
 
   <div class="controls-area">
