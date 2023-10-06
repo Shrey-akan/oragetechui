@@ -248,6 +248,19 @@ export class VideocallComponent implements OnInit {
       this.renderer.appendChild(document.body, script);
     });
   }
+    // Toggle full-screen for the local video
+    toggleFullScreen() {
+      const localVideoElement = this.localVideo.nativeElement as HTMLVideoElement;
   
+      if (localVideoElement.requestFullscreen) {
+        if (!document.fullscreenElement) {
+          localVideoElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    }
 
 }
