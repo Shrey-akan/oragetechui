@@ -8,34 +8,40 @@ import { UserService } from 'src/app/auth/user.service';
   styleUrls: ['./notificationemp.component.css']
 })
 export class NotificationempComponent implements OnInit {
-  notifications!: any;
+  notifications: any[] = [];
+  empId: string = "0";
+  isLoading: boolean = false;
 
-  constructor(private notificationService: UserService,public cookie:CookieService) { }
-  empId: String = "0";
+  constructor(private notificationService: UserService, public cookie: CookieService) {}
+
   ngOnInit(): void {
     this.empId = this.cookie.get('emp');
-    console.log(this.empId);
-    console.log('User ID from cookie:', this.empId);
     this.fetchNotifications();
   }
+
   fetchNotifications(): void {
-    this.notificationService.fetchnotify().subscribe(
-{
-  next: (response:any) => {
-    console.log('Fetched notifications:', response);
+    this.isLoading = true;
+    this.notificationService.fetchnotify().subscribe({
+      next: (response: any) => {
+        console.log('Fetched notifications:', response);
+        
+        // Filter notifications based on the user ID
+        this.notifications = response.filter((notification: any) => {
+          return notification.notifyuid === this.empId;
+        });
 
-    // Filter notifications based on the user ID
-    this.notifications = response.filter((notification: any) => {
-      return notification.notifyuid === this.empId;
+        this.isLoading = false;
+      },
+      error: (err: any) => {
+        console.error('Error fetching notifications:', err);
+        this.isLoading = false;
+      }
     });
-  },
-  error:(err:any) =>{
-    console.error('Error fetching notifications:', err);
   }
-}
-    );
-  }
-  
-  
 
+  refreshNotifications(): void {
+    // Implement the logic to refresh notifications here if needed
+    // You can call this method when the "Refresh" button is clicked
+    this.fetchNotifications();
+  }
 }

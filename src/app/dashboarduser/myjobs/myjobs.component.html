@@ -1,30 +1,29 @@
-
 <div class="container">
-  <div class="row" *ngFor="let application of data">
-    <!-- <div class="col-md-6"> -->
+  <div class="row" >
+    <div class="col-md-6" *ngFor="let application of data">
       <div class="card">
         <div class="card-header">
           <h5 class="card-title">{{ application.juname }}</h5>
         </div>
         <div class="card-body">
-          <p class="card-text">{{ application.jumail }}</p>
-          <p class="card-text">{{ application.jueducation }}</p>
+          <p class="card-text"><strong>Mail:</strong> {{ application.jumail }}</p>
+          <p class="card-text"><strong>Education:</strong> {{ application.jueducation }}</p>
           <!-- Display other summary information here -->
           <button class="btn btn-link" (click)="toggleDetails()">Read More</button>
         </div>
         <div class="card-footer" *ngIf="showDetails">
-          <p class="card-text">{{ application.juexperience }}</p>
-          <p class="card-text">{{ application.jurelocation }}</p>
-          <p class="card-text"><a href="{{ application.juresume }}" target="_blank">View Resume</a></p>
-          <p class="card-text">{{ application.juexpinjava }}</p>
-          <p class="card-text">{{ application.juexpjsp }}</p>
-          <p class="card-text">{{ application.juinterviewdate }}</p>
-          <p class="card-text">{{ application.jujavavalid }}</p>
-          <p class="card-text">{{ application.jujobtitle }}</p>
-          <p class="card-text">{{ application.jucompanyname }}</p>
+          <p class="card-text"><strong>Experience:</strong> {{ application.juexperience }}</p>
+          <p class="card-text"><strong>Relocation:</strong> {{ application.jurelocation }}</p>
+          <p class="card-text"><strong>Resume:</strong> <a href="{{ application.juresume }}" target="_blank">View Resume</a></p>
+          <p class="card-text"><strong>Java Experience:</strong> {{ application.juexpinjava }}</p>
+          <p class="card-text"><strong>JSP Experience:</strong> {{ application.juexpjsp }}</p>
+          <p class="card-text"><strong>Interview Date:</strong> {{ application.juinterviewdate }}</p>
+          <p class="card-text"><strong>Java Validity:</strong> {{ application.jujavavalid }}</p>
+          <p class="card-text"><strong>Job Title:</strong> {{ application.jujobtitle }}</p>
+          <p class="card-text"><strong>Company Name:</strong> {{ application.jucompanyname }}</p>
           <button class="btn btn-link" (click)="toggleDetails()">Read Less</button>
         </div>
-      <!-- </div> -->
+      </div>
     </div>
     <!-- Repeat the above card for other data entries -->
   </div>

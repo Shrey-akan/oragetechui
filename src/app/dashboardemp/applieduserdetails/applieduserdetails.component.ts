@@ -10,7 +10,10 @@ import { UserService } from 'src/app/auth/user.service';
   styleUrls: ['./applieduserdetails.component.css']
 })
 export class ApplieduserdetailsComponent implements OnInit {
-
+  statusOptions: string[] = ['Waiting', 'Selected', 'Rejected', 'Reviewed'];
+  selectedOption: string = '';
+  isOpen: boolean = false;
+  options: string[] = ['Selected', 'Reviewed', 'Waiting','Rejected'];
   empDetail: any;
   abc: any;
   logval: any;
@@ -80,6 +83,20 @@ export class ApplieduserdetailsComponent implements OnInit {
     showMoreInfo(user: any) {
       // Toggle the expandedUser property to show/hide additional information
       this.expandedUser = this.expandedUser === user ? null : user;
+    }
+
+    updateStatus(application: any, status: string) {
+      // Make an HTTP request to update the status of 'application' in the database
+      // You can use a service for this purpose
+      // After updating the status, you can also update the 'application' object locally if needed
+    }
+    toggleDropdown() {
+      this.isOpen = !this.isOpen;
+    }
+  
+    selectOption(option: string) {
+      this.selectedOption = option;
+      this.isOpen = false;
     }
 }  
 

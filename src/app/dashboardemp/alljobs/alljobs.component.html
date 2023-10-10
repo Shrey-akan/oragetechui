@@ -1,29 +1,30 @@
 <div class="container">
-    <h1>Job Posted</h1>
-    <div class="row">
-      <div class="col">
-        <div class="row" *ngFor="let job of data">
-          <!-- <div class="col-md-4" > -->
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">{{ job.jobtitle }}</h5>
-                <p class="card-text">{{ job.companyforthisjob }}</p>
-                <p class="card-text">{{ job.numberofopening }}</p>
-                <p class="card-text">{{ job.locationjob }}</p>
-                <p class="card-text">{{ job.jobtype }}</p>
-                <p class="card-text">{{ job.schedulejob }}</p>
-                <p class="card-text">{{ job.payjob }}</p>
-                <p class="card-text">{{ job.payjobsup }}</p>
-                <button class="btn btn-primary" (click)="showMoreInfo(job)">More Info</button>
-              </div>
-              <div class="card-footer" *ngIf="job.showDetails">
-                <p>Description: {{ job.descriptiondata }}</p>
-                <!-- Add more job details here -->
-              </div>
+  <h1>Job Listings</h1>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let job of data">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ job.jobtitle }}</h5>
+              <p class="card-text">Company: {{ job.companyforthisjob }}</p>
+              <p class="card-text">Openings: {{ job.numberofopening }}</p>
+              <p class="card-text">Location: {{ job.locationjob }}</p>
+              <p class="card-text">Type: {{ job.jobtype }}</p>
+              <p class="card-text">Schedule: {{ job.schedulejob }}</p>
+              <p class="card-text">Pay: {{ job.payjob }}</p>
+              <p class="card-text">Pay Support: {{ job.payjobsup }}</p>
+              <button class="btn btn-primary" (click)="showMoreInfo(job)">More Info</button>
+              <!-- Add an "Edit" button that triggers an edit function -->
+              <button class="btn btn-secondary" (click)="editJob(job.jobid)">Edit</button>
+            </div>
+            <div class="card-footer" *ngIf="job.showDetails">
+              <p>Description: {{ job.descriptiondata }}</p>
+              <!-- Add more job details here -->
             </div>
           </div>
         </div>
-      <!-- </div> -->
+      </div>
     </div>
   </div>
-  
+</div>

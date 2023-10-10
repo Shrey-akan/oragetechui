@@ -12,7 +12,7 @@ import {
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // Define your API base URL as a constant variable
-const API_BASE_URL = 'https://job4jobless.com:9001/';
+const API_BASE_URL = 'http://localhost:9001/';
 interface User {
   uid: Number;
   userName: String;
@@ -215,6 +215,7 @@ export class UserService {
     return this.h1.post(this.logincheckurl, data).subscribe({
       next: (resp: any) => {
         AuthInterceptor.accessToken = resp.accessToken;
+        console.log("Access Token Generated"+resp.accessToken);
         const mainres: User = resp;
         console.log(`Login response from server: ${mainres}`);
         this.cookie.set('user', resp.uid);
@@ -259,7 +260,7 @@ export class UserService {
 
           // Redirect to the dashboard if the response is true
           alert('Login successful!');
-          this.router.navigate(['/dashboardemp/']);
+          this.router.navigate(['/dashboardemp']);
         } else {
           // Handle other response statuses or errors
           alert('Incorrect Credentials!');

@@ -16,38 +16,38 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
 
 const routes: Routes = [
   {
-    path:'' , component:HeaderuserComponent,
-    children:[
+    path: '', component: HeaderuserComponent,
+    children: [
       {
-        path:'' , component:FindjobuComponent
-      },{
-        path:'company',component:CompanyComponent
-      },{
-        path:'salary',component:SalaryComponent
-      },{
-        path:'message',component:MessageComponent
-      },{
-        path:'notification',component:NotificationComponent
-      },{
-        path:'userprofile',component:UserprofileComponent
+        path: '', component: FindjobuComponent
+      }, {
+        path: 'company', component: CompanyComponent
+      }, {
+        path: 'salary', component: SalaryComponent
+      }, {
+        path: 'message', component: MessageComponent
+      }, {
+        path: 'notification', component: NotificationComponent
+      }, {
+        path: 'userprofile', component: UserprofileComponent
       },
       {
-        path:'updateprofile/:userId',component:UpdateprofileComponent
+        path: 'updateprofile/:userId', component: UpdateprofileComponent
       },
       {
-        path:'applyjob',component:ApplyjobComponent
-      },  
-      {
-        path:'myjobs',component:MyjobsComponent
-      },  
-      {
-        path:'resume',component:ResumeComponent
+        path: 'applyjob', component: ApplyjobComponent
       },
       {
-        path:'questionpaper',component:QuestionpaperComponent
+        path: 'myjobs', component: MyjobsComponent
       },
       {
-        path:'settinguser',component:SettinguserComponent
+        path: 'resume', component: ResumeComponent
+      },
+      {
+        path: 'questionpaper', component: QuestionpaperComponent
+      },
+      {
+        path: 'settinguser', component: SettinguserComponent
       }
     ]
   }

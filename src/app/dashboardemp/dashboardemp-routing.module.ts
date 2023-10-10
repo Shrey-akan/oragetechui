@@ -10,6 +10,7 @@ import { UpdateempprofileComponent } from './updateempprofile/updateempprofile.c
 import { NotificationComponent } from '../dashboarduser/notification/notification.component';
 import { NotificationempComponent } from './notificationemp/notificationemp.component';
 import { VideocallComponent } from './videocall/videocall.component';
+import { UpdatejobComponent } from './updatejob/updatejob.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,9 @@ const routes: Routes = [
       },
       {
         path:'videocall/:email', component:VideocallComponent
+      },
+      {
+        path:'updatejob/:jobid',component:UpdatejobComponent
       }
     ]
   }

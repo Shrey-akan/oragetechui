@@ -27,7 +27,12 @@ import { CheckotpuserComponent } from './checkotpuser/checkotpuser.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
-import { Job4joblesspComponent } from './job4joblessp/job4joblessp.component'; // Import MatSelectModule
+import { Job4joblesspComponent } from './job4joblessp/job4joblessp.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatListModule } from '@angular/material/list';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component'; // Import MatSelectModule
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
@@ -47,7 +52,8 @@ import { Job4joblesspComponent } from './job4joblessp/job4joblessp.component'; /
     ResetpassComponent,
     CheckotpuserComponent,
     ResetpasswordComponent,
-    Job4joblesspComponent
+    Job4joblesspComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +64,10 @@ import { Job4joblesspComponent } from './job4joblessp/job4joblessp.component'; /
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     MatSelectModule
     // NgbModule
   ],

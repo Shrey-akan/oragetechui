@@ -1,29 +1,57 @@
-<div class="container">
-  <h2 class="mt-5">Job Applications</h2>
-  <div class="row" *ngFor="let application of data">
-    <!-- <div class="col-md-4" *ngFor="let application of data"> -->
+<div class="container mt-5">
+  <h2>Job Applications</h2>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let application of data">
       <div class="card mb-4">
+        <!-- Use an avatar image (replace 'avatarUrl' with the actual property that holds the avatar URL) -->
+        <img [src]="application.avatarUrl || 'assets/Screenshot-2023-08-25-110628.png'" alt="Avatar" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{ application.juname }}</h5>
-          <p class="card-text">{{ application.jumail }}</p>
-          <p class="card-text">{{ application.jucompny }}</p>
-          <button class="btn btn-primary" (click)="showMoreInfo(application)">More Info</button>
+          <p class="card-text"><strong>Email:</strong> {{ application.jumail }}</p>
+          <p class="card-text"><strong>Company:</strong> {{ application.jucompny }}</p>
+          <p class="card-text"><strong>Status:</strong> {{ application.status }}</p>
+          <div class="btn-group">
+            <input type="text" [(ngModel)]="selectedOption" class="form-control" (click)="toggleDropdown()">
+            <button type="button" class="btn btn-secondary dropdown-toggle" (click)="toggleDropdown()">
+              Toggle Dropdown
+            </button>
+            <div class="dropdown-menu" [ngClass]="{'show': isOpen}">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let option of options" (click)="selectOption(option)">
+                  {{ option }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          
         </div>
         <div class="card-footer" *ngIf="expandedUser === application">
-          <p class="card-text"><strong>Location:</strong> {{ application.jurelocation }}</p>
-          <p class="card-text"><strong>Education:</strong> {{ application.jueducation }}</p>
-          <p class="card-text"><strong>Experience:</strong> {{ application.juexperience }}</p>
-          <p class="card-text"><strong>Java Experience:</strong> {{ application.juexpinjava }}</p>
-          <p class="card-text"><strong>JSP Experience:</strong> {{ application.juexpjsp }}</p>
-          <p class="card-text"><strong>Interview Date:</strong> {{ application.juinterviewdate }}</p>
-          <p class="card-text"><strong>Java Valid:</strong> {{ application.jujavavalid }}</p>
-          <p class="card-text"><strong>Job Title:</strong> {{ application.jujobtitle }}</p>
-          <p class="card-text"><strong>Company Name:</strong> {{ application.jucompanyname }}</p>
-          <button class="btn btn-primary" (click)="navigateToMessage(application.jumail)">Send Message</button>
-          <br>
-          <button class="btn btn-primary" (click)="navigateToVideo(application.jumail)">Video Call</button>
+          <p><strong>Location:</strong> {{ application.jurelocation }}</p>
+          <p><strong>Education:</strong> {{ application.jueducation }}</p>
+          <p><strong>Experience:</strong> {{ application.juexperience }}</p>
+          <p><strong>Java Experience:</strong> {{ application.juexpinjava }}</p>
+          <p><strong>JSP Experience:</strong> {{ application.juexpjsp }}</p>
+          <p><strong>Interview Date:</strong> {{ application.juinterviewdate }}</p>
+          <p><strong>Java Valid:</strong> {{ application.jujavavalid }}</p>
+          <p><strong>Job Title:</strong> {{ application.jujobtitle }}</p>
+          <p><strong>Company Name:</strong> {{ application.jucompanyname }}</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <button class="btn btn-primary btn-block mt-2" (click)="navigateToMessage(application.jumail)">
+                  <i class="fa fa-envelope"></i> <!-- Font Awesome envelope icon -->
+                </button>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <button class="btn btn-primary btn-block mt-2" (click)="navigateToVideo(application.jumail)">
+                  <i class="fa fa-video-camera"></i> <!-- Font Awesome video camera icon -->
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+        <button class="btn btn-primary btn-block mt-2" (click)="showMoreInfo(application)">More Info</button>
       </div>
-    <!-- </div> -->
+    </div>
   </div>
 </div>

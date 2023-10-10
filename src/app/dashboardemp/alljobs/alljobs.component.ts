@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/auth/user.service';
 
@@ -12,7 +13,7 @@ export class AlljobsComponent implements OnInit {
   empDetail: any;
   abc: any;
 
-  constructor(public cookie: CookieService, private b1: UserService) { }
+  constructor(public cookie: CookieService, private b1: UserService, private router : Router) { }
 
   empId: String = "0";
 
@@ -52,5 +53,8 @@ export class AlljobsComponent implements OnInit {
   showMoreInfo(job: any): void {
     // Toggle the showDetails property to show/hide additional job details
     job.showDetails = !job.showDetails;
+  }
+  editJob(jobid:string){
+    this.router.navigate(['/dashboardemp/updatejob/', jobid]);
   }
 }

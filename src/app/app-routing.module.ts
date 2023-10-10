@@ -13,6 +13,8 @@ import { ResetpassComponent } from './resetpass/resetpass.component';
 import { CheckotpuserComponent } from './checkotpuser/checkotpuser.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { Job4joblesspComponent } from './job4joblessp/job4joblessp.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -45,8 +47,9 @@ const routes: Routes = [
   },
   {
     path: 'dashboarduser',
-    loadChildren: () => import('./dashboarduser/dashboarduser.module').then(m => m.DashboarduserModule)
-  },
+    loadChildren: () => import('./dashboarduser/dashboarduser.module').then(m => m.DashboarduserModule),
+    canActivate: [authGuard]
+  }, 
   {
     path: 'dashboardemp',
     loadChildren: () => import('./dashboardemp/dashboardemp.module').then(m => m.DashboardempModule)
@@ -66,6 +69,10 @@ const routes: Routes = [
   },
   {
     path:'job4joblessp' , component:Job4joblesspComponent
+  },
+  {
+    path: '**', // This route will match any URL
+    component: PagenotfoundComponent
   }
 ];
 
