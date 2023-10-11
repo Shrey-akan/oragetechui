@@ -13,14 +13,13 @@ export class UpdatejobComponent implements OnInit {
   jobid!: string | null;
 
   constructor(
-    private fb: FormBuilder ,
-    private route: ActivatedRoute ,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
     private http: HttpClient
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.jobForm = this.fb.group({
-      jobid: [''], 
       jobtitle: ['', Validators.required],
       companyforthisjob: ['', Validators.required],
       numberofopening: ['', Validators.required],
@@ -31,25 +30,27 @@ export class UpdatejobComponent implements OnInit {
       payjobsup: ['', Validators.required],
       descriptiondata: ['', Validators.required]
     });
+    
+    this.jobid = this.route.snapshot.paramMap.get('jobid');
   }
 
   updateJob() {
-    this.jobid = this.route.snapshot.paramMap.get("jobid");
-    console.log("jobid:", this.jobid); 
     const formData = this.jobForm.value;
 
-    // Use HttpClient to send the form data to your backend API
-    this.http.put('http://localhost:9001/updatejob', formData)
+    this.http.put(`http://localhost:9001/jobpostupdate/${this.jobid}`, formData)
       .subscribe(
-        response => {
+       {
+        next: (response:any) => {
           console.log('Job updated successfully', response);
+          alert("JOB UPDATED SUCCESSFULLY");
           // Handle success (e.g., show a success message)
         },
-        error => {
+        error:(error:any) => {
           console.error('Error updating job', error);
+          alert(error);
           // Handle error (e.g., show an error message)
         }
+       }
       );
   }
-
 }

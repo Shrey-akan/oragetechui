@@ -32,7 +32,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component'; // Import MatSelectModule
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { FinjobpageComponent } from './finjobpage/finjobpage.component'; // Import MatSelectModule
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component'; /
     CheckotpuserComponent,
     ResetpasswordComponent,
     Job4joblesspComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    FinjobpageComponent
   ],
   imports: [
     BrowserModule,

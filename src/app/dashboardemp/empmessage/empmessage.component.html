@@ -1,24 +1,17 @@
 <div class="container mt-5">
   <h2 class="text-center">Chat</h2>
   <div class="chat-container">
-    <!-- Video Call and Screen Sharing Icons -->
-    <div class="video-options text-center">
-      <i class="fas fa-video fa-3x mr-4"></i>
-      <i class="fas fa-desktop fa-3x"></i>
-    </div>
-
     <div class="chat-messages">
       <!-- Display received and sent messages here -->
-      <div *ngFor="let message of messages"
-        class="message {{ message.messageFrom === message.messageTo ? 'sent' : 'received' }}">
-        <div class="message-content">{{ message.message }}</div>
+      <div *ngFor="let message of messages" class="message-container">
+        <div class="message" [ngClass]="{'sent': message.messageFrom === 'yourSenderId', 'received': message.messageFrom !== 'yourSenderId' }">
+          {{ message.message }}
+        </div>
       </div>
     </div>
-
     <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
       <div class="form-group">
-        <textarea id="message" formControlName="message" placeholder="Type your message..." required
-          class="form-control"></textarea>
+        <textarea id="message" formControlName="message" placeholder="Type your message..." required class="form-control"></textarea>
       </div>
       <button type="submit" class="btn btn-primary btn-block">Send</button>
     </form>

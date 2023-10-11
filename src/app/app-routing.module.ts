@@ -15,6 +15,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { Job4joblesspComponent } from './job4joblessp/job4joblessp.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { authGuard } from './auth.guard';
+import { FinjobpageComponent } from './finjobpage/finjobpage.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,7 @@ const routes: Routes = [
     path:'about',component:AboutComponent
   },
   {
-    path:'service',component:ServiceComponent
+    path:'finjobpage',component:FinjobpageComponent
   },
   {
     path:'contact',component:ContactComponent

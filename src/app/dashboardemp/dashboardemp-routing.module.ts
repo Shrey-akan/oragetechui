@@ -23,7 +23,7 @@ const routes: Routes = [
       }, {
         path: 'profilemep', component: ProfilemepComponent
       }, {
-        path: 'empmessage/:email', component: EmpmessageComponent
+        path: 'empmessage/:uid', component: EmpmessageComponent
       },
       {
         path: 'applieduserdetails', component: ApplieduserdetailsComponent
@@ -35,7 +35,7 @@ const routes: Routes = [
         path: 'notificationemp', component: NotificationempComponent
       },
       {
-        path:'videocall/:email', component:VideocallComponent
+        path:'videocall/:uid', component:VideocallComponent
       },
       {
         path:'updatejob/:jobid',component:UpdatejobComponent

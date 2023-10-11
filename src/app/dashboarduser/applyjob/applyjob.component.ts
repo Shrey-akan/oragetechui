@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/auth/user.service';
 
 @Component({
@@ -18,12 +19,14 @@ export class ApplyjobComponent implements OnInit {
   currentStep = 1;
   // router: any;
   data: any;
-  constructor(private formBuilder: FormBuilder, private router: Router, private b1: UserService) { }
+  uid!: string;
+  constructor(private formBuilder: FormBuilder, private router: Router, private b1: UserService,private cookie:CookieService) { }
 
 
 
   ngOnInit(): void {
-
+    this.uid = this.cookie.get('user');
+    console.log("checking the uid of the user",this.uid);
     // let responce = this.b1.empaccregrepo();
     // responce.subscribe((data1: any)=>this.data=data1);
     this.myformsubmission = this.formBuilder.group({
@@ -33,8 +36,6 @@ export class ApplyjobComponent implements OnInit {
       jucompny: ['', Validators.required],
       jutitle: ['', Validators.required],
       juresume: [''],
-
-
       jurelocation: ['', [Validators.required]],
       jueducation: ['', [Validators.required]],
       juexperience: ['', [Validators.required]],
@@ -46,8 +47,8 @@ export class ApplyjobComponent implements OnInit {
 
       jujobtitle: ['', Validators.required],
       jucompanyname: ['', Validators.required],
-      empid: ['', Validators.required]
-
+      empid: ['', Validators.required],
+      uid: this.uid // Add the user ID to the form
     })
     // Add more steps as needed
     this.b1.jobTitle$.subscribe((jobTitle) => {
@@ -71,6 +72,8 @@ export class ApplyjobComponent implements OnInit {
     console.log("Done");
     this.router.navigate(['/dashboarduser']);
     console.log(myformsubmission);
+    // Save the data with the user ID (uid) in the form
+    myformsubmission.value.uid = this.uid;
     return this.b1.insertapplyjob(myformsubmission.value);
   }
   nextStep() {

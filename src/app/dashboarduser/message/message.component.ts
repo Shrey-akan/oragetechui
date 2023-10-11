@@ -58,7 +58,7 @@ export class MessageComponent implements OnInit {
       // Debugging: Log the filtered data
       console.log("hello");
       console.log('Filtered Data:', this.userData1);
-      this.abc = this.userData1.userName;
+      this.abc = this.userData1.uid;
       console.log(this.abc);
 
     });
@@ -76,7 +76,7 @@ export class MessageComponent implements OnInit {
 
 
     fetchMessages() {
-      console.log(this.abc);
+      console.log("check the uid",this.userID);
     
       // Create a Set to store unique names
       const uniqueNames = new Set<string>();
@@ -88,11 +88,15 @@ export class MessageComponent implements OnInit {
             // Check if the name has not been added to the uniqueNames Set
             if (!uniqueNames.has(message.messageFrom)) {
               uniqueNames.add(message.messageFrom); // Add the name to the Set
-              return message.messageTo === this.abc;
+              console.log( uniqueNames.add(message.messageFrom));
+              console.log(message.messageTo);
+              console.log(message.messageFrom);
+              console.log(message.messageTo === this.userID);
+              return message.messageTo === this.userID;
             }
             return false; // Skip duplicate names
           });
-          console.log(this.abc);
+          console.log(this.userID);
         });
     }
     

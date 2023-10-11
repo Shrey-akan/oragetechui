@@ -52,7 +52,7 @@ export class MyjobsComponent implements OnInit{
 
     response
       .subscribe((data1: any) => {
-        this.data = data1.filter((apply: any) => apply.jumail == this.abc);
+        this.data = data1.filter((apply: any) => apply.uid == this.userID);
         console.log('Filtered Data:', this.data);
       });
   }

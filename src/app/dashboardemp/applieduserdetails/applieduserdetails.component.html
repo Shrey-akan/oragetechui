@@ -27,6 +27,7 @@
         </div>
         <div class="card-footer" *ngIf="expandedUser === application">
           <p><strong>Location:</strong> {{ application.jurelocation }}</p>
+          <p><strong>Location:</strong> {{ application.uid }}</p>
           <p><strong>Education:</strong> {{ application.jueducation }}</p>
           <p><strong>Experience:</strong> {{ application.juexperience }}</p>
           <p><strong>Java Experience:</strong> {{ application.juexpinjava }}</p>
@@ -38,12 +39,12 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-4 col-md-6 col-sm-12">
-                <button class="btn btn-primary btn-block mt-2" (click)="navigateToMessage(application.jumail)">
+                <button class="btn btn-primary btn-block mt-2" (click)="navigateToMessage(application.uid)">
                   <i class="fa fa-envelope"></i> <!-- Font Awesome envelope icon -->
                 </button>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-12">
-                <button class="btn btn-primary btn-block mt-2" (click)="navigateToVideo(application.jumail)">
+                <button class="btn btn-primary btn-block mt-2" (click)="navigateToVideo(application.uid)">
                   <i class="fa fa-video-camera"></i> <!-- Font Awesome video camera icon -->
                 </button>
               </div>

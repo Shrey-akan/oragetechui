@@ -64,20 +64,16 @@ export class ApplieduserdetailsComponent implements OnInit {
           .subscribe((data1: any) => {
             this.data = data1.filter((applyjobf: any) => applyjobf.empid == this.empId);
             console.log('Filtered Data:', this.data);
-            
-            
           });
-          
-
   }
 
-  navigateToMessage(email: string) {
+  navigateToMessage(uid: string) {
   
     // Use the passed email as a parameter when navigating
-    this.router.navigate(['/dashboardemp/empmessage/', email]);
+    this.router.navigate(['/dashboardemp/empmessage/', uid]);
   }
-  navigateToVideo(email:string){
-    this.router.navigate(['/dashboardemp/videocall/', email]);
+  navigateToVideo(uid:string){
+    this.router.navigate(['/dashboardemp/videocall/', uid]);
   }
     // Define the showMoreInfo method
     showMoreInfo(user: any) {

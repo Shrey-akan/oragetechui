@@ -30,7 +30,7 @@ export class EmpmessageComponent implements OnInit {
     private cookie: CookieService,private formBuilder: FormBuilder) {
   }
   ngOnInit(): void {
-    this.uid = this.route.snapshot.paramMap.get("email");
+    this.uid = this.route.snapshot.paramMap.get("uid");
   console.log("uid:", this.uid); 
     // Get the "to" value from the cookie (assuming "empemailid" is the cookie name)
     this.message.messageFrom = this.cookie.get('emp');
