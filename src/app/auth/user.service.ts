@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,7 +12,7 @@ import {
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // Define your API base URL as a constant variable
-const API_BASE_URL = 'http://localhost:9001/';
+const API_BASE_URL = 'https://job4jobless.com:9001/';
 interface User {
   uid: Number;
   userName: String;
@@ -75,6 +75,9 @@ export class UserService {
   contactformurl = `${API_BASE_URL}insertfrontform`;
   inserturlc = `${API_BASE_URL}insertusermail`;
   logincheckurl = `${API_BASE_URL}logincheck`;
+  logincheckurlgmail = `${API_BASE_URL}logincheckgmail`;
+  insertgmail = `${API_BASE_URL}createOrGetUser`;
+
   fetchuserurl = `${API_BASE_URL}fetchuser`;
   updateUserurl = `${API_BASE_URL}updateUser`;
   insertusermailurl = `${API_BASE_URL}insertusermailgog`;
@@ -110,22 +113,13 @@ export class UserService {
 
 
 
-
+  //Contact
   insertfrontform(formData: any) {
     return this.h1.post(this.contactformurl, formData);
   }
 
-  deleteUser(uid: string): Observable<any> {
-    const urldu = `${this.deleteuseraccount}/deleteUser/${uid}`;
-    return this.h1.delete(urldu);
-  }
 
-
-  deleteEmployer(empid: string): Observable<any> {
-    const urlde = `${this.deleteemployeraccount}deleteEmployer/${empid}`;
-    return this.h1.delete(urlde);
-  }
-
+  //User 
   public insertusermail(data: any) {
     console.log("done");
     return this.h1.post(this.inserturlc, data).subscribe({
@@ -140,6 +134,7 @@ export class UserService {
       }
     });
   }
+
   insertusermailgog(data: string) {
 
     console.log("inside user google login");
@@ -154,34 +149,21 @@ export class UserService {
       }
     })
   }
+  deleteUser(uid: string): Observable<any> {
+    const urldu = `${this.deleteuseraccount}/deleteUser/${uid}`;
+    return this.h1.delete(urldu);
+  }
+
 
   fetchuser() {
     return this.h1.get(this.fetchuserurl).pipe(catchError(this.handleError));
   }
 
 
-  private handleError(error: any): Observable<never> {
-
-    console.error('An error occurred:', error);
-
-    // Return an observable with an error message or perform other error handling tasks.
-    return throwError('Something went wrong. Please try again later.');
-  }
-
-
-
   checkUser(userName: string): Observable<any> {
     const url = `${API_BASE_URL}checkuser?userName=${userName}`;
     return this.h1.get(url);
   }
-
-
-  checkEmployer(empmailid: string): Observable<any> {
-    const url = `${API_BASE_URL}checkEmployer?empmailid=${empmailid}`;
-    return this.h1.get(url);
-  }
-
-
 
 
   //update user
@@ -191,31 +173,12 @@ export class UserService {
     );
   }
 
-  //update employer data
-  updateEmployee(data: any): Observable<any> {
-    return this.h1.post(this.employerupdateurl, data).pipe(
-      catchError(this.handleEr)
-    );
-  }
-  private handleEr(error: HttpErrorResponse) {
-    let errorMessage = 'An error occurred';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.error(errorMessage);
-    return throwError(errorMessage);
-  }
-
   public logincheck(data: any) {
     console.log("done");
     return this.h1.post(this.logincheckurl, data).subscribe({
       next: (resp: any) => {
         AuthInterceptor.accessToken = resp.accessToken;
-        console.log("Access Token Generated"+resp.accessToken);
+        console.log("Access Token Generated" + resp.accessToken);
         const mainres: User = resp;
         console.log(`Login response from server: ${mainres}`);
         this.cookie.set('user', resp.uid);
@@ -241,6 +204,103 @@ export class UserService {
     });
   }
 
+  logincheckgmail(userName: string) {
+    const data = { userName }; // Wrap the username in an object
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+  
+    this.h1.post(this.logincheckurlgmail, data, { headers }).subscribe({
+      next: (resp: any) => {
+        AuthInterceptor.accessToken = resp.accessToken;
+        console.log("Access Token Generated" + resp.accessToken);
+        const mainres: User = resp;
+        console.log(`Login response from server: ${mainres}`);
+        this.cookie.set('user', resp.uid);
+        if (resp && resp.accessToken) {
+          AuthInterceptor.accessToken = resp.accessToken;
+          console.log("Access Token Generated: " + resp.accessToken);
+          this.cookie.set('user', resp.uid);
+          alert('Login Successful!');
+          this.router.navigate(['/dashboarduser/']);
+        } else {
+          alert('Login Failed. Your Google account is not registered.');
+          this.router.navigate(['/login']);
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+        alert('Login Failed. Your Google account is not registered.');
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+  
+  createOrGetUser(userName: any){
+    const data = { userName }; // Wrap the username in an object
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+  
+    this.h1.post(this.insertgmail, data, { headers }).subscribe({
+      next: (resp: any) => {
+        AuthInterceptor.accessToken = resp.accessToken;
+        console.log("Access Token Generated" + resp.accessToken);
+        const mainres: User = resp;
+        console.log(`Login response from server: ${mainres}`);
+        this.cookie.set('user', resp.uid);
+        if (resp && resp.accessToken) {
+          AuthInterceptor.accessToken = resp.accessToken;
+          console.log("Access Token Generated: " + resp.accessToken);
+          this.cookie.set('user', resp.uid);
+          alert('Account Created Successfull Successful!');
+          this.router.navigate(['/dashboarduser/']);
+        } else {
+          alert('Login Failed. Your Google account is not registered.');
+          this.router.navigate(['/login']);
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+        alert('Login Failed. Your Google account is not registered.');
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+
+  //Employer
+  deleteEmployer(empid: string): Observable<any> {
+    const urlde = `${this.deleteemployeraccount}deleteEmployer/${empid}`;
+    return this.h1.delete(urlde);
+  }
+
+
+  checkEmployer(empmailid: string): Observable<any> {
+    const url = `${API_BASE_URL}checkEmployer?empmailid=${empmailid}`;
+    return this.h1.get(url);
+  }
+
+  //update employer data
+  updateEmployee(data: any): Observable<any> {
+    return this.h1.post(this.employerupdateurl, data).pipe(
+      catchError(this.handleEr)
+    );
+  }
+  private handleEr(error: HttpErrorResponse) {
+    let errorMessage = 'An error occurred';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
+  }
+
 
   logincheckemp(data: any) {
     console.log(data);
@@ -256,7 +316,7 @@ export class UserService {
 
         console.log(resp.empfname);
         if (resp) {
-          console.log("Server responded with a object of user");
+          console.log("Server responded with a object of employer");
 
           // Redirect to the dashboard if the response is true
           alert('Login successful!');
@@ -276,10 +336,6 @@ export class UserService {
     });
   }
 
-
-
-
-
   public insertemployer(data: any) {
     console.log("done");
     return this.h1.post(this.inserturle, data).subscribe({
@@ -294,6 +350,8 @@ export class UserService {
       }
     });
   }
+
+
   public insertemployeremail(data: any) {
     console.log("done");
     return this.h1.post(this.inserturlemail, data).subscribe({
@@ -315,6 +373,17 @@ export class UserService {
     return this.h1.get(this.employerdetailsfetchurl);
   }
 
+
+
+  private handleError(error: any): Observable<never> {
+
+    console.error('An error occurred:', error);
+
+    // Return an observable with an error message or perform other error handling tasks.
+    return throwError('Something went wrong. Please try again later.');
+  }
+
+  //Job Post
 
   public jobpostinsert(data: any) {
     console.log("done");
@@ -338,8 +407,7 @@ export class UserService {
 
 
 
-
-
+  //Conatct
   public insertcontact(data: any) {
     console.log("done");
     return this.h1.post(this.inserturlcontact, data).subscribe({
@@ -359,9 +427,13 @@ export class UserService {
     return this.h1.get(this.fetchcontactdetails);
   }
 
+
+  //Appply form data
   fetchapplyform() {
     return this.h1.get(this.fetchapplyjobform);
   }
+
+  //insert apply form data
   public insertapplyjob(data: any) {
     console.log("done");
     return this.h1.post(this.inserturlapplyjob, data).subscribe({
@@ -376,7 +448,7 @@ export class UserService {
     });
   }
 
-
+  //insert notification
   public insertnotification(data: any) {
     console.log("done");
     return this.h1.post(this.notificationurl, data).subscribe({
@@ -396,6 +468,8 @@ export class UserService {
     return this.h1.get<any[]>(this.fetchnotificationurl);
   }
 
+
+  //Insert Resume
   public resumeinsert(data: any) {
     console.log(data);
     console.log("done");
@@ -412,15 +486,15 @@ export class UserService {
       }
     });
   }
+
+
   //fetch question paper fetchquestionpaperurl
   fetchquestion() {
     return this.h1.get(this.fetchquestionpaperurl);
   }
 
   loginWithGoogle() {
-
     return signInWithPopup(this.auth, new GoogleAuthProvider());
-
   }
 
   logout() {

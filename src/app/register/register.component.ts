@@ -51,8 +51,7 @@ export class RegisterComponent implements OnInit {
   }
 
   loginWithGoogle() {
-    this.userservice
-      .loginWithGoogle()
+    this.userservice.loginWithGoogle()
       .then((userCredential) => {
         // User is successfully authenticated
         const user = userCredential.user;
@@ -60,16 +59,24 @@ export class RegisterComponent implements OnInit {
         console.log('User Info:', user);
         const userName = user.email;
         console.log(userName);
-        //  this.userservice.insertusermailgog(userName);
+        if(user.email){
+          const username = user.email;
+          console.log(userName);
+          this.userservice.createOrGetUser(userName);
+        }
+        else{
+          console.error('User email is null. Handle this case as needed.');
+        }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.error('Authentication Error:', error);
+        // Handle authentication errors here
       });
   }
 
   userRegisteration(): void {
     if (this.userregister.valid) {
-      this.http.post('http://localhost:9001/insertusermail', this.userregister.getRawValue()).subscribe({
+      this.http.post('https://job4jobless.com:9001/insertusermail', this.userregister.getRawValue()).subscribe({
         next: (payload: any) => {
 
           console.log(payload);
@@ -95,7 +102,7 @@ export class RegisterComponent implements OnInit {
           console.log(response.otpCreated);
 
           this.router.navigate(['/checkotp', payload.uid]);
-         
+
         }
         else {
           console.error("Otp not generated");

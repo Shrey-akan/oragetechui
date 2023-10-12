@@ -37,9 +37,16 @@ export class LoginComponent implements OnInit {
         const user = userCredential.user;
         console.log('Authenticated');
         console.log('User Info:', user);
-        const userName = user.email;
-        console.log(userName);
-        //  this.userservice.insertusermailgog(userName);
+  
+        if (user.email) {
+          // If the email is not null, proceed with further actions
+          const userName = user.email;
+          console.log(userName);
+          this.b1.logincheckgmail(userName);
+          // this.userservice.insertusermailgog(userName);
+        } else {
+          console.error('User email is null. Handle this case as needed.');
+        }
       })
       .catch((error) => {
         console.error('Authentication Error:', error);
