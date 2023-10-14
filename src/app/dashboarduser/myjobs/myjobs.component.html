@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row" >
+  <div class="row" *ngIf="data.length > 0; else noApplications">
     <div class="col-md-6" *ngFor="let application of data">
       <div class="card">
         <div class="card-header">
@@ -25,6 +25,15 @@
         </div>
       </div>
     </div>
-    <!-- Repeat the above card for other data entries -->
   </div>
+  <ng-template #noApplications>
+    <div class="text-center">
+      <img src="assets/job-website-image.jpg" alt="No Jobs Available Image" width="100%">
+      <h2>No job applications available</h2>
+      <p>Sorry, there are currently no job applications to display.</p>
+      <a routerLink="/dashboarduser/"> <!-- Replace with the actual routerLink -->
+        <button class="btn btn-primary" (click)="navigateTo()">Find Jobs</button>
+      </a>
+    </div>
+  </ng-template>
 </div>

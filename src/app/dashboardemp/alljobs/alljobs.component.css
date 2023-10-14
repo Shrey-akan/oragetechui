@@ -1,0 +1,36 @@
+/* Job card styles */
+.job-card {
+    transition: transform 0.3s;
+  }
+  
+  /* Button hover effect */
+  .show-more:hover {
+    background-color: #007bff;
+    color: #fff;
+    border: 2px solid #007bff;
+  }
+  
+  .edit-button:hover {
+    background-color: #6c757d;
+    color: #fff;
+    border: 2px solid #6c757d;
+  }
+  
+  /* Show details animation */
+  .card-body {
+    overflow: hidden;
+  }
+  
+  .job-card:not(.show-details) .card-footer {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s, opacity 0.3s;
+  }
+  
+  .job-card.show-details .card-footer {
+    max-height: 300px; /* Adjust the height as needed */
+    opacity: 1;
+    transition: max-height 0.3s, opacity 0.3s;
+  }
+  

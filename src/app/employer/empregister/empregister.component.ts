@@ -51,6 +51,31 @@ export class EmpregisterComponent {
     })
   }
 
+  loginWithGoogle() {
+    this.b1.loginWithGoogle()
+      .then((userCredential) => {
+        // User is successfully authenticated
+        const user = userCredential.user;
+        console.log('Authenticated');
+        console.log('User Info:', user);
+        const empmailid = user.email;
+        console.log(empmailid);
+        if(user.email){
+          const empmailid = user.email;
+          console.log(empmailid);
+          this.b1.createOrGetEmployer(empmailid);
+        }
+        else{
+          console.error('Employer email is null. Handle this case as needed.');
+        }
+      })
+      .catch((error: any) => {
+        console.error('Authentication Error:', error);
+        // Handle authentication errors here
+      });
+  }
+
+
   generateOtp(payload: any) {
     this.http.post('https://otpservice.onrender.com/0auth/generateOtp', {uid: payload.empid, email:payload.empmailid}).subscribe({
       next:(response: any) => {

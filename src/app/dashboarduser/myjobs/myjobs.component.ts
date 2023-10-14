@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/auth/user.service';
 
@@ -18,7 +19,7 @@ export class MyjobsComponent implements OnInit{
   toggleDetails() {
     this.showDetails = !this.showDetails;
   }
-  constructor(public cookie:CookieService , private b1:UserService) {}
+  constructor(public cookie:CookieService , private b1:UserService , private router:Router) {}
 
   userID: String = "0";
   ngOnInit(): void {
@@ -56,5 +57,7 @@ export class MyjobsComponent implements OnInit{
         console.log('Filtered Data:', this.data);
       });
   }
-
+  navigateTo(){
+    this.router.navigate(['/dashboarduser']);
+  }
 }

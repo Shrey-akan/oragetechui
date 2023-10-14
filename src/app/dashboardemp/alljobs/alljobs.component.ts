@@ -57,4 +57,8 @@ export class AlljobsComponent implements OnInit {
   editJob(jobid:string){
     this.router.navigate(['/dashboardemp/updatejob/', jobid]);
   }
+
+  redirectToDashboardEmp(){
+    this.router.navigate(['/dashboardemp']);
+  }
 }

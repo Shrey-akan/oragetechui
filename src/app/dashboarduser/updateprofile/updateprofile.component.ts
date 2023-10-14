@@ -68,7 +68,7 @@ export class UpdateprofileComponent implements OnInit {
       userFirstName: ['', Validators.required],
       userLastName: ['', Validators.required],
       companyuser: ['', Validators.required],
-      userPassword: ['', Validators.required],
+    
       userphone: ['', Validators.required],
       usercountry: ['', Validators.required],
       userstate: ['', Validators.required],

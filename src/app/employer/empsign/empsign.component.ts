@@ -46,7 +46,7 @@ export class EmpsignComponent {
         const empmailid = user.email;
         if (empmailid != null) {
           this.router.navigate(['/dashboardemp/profilemep']);
-          return this.authService.insertemployer(empmailid);
+          return this.authService.employerLoginCheck(empmailid);
         }
         return false;
       })

@@ -38,13 +38,13 @@
               </div>
 
               <div class="form-group">
-                <label for="userEmail">Email:</label>
-                <input type="email" class="form-control" formControlName="userEmail" placeholder="Enter Email">
+                <label for="userName">Email:</label>
+                <input type="email" class="form-control" formControlName="userName" placeholder="Enter Email">
                 <div
-                  *ngIf="userregister.get('userEmail')?.hasError('required') && userregister.get('userEmail')?.touched"
+                  *ngIf="userregister.get('userName')?.hasError('required') && userregister.get('userName')?.touched"
                   class="text-danger">Email is required.
                 </div>
-                <div *ngIf="userregister.get('userEmail')?.hasError('email') && userregister.get('userEmail')?.touched"
+                <div *ngIf="userregister.get('userName')?.hasError('email') && userregister.get('userName')?.touched"
                   class="text-danger">Please enter a valid email address.
                 </div>
               </div>
@@ -139,7 +139,7 @@
           <div class="container bg-white p-4 rounded">
             <h2 class="h4 mb-4">Sign Up with Google</h2>
             <button class="btn custom-button btn-lg" (click)="loginWithGoogle()">
-              <i class="fab fa-google"></i> Sign In with Google
+              <i class="fab fa-google"></i> Sign Up with Google
             </button>
             <img src="assets/Indeed-Assessments.png" alt="" width="100%">
           </div>

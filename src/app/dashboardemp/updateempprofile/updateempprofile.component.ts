@@ -56,7 +56,7 @@ export class UpdateempprofileComponent implements OnInit {
       empfname: ['', Validators.required],
       emplname: ['', Validators.required],
       empcompany: ['', Validators.required],
-      emppass: ['', Validators.required],
+     
       empphone: ['', Validators.required],
       empcountry: ['', Validators.required],
       empstate: ['', Validators.required],

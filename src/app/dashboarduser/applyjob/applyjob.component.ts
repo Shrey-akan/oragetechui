@@ -74,7 +74,17 @@ export class ApplyjobComponent implements OnInit {
     console.log(myformsubmission);
     // Save the data with the user ID (uid) in the form
     myformsubmission.value.uid = this.uid;
+    
     return this.b1.insertapplyjob(myformsubmission.value);
+    
+    // Clear the localStorage after submitting
+    localStorage.removeItem('applyJobFormData');
+this.router.navigate(['/dashboarduser']);
+  }
+
+  ngOnDestroy() {
+    // Save the form data to localStorage when the component is destroyed (e.g., when the user leaves the page)
+    localStorage.setItem('applyJobFormData', JSON.stringify(this.myformsubmission.value));
   }
   nextStep() {
 

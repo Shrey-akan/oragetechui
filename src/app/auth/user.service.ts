@@ -12,7 +12,7 @@ import {
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // Define your API base URL as a constant variable
-const API_BASE_URL = 'https://job4jobless.com:9001/';
+const API_BASE_URL = 'http://localhost:9001/';
 interface User {
   uid: Number;
   userName: String;
@@ -89,6 +89,8 @@ export class UserService {
   employerdetailsfetchurl = `${API_BASE_URL}fetchemployer`;
   employerupdateurl = `${API_BASE_URL}updateEmployee`;
   deleteemployeraccount = `${API_BASE_URL}`;
+  logincheckurlgmailemp=  `${API_BASE_URL}employerLoginCheck`;
+  insertgmailemp = `${API_BASE_URL}createOrGetEmployer`;
   // Job Post
   inserturljobpost = `${API_BASE_URL}jobpostinsert`;
   fetchjobposturl = `${API_BASE_URL}fetchjobpost`;
@@ -244,7 +246,7 @@ export class UserService {
       'Content-Type': 'application/json'
     });
   
-    this.h1.post(this.insertgmail, data, { headers }).subscribe({
+    this.h1.post(this.insertgmail, userName, { headers }).subscribe({
       next: (resp: any) => {
         AuthInterceptor.accessToken = resp.accessToken;
         console.log("Access Token Generated" + resp.accessToken);
@@ -268,7 +270,7 @@ export class UserService {
         this.router.navigate(['/login']);
       }
     });
-  }
+  }   
 
   //Employer
   deleteEmployer(empid: string): Observable<any> {
@@ -335,6 +337,77 @@ export class UserService {
       }
     });
   }
+
+  createOrGetEmployer(empmailid: any){
+    const data = { empmailid }; // Wrap the username in an object
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+  
+    this.h1.post(this.insertgmailemp, empmailid, { headers }).subscribe({
+      next: (resp: any) => {
+        AuthInterceptor.accessToken = resp.accessToken;
+        console.log("Access Token Generated" + resp.accessToken);
+        const mainres: Employer = resp;
+        console.log(`Login response from server: ${mainres}`);
+        this.cookie.set('Employer', resp.empid);
+        if (resp && resp.accessToken) {
+          AuthInterceptor.accessToken = resp.accessToken;
+          console.log("Access Token Generated: " + resp.accessToken);
+          this.cookie.set('emp', resp.empid);
+          console.log(resp.empid);
+          alert('Account Created Successfull Successful!');
+          this.router.navigate(['/dashboardemp/']);
+        } else {
+          alert('Login Failed. Your Google account is not registered.');
+          this.router.navigate(['/employer']);
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+        alert('Login Failed. Your Google account is not registered.');
+        this.router.navigate(['/employer']);
+      }
+    });
+  }   
+  employerLoginCheck(empmailid: string) {
+    const data = { empmailid }; // Wrap the username in an object
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+  
+    this.h1.post(this.logincheckurlgmailemp, data, { headers }).subscribe({
+      next: (resp: any) => {
+            AuthInterceptor.accessToken = resp.accessToken;
+          console.log("Access Token Generated" + resp.accessToken);
+          const mainres: Employer = resp;
+          console.log(`Login response from server: ${mainres}`);
+          this.cookie.set('emp', resp.empid);
+          if (resp && resp.accessToken) {
+            AuthInterceptor.accessToken = resp.accessToken;
+            console.log("Access Token Generated: " + resp.accessToken);
+            this.cookie.set('user', resp.empid);
+            console.log("check the empid",resp.empid);
+            alert('Login Successful!');
+          this.router.navigate(['/dashboardemp']);
+        } else {
+          // Handle other response statuses or errors
+          alert('Incorrect Credentials!');
+          this.router.navigate(['/employer']);
+        }
+
+      },
+      error: (err: any) => {
+        console.log(err);
+        alert('Incorrect Credentials!');
+        this.router.navigate(['/employer']);
+      }
+    });
+  }
+  
+
 
   public insertemployer(data: any) {
     console.log("done");

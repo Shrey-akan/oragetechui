@@ -144,11 +144,14 @@
     </div>
   </div>
 </div>
+<button class="btn custom-button btn-lg" (click)="loginWithGoogle()">
+  <i class="fab fa-google"></i> Sign Up with Google
+</button>
 
 
 
 
-<tr *ngFor="let d of data1">
+<tr *ngFor="let d     of data1">
   <td>{{d.empmailid}}</td>
   <td>{{d.emppass}}</td>
   <td>{{d.empcompany}}</td>
